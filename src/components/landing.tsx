@@ -345,32 +345,43 @@ export const BookingForm = () => {
         
         <form className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
           <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground">Nome Completo</label>
-            <input type="text" className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" placeholder="Seu nome" />
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Nome Completo</label>
+            <input type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Maria Silva" />
           </div>
           <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground">E-mail</label>
-            <input type="email" className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" placeholder="seu@email.com" />
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail de Contato</label>
+            <input type="email" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="seu@email.com" />
           </div>
           <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground">Data de Chegada</label>
-            <input type="date" className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" />
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Data de Check-in</label>
+            <input type="date" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm [color-scheme:dark]" />
           </div>
           <div className="space-y-2">
-            <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground">Quantidade de Pessoas</label>
-            <select className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors appearance-none">
-              <option>1 Pessoa</option>
-              <option>2 Pessoas</option>
-              <option>Mais de 2</option>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Data de Check-out</label>
+            <input type="date" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm [color-scheme:dark]" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Quantidade de Hóspedes</label>
+            <select className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="1">1 Hóspede</option>
+              <option value="2">2 Hóspedes (Casal)</option>
+              <option value="3+">3 ou mais Hóspedes</option>
             </select>
           </div>
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
+            <input type="tel" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
+          </div>
           <div className="md:col-span-2 space-y-2">
-            <label className="text-xs uppercase tracking-widest font-sans text-muted-foreground">Mensagem (Opcional)</label>
-            <textarea className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors resize-none" rows={3} placeholder="Algum pedido especial?"></textarea>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Preferências ou Ocasião Especial</label>
+            <textarea className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={2} placeholder="Ex: Aniversário de casamento, preferência por chalé com vista específica..."></textarea>
           </div>
           
           <div className="md:col-span-2 pt-8">
-            <button className="w-full bg-primary text-primary-foreground py-5 uppercase tracking-[0.2em] font-medium text-xs hover:opacity-90 transition-all">Solicitar Orçamento Personalizado</button>
+            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/10">
+              Verificar Disponibilidade & Solicitar Orçamento
+            </button>
+            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Resposta em até 24 horas úteis</p>
           </div>
         </form>
       </div>
