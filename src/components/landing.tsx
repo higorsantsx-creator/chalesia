@@ -162,7 +162,7 @@ export const Experience = () => {
           >
             <div className="aspect-[4/5] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
                 alt="Estrutura do Chalé"
                 className="w-full h-full object-cover"
               />
@@ -186,13 +186,13 @@ const CHALES = [
     id: 2,
     name: "Chalé Alpine",
     description: "Design contemporâneo com vista privilegiada para as montanhas.",
-    image: "https://images.unsplash.com/photo-1449156006079-eb5881645a85?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 3,
     name: "Chalé Nordic",
     description: "Minimalismo escandinavo com máximo conforto térmico e elegância.",
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
   }
 ];
 
