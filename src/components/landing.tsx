@@ -29,9 +29,10 @@ export const Navbar = () => {
             CHALÉS IA
           </a>
           <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans">
-            <a href="#experiencia" className="hover:text-primary transition-colors">Experiência</a>
-            <a href="#chales" className="hover:text-primary transition-colors">Chalés</a>
-            <a href="#contato" className="hover:text-primary transition-colors">Contato</a>
+            <a href="/#experiencia" className="hover:text-primary transition-colors">Experiência</a>
+            <a href="/#chales" className="hover:text-primary transition-colors">Chalés</a>
+            <a href="/avaliacoes" className="hover:text-primary transition-colors">Avaliações</a>
+            <a href="/#contato" className="hover:text-primary transition-colors">Contato</a>
           </div>
         </div>
         
