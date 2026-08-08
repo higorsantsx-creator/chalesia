@@ -59,8 +59,8 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img 
-          src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?q=80&w=2000&auto=format&fit=crop" 
-          alt="Chalé de Luxo Moderno"
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop" 
+          alt="Chalé de Luxo Arquitetônico"
           className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
