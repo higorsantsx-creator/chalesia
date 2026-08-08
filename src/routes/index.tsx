@@ -4,12 +4,13 @@ import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    title: "Chalés IA | Luxo e Natureza em Harmonia",
+    title: "Chalés IA | Arquitetura de Luxo & Design",
     meta: [
-      { name: "description", content: "Descubra uma experiência de hospedagem boutique exclusiva, onde o luxo discreto encontra o aconchego da natureza. Chalés IA: Seu refúgio cinematográfico." },
-      { property: "og:title", content: "Chalés IA | Experiência de Hospedagem Premium" },
-      { property: "og:description", content: "Sinta a natureza, viva o luxo. Reserve sua estadia nos Chalés IA." },
+      { name: "description", content: "Experiência de hospedagem premium em chalés de design moderno. Onde o luxo encontra a inovação e o conforto absoluto." },
+      { property: "og:title", content: "Chalés IA - Refúgios de Design" },
+      { property: "og:description", content: "Hospedagem boutique com arquitetura icônica e conforto premium." },
       { property: "og:image", content: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2000&auto=format&fit=crop" },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
