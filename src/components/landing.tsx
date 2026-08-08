@@ -192,7 +192,7 @@ const CHALES = [
     id: 3,
     name: "Chalé Nordic",
     description: "Minimalismo escandinavo com máximo conforto térmico e elegância.",
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop",
   }
 ];
 
