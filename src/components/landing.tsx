@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Instagram, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
@@ -275,7 +275,7 @@ export const Footer = () => {
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
-              <Instagram size={18} />
+              <span className="text-[10px] uppercase font-bold tracking-tighter">IG</span>
             </a>
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
               <Phone size={18} />
