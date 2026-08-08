@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
+import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -59,9 +60,9 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img 
-          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop" 
+          src={heroChaleAsset.url} 
           alt="Chalé de Luxo Arquitetônico"
-          className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"
+          className="w-full h-full object-cover brightness-[0.7] contrast-[1.05] saturate-[1.1]"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
       </motion.div>
