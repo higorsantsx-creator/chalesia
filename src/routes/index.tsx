@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar, Hero, Experience, Accommodations, BookingForm, Footer } from "@/components/landing";
+import { Navbar, Hero, Experience, Accommodations, BookingForm, Footer, SocialProof } from "@/components/landing";
 import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
@@ -24,6 +24,7 @@ function Index() {
         <Hero />
         <Experience />
         <Accommodations />
+        <SocialProof />
         <BookingForm />
       </main>
       <Footer />
