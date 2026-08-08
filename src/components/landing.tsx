@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
+import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -58,8 +59,8 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img 
-          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
-          alt="Design de Interiores Moderno"
+          src={chaleRefAsset.url} 
+          alt="Chalé de Luxo Moderno"
           className="w-full h-full object-cover brightness-[0.4]"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
@@ -72,7 +73,7 @@ export const Hero = () => {
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="text-primary text-sm md:text-base uppercase tracking-[0.5em] font-sans font-bold block mb-8 drop-shadow-sm">
-            Um refúgio exclusivo e moderno
+            Um refúgio exclusivo de arquitetura premium
           </span>
         </motion.div>
         
@@ -176,9 +177,9 @@ export const Experience = () => {
 const CHALES = [
   {
     id: 1,
-    name: "Chalé Loft",
-    description: "Design industrial com pé direito duplo e tecnologia smart home.",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Loft A-Frame",
+    description: "Design icônico em A-frame com fachada de vidro total e acabamento em pedra.",
+    image: chaleRefAsset.url,
   },
   {
     id: 2,
