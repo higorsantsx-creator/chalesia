@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
@@ -225,6 +225,95 @@ export const Accommodations = () => {
               <button className="text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-primary/50 pb-1 group-hover:border-primary transition-all">Ver detalhes</button>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const REVIEWS = [
+  {
+    id: 1,
+    author: "Marina Siqueira",
+    role: "Designer de Interiores",
+    content: "Uma experiência transformadora. O cuidado com o design e a integração com a natureza é algo que nunca vi igual no Brasil. Voltarei com certeza.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    author: "Ricardo Fontes",
+    role: "Empresário",
+    content: "O refúgio perfeito para quem busca desconectar sem abrir mão do luxo. O atendimento é impecável e a privacidade é o ponto alto.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    author: "Elena Cavalcanti",
+    role: "Fotógrafa",
+    content: "Cada ângulo deste lugar é uma obra de arte. A luz, os materiais, a paz... Chalés IA elevou meu padrão para o que chamo de hospedagem boutique.",
+    rating: 5,
+  }
+];
+
+export const SocialProof = () => {
+  return (
+    <section className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+          <div className="lg:col-span-1">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Depoimentos</span>
+            <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-8">
+              O que dizem nossos convidados
+            </h2>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="flex -space-x-2">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="w-12 h-12 rounded-full border-2 border-background overflow-hidden bg-muted">
+                    <img src={`https://i.pravatar.cc/150?u=${i + 10}`} alt="Guest" className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="flex text-primary mb-1">
+                  {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}
+                </div>
+                <p className="text-xs uppercase tracking-widest font-sans font-bold">500+ Estadias Concluídas</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {REVIEWS.slice(0, 2).map((review) => (
+              <motion.div 
+                key={review.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-card p-10 relative"
+              >
+                <Quote className="absolute top-6 right-6 text-primary/10" size={60} />
+                <div className="flex text-primary mb-6">
+                  {[...Array(review.rating)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
+                </div>
+                <p className="text-lg leading-relaxed mb-8 relative z-10 italic font-serif">
+                  "{review.content}"
+                </p>
+                <div>
+                  <h4 className="font-bold text-sm uppercase tracking-widest">{review.author}</h4>
+                  <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">{review.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-24 pt-24 border-t border-border/10">
+          <p className="text-center text-[10px] uppercase tracking-[0.5em] text-muted-foreground mb-12">Destaque em Publicações de Prestígio</p>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
+            {["VOGUE", "ARCHITECTURAL DIGEST", "TRAVEL + LEISURE", "CONDE NAST", "MONOCLE"].map((brand) => (
+              <span key={brand} className="text-xl md:text-2xl font-serif font-bold tracking-tighter">{brand}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
