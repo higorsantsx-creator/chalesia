@@ -61,7 +61,7 @@ export const Hero = () => {
         <img 
           src={chaleRefAsset.url} 
           alt="Chalé de Luxo Moderno"
-          className="w-full h-full object-cover brightness-[0.4]"
+          className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
       </motion.div>
