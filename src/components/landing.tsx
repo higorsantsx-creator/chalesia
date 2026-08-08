@@ -59,7 +59,7 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img 
-          src={chaleRefAsset.url} 
+          src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?q=80&w=2000&auto=format&fit=crop" 
           alt="Chalé de Luxo Moderno"
           className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"
         />
