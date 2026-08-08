@@ -402,10 +402,11 @@ export const Footer = () => {
         <div>
           <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Navegação</h4>
           <ul className="space-y-4 text-sm text-muted-foreground uppercase tracking-wider font-sans text-[10px]">
-            <li><a href="#" className="hover:text-primary transition-colors">Início</a></li>
-            <li><a href="#experiencia" className="hover:text-primary transition-colors">A Experiência</a></li>
-            <li><a href="#chales" className="hover:text-primary transition-colors">Acomodações</a></li>
-            <li><a href="#orcamento" className="hover:text-primary transition-colors">Orçamentos</a></li>
+            <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
+            <li><a href="/#experiencia" className="hover:text-primary transition-colors">A Experiência</a></li>
+            <li><a href="/#chales" className="hover:text-primary transition-colors">Acomodações</a></li>
+            <li><a href="/avaliacoes" className="hover:text-primary transition-colors">Avaliações</a></li>
+            <li><a href="/#orcamento" className="hover:text-primary transition-colors">Orçamentos</a></li>
           </ul>
         </div>
       </div>
