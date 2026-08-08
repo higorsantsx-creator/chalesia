@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -185,7 +186,7 @@ const CHALES = [
   {
     id: 2,
     name: "Chalé Alpine",
-    description: "Design contemporâneo com vista privilegiada para as montanhas.",
+    description: "Design contemporâneo com vista privilegiada para as montanhas e piscina.",
     image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
   },
   {
@@ -226,7 +227,13 @@ export const Accommodations = () => {
               <h3 className="text-3xl font-serif font-bold mb-3">{chale.name}</h3>
               <p className="text-muted-foreground text-base mb-6 leading-relaxed">{chale.description}</p>
               <div className="flex flex-col gap-4">
-                <button className="text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-primary/50 pb-1 w-fit group-hover:border-primary transition-all">Ver detalhes</button>
+                <Link 
+                  to="/chale/$chaleId" 
+                  params={{ chaleId: chale.id.toString() }}
+                  className="text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-primary/50 pb-1 w-fit group-hover:border-primary transition-all"
+                >
+                  Ver detalhes
+                </Link>
                 <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-muted-foreground font-sans">
                   <span className="flex items-center gap-1.5"><Star size={10} className="text-primary" fill="currentColor" /> 4.9</span>
                   <span className="w-1 h-1 bg-border rounded-full"></span>
