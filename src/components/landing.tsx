@@ -186,7 +186,7 @@ const CHALES = [
   {
     id: 2,
     name: "Chalé Alpine",
-    description: "Design contemporâneo com vista privilegiada para as montanhas.",
+    description: "Design contemporâneo com vista privilegiada para as montanhas e piscina.",
     image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
   },
   {
