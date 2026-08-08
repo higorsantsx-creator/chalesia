@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
+import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
