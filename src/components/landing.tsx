@@ -161,8 +161,8 @@ export const Experience = () => {
           >
             <div className="aspect-[4/5] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
-                alt="Arquitetura Moderna"
+                src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop" 
+                alt="Estrutura do Chalé"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -183,15 +183,15 @@ const CHALES = [
   },
   {
     id: 2,
-    name: "Chalé Suíte",
-    description: "Minimalismo sofisticado com materiais nobres e automação.",
-    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Alpine",
+    description: "Design contemporâneo com vista privilegiada para as montanhas.",
+    image: "https://images.unsplash.com/photo-1449156006079-eb5881645a85?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 3,
-    name: "Chalé Studio",
-    description: "Eficiência e estilo para nômades digitais que buscam exclusividade.",
-    image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Nordic",
+    description: "Minimalismo escandinavo com máximo conforto térmico e elegância.",
+    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
   }
 ];
 
