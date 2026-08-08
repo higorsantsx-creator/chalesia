@@ -51,47 +51,60 @@ export const Hero = () => {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       <motion.div 
-        initial={{ scale: 1.1 }}
+        initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-0 z-0"
       >
         <img 
           src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2000&auto=format&fit=crop" 
           alt="Chalé de Luxo na Natureza"
-          className="w-full h-full object-cover brightness-50"
+          className="w-full h-full object-cover brightness-[0.4]"
         />
+        <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
       </motion.div>
       
-      <div className="relative z-10 max-w-4xl px-6 text-center">
-        <motion.span 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-primary text-sm md:text-base uppercase tracking-[0.4em] font-sans font-bold block mb-6"
-        >
-          Um refúgio exclusivo na montanha
-        </motion.span>
-        
-        <motion.h1 
+      <div className="relative z-10 max-w-6xl px-6 text-center">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 1 }}
-          className="text-6xl md:text-9xl font-serif font-bold leading-[0.85] mb-12 tracking-tighter"
+          transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          Onde o luxo encontra a natureza
+          <span className="text-primary text-sm md:text-base uppercase tracking-[0.5em] font-sans font-bold block mb-8 drop-shadow-sm">
+            Um refúgio exclusivo na montanha
+          </span>
+        </motion.div>
+        
+        <motion.h1 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="text-7xl md:text-[10rem] font-serif font-bold leading-[0.8] mb-12 tracking-tighter drop-shadow-2xl"
+        >
+          Onde o luxo <br />
+          <span className="italic text-primary/90 font-medium">encontra</span> a <br />
+          natureza
         </motion.h1>
         
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row items-center justify-center gap-6"
         >
           <a 
             href="#chales" 
-            className="inline-flex items-center gap-3 border border-white/30 px-10 py-4 hover:bg-white hover:text-background transition-all duration-500 uppercase tracking-widest text-xs"
+            className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
           >
-            Conheça nossos chalés
+            <span className="relative z-10">Conheça nossos chalés</span>
+            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+          </a>
+          
+          <a 
+            href="#experiencia" 
+            className="inline-flex items-center gap-3 border border-white/20 px-12 py-5 hover:bg-white/10 backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
+          >
+            A Experiência
           </a>
         </motion.div>
       </div>
