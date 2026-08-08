@@ -412,20 +412,6 @@ export const BookingForm = () => {
     </section>
   );
 };
-            <textarea className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={2} placeholder="Ex: Aniversário de casamento, preferência por chalé com vista específica..."></textarea>
-          </div>
-          
-          <div className="md:col-span-2 pt-8">
-            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/10">
-              Verificar Disponibilidade & Solicitar Orçamento
-            </button>
-            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Resposta em até 24 horas úteis</p>
-          </div>
-        </form>
-      </div>
-    </section>
-  );
-};
 
 export const Footer = () => {
   return (
