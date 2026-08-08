@@ -49,7 +49,7 @@
 
 :root {
   --radius: 0rem;
-  --background: oklch(0.12 0.015 200); /* Darker, more modern slate/forest */
+  --background: oklch(0.12 0.015 260); /* Deep modern slate/blue, removing forest green */
   --foreground: oklch(0.99 0.005 60); /* Stark white/cream */
   --card: oklch(0.14 0.02 200);
   --card-foreground: oklch(0.99 0.005 60);

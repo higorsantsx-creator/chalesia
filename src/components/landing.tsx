@@ -58,8 +58,8 @@ export const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <img 
-          src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2000&auto=format&fit=crop" 
-          alt="Chalé de Luxo na Natureza"
+          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
+          alt="Design de Interiores Moderno"
           className="w-full h-full object-cover brightness-[0.4]"
         />
         <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
@@ -72,7 +72,7 @@ export const Hero = () => {
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="text-primary text-sm md:text-base uppercase tracking-[0.5em] font-sans font-bold block mb-8 drop-shadow-sm">
-            Um refúgio exclusivo na montanha
+            Um refúgio exclusivo e moderno
           </span>
         </motion.div>
         
@@ -83,8 +83,8 @@ export const Hero = () => {
           className="text-7xl md:text-[10rem] font-serif font-bold leading-[0.8] mb-12 tracking-tighter drop-shadow-2xl"
         >
           Onde o luxo <br />
-          <span className="italic text-primary/90 font-medium">encontra</span> a <br />
-          natureza
+          <span className="italic text-primary/90 font-medium">encontra</span> o <br />
+          design
         </motion.h1>
         
         <motion.div
@@ -134,10 +134,10 @@ export const Experience = () => {
           >
             <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">A Experiência</span>
             <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
-              Fuja da rotina sem abrir mão do conforto.
+              Fuja da rotina com design de ponta.
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg">
-              Nos Chalés IA, cada detalhe foi pensado para proporcionar uma imersão completa na tranquilidade da natureza. Uma curadoria de design e bem-estar para momentos inesquecíveis.
+              Nos Chalés IA, cada detalhe foi pensado para proporcionar uma imersão completa em arquitetura e bem-estar. Uma curadoria de luxo contemporâneo para momentos inesquecíveis.
             </p>
             <div className="grid grid-cols-2 gap-8">
               <div>
@@ -160,8 +160,8 @@ export const Experience = () => {
           >
             <div className="aspect-[4/5] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop" 
-                alt="Natureza ao redor"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
+                alt="Arquitetura Moderna"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -176,21 +176,21 @@ export const Experience = () => {
 const CHALES = [
   {
     id: 1,
-    name: "Chalé Aurora",
-    description: "Vista panorâmica para o nascer do sol e banheira de imersão.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Loft",
+    description: "Design industrial com pé direito duplo e tecnologia smart home.",
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 2,
-    name: "Chalé Floresta",
-    description: "Integrado à mata nativa com deck privativo e lareira.",
-    image: "https://images.unsplash.com/photo-1449156006079-eb5881645a85?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Suíte",
+    description: "Minimalismo sofisticado com materiais nobres e automação.",
+    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 3,
-    name: "Chalé Zen",
-    description: "Minimalismo e paz para retiros espirituais e descanso profundo.",
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Studio",
+    description: "Eficiência e estilo para nômades digitais que buscam exclusividade.",
+    image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop",
   }
 ];
 
@@ -237,7 +237,7 @@ const REVIEWS = [
     id: 1,
     author: "Marina Siqueira",
     role: "Designer de Interiores",
-    content: "Uma experiência transformadora. O cuidado com o design e a integração com a natureza é algo que nunca vi igual no Brasil. Voltarei com certeza.",
+    content: "Uma experiência transformadora. O cuidado com o design e a tecnologia é algo que nunca vi igual no Brasil. Voltarei com certeza.",
     rating: 5,
   },
   {
@@ -374,7 +374,7 @@ export const Footer = () => {
         <div className="md:col-span-2">
           <a href="/" className="text-3xl font-serif tracking-tighter block mb-8">CHALÉS IA</a>
           <p className="text-muted-foreground max-w-sm mb-10 leading-relaxed">
-            Uma experiência de hospedagem onde a inovação e o design se encontram com a alma da natureza.
+            Uma experiência de hospedagem onde a inovação e o design se encontram com o luxo contemporâneo.
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
