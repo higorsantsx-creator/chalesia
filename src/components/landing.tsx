@@ -68,7 +68,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-primary text-xs md:text-sm uppercase tracking-[0.3em] font-sans block mb-6"
+          className="text-primary text-sm md:text-base uppercase tracking-[0.4em] font-sans font-bold block mb-6"
         >
           Um refúgio exclusivo na montanha
         </motion.span>
@@ -77,7 +77,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 1 }}
-          className="text-5xl md:text-8xl font-serif leading-[0.9] mb-8"
+          className="text-6xl md:text-9xl font-serif font-bold leading-[0.85] mb-12 tracking-tighter"
         >
           Onde o luxo encontra a natureza
         </motion.h1>
@@ -118,8 +118,8 @@ export const Experience = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <span className="text-primary text-xs uppercase tracking-[0.2em] font-sans block mb-6">A Experiência</span>
-            <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-8">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">A Experiência</span>
+            <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
               Fuja da rotina sem abrir mão do conforto.
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg">
@@ -182,11 +182,11 @@ const CHALES = [
 
 export const Accommodations = () => {
   return (
-    <section id="chales" className="py-24 bg-secondary/30">
+    <section id="chales" className="py-32 bg-secondary/20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <span className="text-primary text-xs uppercase tracking-[0.2em] font-sans block mb-4">Acomodações</span>
-          <h2 className="text-4xl md:text-6xl font-serif">Escolha seu refúgio</h2>
+        <div className="text-center mb-24">
+          <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-4">Acomodações</span>
+          <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter">Escolha seu refúgio</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -205,11 +205,11 @@ export const Accommodations = () => {
                   alt={chale.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500"></div>
               </div>
-              <h3 className="text-2xl font-serif mb-2">{chale.name}</h3>
-              <p className="text-muted-foreground text-sm mb-4">{chale.description}</p>
-              <button className="text-xs uppercase tracking-widest font-medium border-b border-primary/30 pb-1 group-hover:border-primary transition-all">Ver detalhes</button>
+              <h3 className="text-3xl font-serif font-bold mb-3">{chale.name}</h3>
+              <p className="text-muted-foreground text-base mb-6 leading-relaxed">{chale.description}</p>
+              <button className="text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-primary/50 pb-1 group-hover:border-primary transition-all">Ver detalhes</button>
             </motion.div>
           ))}
         </div>
