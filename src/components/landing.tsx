@@ -270,26 +270,27 @@ export const Projects = () => {
 const REVIEWS = [
   {
     id: 1,
-    author: "Marina Siqueira",
-    role: "Designer de Interiores",
-    content: "Uma experiência transformadora. O cuidado com o design e a tecnologia é algo que nunca vi igual no Brasil. Voltarei com certeza.",
+    author: "Bruno Andrade",
+    role: "Proprietário de Terreno",
+    content: "O acompanhamento da Chalés IA foi fundamental. Eles não apenas construíram um chalé, eles deram vida à visão que eu tinha para minha propriedade na serra.",
     rating: 5,
   },
   {
     id: 2,
-    author: "Ricardo Fontes",
-    role: "Empresário",
-    content: "O refúgio perfeito para quem busca desconectar sem abrir mão do luxo. O atendimento é impecável e a privacidade é o ponto alto.",
+    author: "Mariana Costa",
+    role: "Investidora",
+    content: "Construí três chalés para aluguel por temporada e o resultado superou todas as expectativas. O design atrai hóspedes e a qualidade construtiva é impecável.",
     rating: 5,
   },
   {
     id: 3,
-    author: "Elena Cavalcanti",
-    role: "Fotógrafa",
-    content: "Cada ângulo deste lugar é uma obra de arte. A luz, os materiais, a paz... Chalés IA elevou meu padrão para o que chamo de hospedagem boutique.",
+    author: "Carlos Mendes",
+    role: "Arquiteto Colaborador",
+    content: "A precisão na execução dos detalhes arquitetônicos e a escolha dos materiais fazem da Chalés IA uma parceira de confiança para projetos de alto padrão.",
     rating: 5,
   }
 ];
+
 
 export const SocialProof = () => {
   return (
