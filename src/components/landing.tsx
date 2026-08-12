@@ -207,7 +207,7 @@ export const Philosophy = () => {
           
           <div className="relative">
             <ParallaxImage 
-              src={chale_1.url} 
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop" 
               alt="Conceito Arquitetônico"
               containerClassName="aspect-[3/4] rounded-sm shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)]"
             />
@@ -220,7 +220,7 @@ export const Philosophy = () => {
               className="absolute -bottom-16 -right-16 w-1/2 aspect-square hidden lg:block"
             >
               <ParallaxImage 
-                src={chale_2.url} 
+                src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200&auto=format&fit=crop" 
                 alt="Detalhe de Materialidade"
                 containerClassName="w-full h-full rounded-sm border-8 border-background shadow-2xl"
               />
@@ -239,30 +239,31 @@ const PROJETOS = [
     name: "Chalé Contemporâneo",
     category: "Arquitetura Moderna",
     description: "Geometria limpa e integração máxima com o exterior através de grandes vãos de vidro.",
-    image: chale_1.url,
+    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 2,
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
-    image: chale_2.url,
+    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 3,
     name: "Chalé Hillside",
     category: "Integração Natureza",
     description: "Projeto suspenso adaptado a terrenos íngremes, preservando a vegetação nativa.",
-    image: chale_3.url,
+    image: "https://images.unsplash.com/photo-1493101530225-b44c84964177?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 4,
     name: "Studio Minimalista",
     category: "Design Compacto",
     description: "Eficiência espacial sem abrir mão do luxo e da sofisticação arquitetônica.",
-    image: chale_4.url,
+    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
   }
 ];
+
 
 export const Process = () => {
   const steps = [
@@ -353,7 +354,7 @@ export const Details = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
           <div className="relative group">
             <ParallaxImage 
-              src="https://images.unsplash.com/photo-1449156001446-515864afdacf?q=80&w=1200&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1549144464-972323f6e1c3?q=80&w=1200&auto=format&fit=crop" 
               alt="Detalhes Construtivos"
               containerClassName="aspect-square rounded-sm overflow-hidden"
               className="opacity-90 group-hover:scale-105 transition-transform duration-1000"
