@@ -165,15 +165,19 @@ export const Philosophy = () => {
             transition={{ duration: 1.2 }}
             className="relative"
           >
-            <div className="aspect-[4/5] overflow-hidden">
+            <motion.div 
+              style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -100]) }}
+              className="aspect-[4/5] overflow-hidden"
+            >
               <img 
                 src={chale_1.url} 
                 alt="Conceito Arquitetônico"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
             <div className="absolute -bottom-10 -left-10 w-2/3 aspect-square border border-primary/20 -z-10 hidden md:block"></div>
           </motion.div>
+
         </div>
       </div>
     </section>
