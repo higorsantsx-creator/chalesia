@@ -122,7 +122,7 @@ function ChaleDetailsPage() {
                 <h3 className="text-2xl font-serif font-bold mb-8">Diferenciais Técnicos</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {chale.features.map((feature: string) => (
-                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/20 border border-foreground/5">
+                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/10 border border-border/5 rounded-sm hover:bg-secondary/20 transition-colors duration-300">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span className="text-xs uppercase tracking-widest font-bold">{feature}</span>
                     </div>
@@ -133,7 +133,7 @@ function ChaleDetailsPage() {
 
             {/* Sticky Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-32 bg-card p-10 border border-foreground/10 shadow-2xl">
+              <div className="sticky top-32 bg-card p-12 border border-border/5 shadow-[0_30px_70px_-10px_rgba(0,0,0,0.08)] rounded-sm">
                 <div className="mb-8">
                   <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Investimento Estimado</span>
                   <p className="text-3xl font-serif font-bold text-primary">Sob Consulta</p>
