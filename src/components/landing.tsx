@@ -101,15 +101,16 @@ export const Hero = () => {
             href="#chales" 
             className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
           >
-            <span className="relative z-10">Conheça nossos chalés</span>
+            <span className="relative z-10">Solicitar Orçamento</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
           
           <a 
-            href="#experiencia" 
-            className="inline-flex items-center gap-3 border border-white/20 px-12 py-5 hover:bg-white/10 backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
+            href="#projetos" 
+            className="inline-flex items-center gap-3 border border-foreground/20 px-12 py-5 hover:bg-foreground/5 backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
           >
-            A Experiência
+            Ver Projetos
+
           </a>
         </motion.div>
       </div>
