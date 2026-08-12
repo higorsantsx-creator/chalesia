@@ -8,6 +8,8 @@ import chale_2 from "@/assets/chale_2.jpeg.asset.json";
 import chale_3 from "@/assets/chale_3.jpeg.asset.json";
 import chale_4 from "@/assets/chale_4.jpeg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
+import logoAsset from "@/assets/logo-chales-ia.jpeg.asset.json";
+
 
 
 export const Navbar = () => {
@@ -33,8 +35,15 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <a href="/" className="text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity">
-            CHALÉS IA
+          <a href="/" className="flex items-center gap-3 group">
+            <img 
+              src={logoAsset.url} 
+              alt="Chalés IA" 
+              className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
+            />
+            <span className="text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity">
+              CHALÉS IA
+            </span>
           </a>
           <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans">
             <a href="/" className="hover:text-primary transition-colors">Início</a>
