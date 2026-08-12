@@ -32,10 +32,13 @@ export const Navbar = () => {
             CHALÉS IA
           </a>
           <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans">
-            <a href="/#experiencia" className="hover:text-primary transition-colors">Experiência</a>
-            <a href="/#chales" className="hover:text-primary transition-colors">Chalés</a>
-            <a href="/avaliacoes" className="hover:text-primary transition-colors">Avaliações</a>
+            <a href="/" className="hover:text-primary transition-colors">Início</a>
+            <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
+            <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
+            <a href="/#processo" className="hover:text-primary transition-colors">Processo</a>
+            <a href="/#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
             <a href="/#contato" className="hover:text-primary transition-colors">Contato</a>
+
           </div>
         </div>
         
