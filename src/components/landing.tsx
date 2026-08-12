@@ -239,30 +239,31 @@ const PROJETOS = [
     name: "Chalé Contemporâneo",
     category: "Arquitetura Moderna",
     description: "Geometria limpa e integração máxima com o exterior através de grandes vãos de vidro.",
-    image: chale_1.url,
+    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 2,
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
-    image: chale_2.url,
+    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 3,
     name: "Chalé Hillside",
     category: "Integração Natureza",
     description: "Projeto suspenso adaptado a terrenos íngremes, preservando a vegetação nativa.",
-    image: chale_3.url,
+    image: "https://images.unsplash.com/photo-1493101530225-b44c84964177?q=80&w=1200&auto=format&fit=crop",
   },
   {
     id: 4,
     name: "Studio Minimalista",
     category: "Design Compacto",
     description: "Eficiência espacial sem abrir mão do luxo e da sofisticação arquitetônica.",
-    image: chale_4.url,
+    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
   }
 ];
+
 
 export const Process = () => {
   const steps = [
