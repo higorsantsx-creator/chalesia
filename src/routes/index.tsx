@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar, Hero, Philosophy, Projects, BookingForm, Footer, SocialProof } from "@/components/landing";
+import { Navbar, Hero, Philosophy, Projects, Process, Details, Investment, BookingForm, Footer, SocialProof, WhatsAppButton } from "@/components/landing";
 import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
