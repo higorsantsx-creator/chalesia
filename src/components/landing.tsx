@@ -607,7 +607,25 @@ export const BookingForm = () => {
 };
 
 
+export const WhatsAppButton = () => {
+  return (
+    <a
+      href="https://wa.me/5582999357645?text=Olá! Conheci a Chalés IA e gostaria de conversar sobre a construção de um chalé."
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
+      aria-label="Contato via WhatsApp"
+    >
+      <Phone size={24} fill="currentColor" className="group-hover:rotate-12 transition-transform" />
+      <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-3 transition-all duration-500 whitespace-nowrap text-xs font-bold uppercase tracking-widest">
+        Falar com Especialista
+      </span>
+    </a>
+  );
+};
+
 export const Footer = () => {
+
   return (
     <footer id="contato" className="bg-background border-t border-border/10 py-20 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
