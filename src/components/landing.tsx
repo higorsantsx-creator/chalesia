@@ -365,72 +365,98 @@ export const BookingForm = () => {
     
     const name = formData.get("name");
     const email = formData.get("email");
-    const checkin = formData.get("checkin");
-    const checkout = formData.get("checkout");
-    const guests = formData.get("guests");
     const whatsapp = formData.get("whatsapp");
+    const city = formData.get("city");
+    const projectType = formData.get("projectType");
+    const objective = formData.get("objective");
+    const numberOfChalets = formData.get("numberOfChalets");
+    const hasLand = formData.get("hasLand");
     const message = formData.get("message");
 
-    const text = `Olá! Gostaria de solicitar um orçamento para os Chalés IA.%0A%0A*Detalhes da Solicitação:*%0A- *Nome:* ${name}%0A- *E-mail:* ${email}%0A- *Check-in:* ${checkin}%0A- *Check-out:* ${checkout}%0A- *Hóspedes:* ${guests}%0A- *WhatsApp:* ${whatsapp}%0A${message ? `- *Preferências:* ${message}` : ""}%0A%0AAguardamos o contato com a proposta personalizada.`;
+    const text = `Olá! Gostaria de solicitar um orçamento para construção com a Chalés IA.%0A%0A*Dados do Projeto:*%0A- *Nome:* ${name}%0A- *WhatsApp:* ${whatsapp}%0A- *Cidade/Região:* ${city}%0A- *Tipo de Projeto:* ${projectType}%0A- *Objetivo:* ${objective}%0A- *Número de Chalés:* ${numberOfChalets}%0A- *Possui Terreno:* ${hasLand}%0A${message ? `- *Mensagem:* ${message}` : ""}%0A%0AEstou interessado em transformar meu refúgio em realidade.`;
     
     window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
   };
 
   return (
-    <section id="orcamento" className="py-24 md:py-40 px-6">
-      <div className="max-w-4xl mx-auto bg-card p-8 md:p-20 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+    <section id="orcamento" className="py-24 md:py-40 px-6 bg-secondary/10">
+      <div className="max-w-5xl mx-auto bg-card p-8 md:p-20 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
         
         <div className="relative z-10 text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif mb-6">Planeje sua estadia</h2>
-          <p className="text-muted-foreground">Preencha os dados abaixo e entraremos em contato com uma proposta personalizada.</p>
+          <span className="text-primary text-[10px] uppercase tracking-[0.3em] font-sans font-bold block mb-4">Contato</span>
+          <h2 className="text-4xl md:text-6xl font-serif mb-6">Vamos tirar seu projeto do papel?</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">Conte um pouco sobre o que você imagina. A partir daí, podemos começar a transformar essa ideia em um projeto real.</p>
         </div>
         
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
           <div className="space-y-2">
             <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Nome Completo</label>
             <input name="name" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Maria Silva" />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail de Contato</label>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
+            <input name="whatsapp" type="tel" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail</label>
             <input name="email" type="email" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="seu@email.com" />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Data de Check-in</label>
-            <input name="checkin" type="date" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm [color-scheme:dark]" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Data de Check-out</label>
-            <input name="checkout" type="date" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm [color-scheme:dark]" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Quantidade de Hóspedes</label>
-            <select name="guests" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="1 Hóspede">1 Hóspede</option>
-              <option value="2 Hóspedes (Casal)">2 Hóspedes (Casal)</option>
-              <option value="3 ou mais Hóspedes">3 ou mais Hóspedes</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
-            <input name="whatsapp" type="tel" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
-          </div>
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Preferências ou Ocasião Especial</label>
-            <textarea name="message" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={2} placeholder="Ex: Aniversário de casamento, preferência por chalé com vista específica..."></textarea>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Cidade/Região da Obra</label>
+            <input name="city" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Gramado, RS" />
           </div>
           
-          <div className="md:col-span-2 pt-8">
-            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/10">
-              Verificar Disponibilidade & Solicitar Orçamento
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Tipo de Projeto</label>
+            <select name="projectType" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="Chalé Contemporâneo">Chalé Contemporâneo</option>
+              <option value="Chalé A-Frame">Chalé A-Frame / Alpine</option>
+              <option value="Chalé Minimalista">Chalé Minimalista / Nordic</option>
+              <option value="Projeto Personalizado">Projeto Personalizado / Outros</option>
+            </select>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Objetivo</label>
+            <select name="objective" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="Uso Próprio / Lazer">Uso Próprio / Lazer</option>
+              <option value="Aluguel por Temporada">Aluguel por Temporada / Investimento</option>
+              <option value="Moradia">Moradia</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Possui Terreno?</label>
+            <select name="hasLand" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="Sim">Sim, já possuo</option>
+              <option value="Não">Não, estou procurando</option>
+              <option value="Em negociação">Em fase de negociação</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Número de Chalés</label>
+            <input name="numberOfChalets" type="number" min="1" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: 1" />
+          </div>
+
+          <div className="md:col-span-2 space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Conte mais sobre sua ideia</label>
+            <textarea name="message" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={3} placeholder="Descreva o que você imagina para o seu refúgio..."></textarea>
+          </div>
+          
+          <div className="md:col-span-2 pt-10">
+            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:bg-primary/90 transition-all duration-300 shadow-xl shadow-primary/10">
+              Solicitar Orçamento do Projeto
             </button>
-            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Resposta em até 24 horas úteis</p>
+            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Nosso time de arquitetura entrará em contato em breve.</p>
           </div>
         </form>
       </div>
     </section>
   );
 };
+
 
 export const Footer = () => {
   return (
