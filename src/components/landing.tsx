@@ -133,9 +133,9 @@ export const Hero = () => {
   );
 };
 
-export const Experience = () => {
+export const Philosophy = () => {
   return (
-    <section id="experiencia" className="py-24 md:py-40 px-6 overflow-hidden">
+    <section id="sobre" className="py-24 md:py-40 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <motion.div
@@ -144,21 +144,16 @@ export const Experience = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">A Experiência</span>
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Filosofia</span>
             <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
-              Fuja da rotina com design de ponta.
+              Não construímos apenas chalés.
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg">
-              Nos Chalés IA, cada detalhe foi pensado para proporcionar uma imersão completa em arquitetura e bem-estar. Uma curadoria de luxo contemporâneo para momentos inesquecíveis.
+              Cada projeto representa um espaço pensado para determinado estilo de vida, objetivo e ambiente. Acreditamos que seu refúgio deve ser uma extensão da sua identidade e uma resposta ao seu terreno.
             </p>
-            <div className="grid grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-serif text-2xl mb-2">Privacidade</h4>
-                <p className="text-sm text-muted-foreground">Localização isolada para total discrição.</p>
-              </div>
-              <div>
-                <h4 className="font-serif text-2xl mb-2">Conforto</h4>
-                <p className="text-sm text-muted-foreground">Enxovais premium e amenities de luxo.</p>
+            <div className="grid grid-cols-1 gap-6">
+              <div className="border-l-2 border-primary/20 pl-6 py-2">
+                <p className="text-sm font-medium italic">"Cada terreno é diferente. Cada cliente é diferente. Cada projeto deve ser único."</p>
               </div>
             </div>
           </motion.div>
@@ -172,8 +167,8 @@ export const Experience = () => {
           >
             <div className="aspect-[4/5] overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
-                alt="Estrutura do Chalé"
+                src={chale_1.url} 
+                alt="Conceito Arquitetônico"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -185,70 +180,82 @@ export const Experience = () => {
   );
 };
 
-const CHALES = [
+const PROJETOS = [
   {
     id: 1,
-    name: "Chalé Loft A-Frame",
-    description: "Design icônico em A-frame com fachada de vidro total e acabamento em pedra.",
-    image: chaleRefAsset.url,
+    name: "Chalé Contemporâneo",
+    category: "Arquitetura Moderna",
+    description: "Geometria limpa e integração máxima com o exterior através de grandes vãos de vidro.",
+    image: chale_1.url,
   },
   {
     id: 2,
-    name: "Chalé Alpine",
-    description: "Design contemporâneo com vista privilegiada para as montanhas e piscina.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Alpine Elite",
+    category: "Conceito Nordic",
+    description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
+    image: chale_2.url,
   },
   {
     id: 3,
-    name: "Chalé Nordic",
-    description: "Minimalismo escandinavo com máximo conforto térmico e elegância.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Hillside",
+    category: "Integração Natureza",
+    description: "Projeto suspenso adaptado a terrenos íngremes, preservando a vegetação nativa.",
+    image: chale_3.url,
+  },
+  {
+    id: 4,
+    name: "Studio Minimalista",
+    category: "Design Compacto",
+    description: "Eficiência espacial sem abrir mão do luxo e da sofisticação arquitetônica.",
+    image: chale_4.url,
   }
 ];
 
-export const Accommodations = () => {
+export const Projects = () => {
   return (
-    <section id="chales" className="py-32 bg-secondary/20">
+    <section id="projetos" className="py-32 bg-secondary/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-24">
-          <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-4">Acomodações</span>
-          <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter">Escolha seu refúgio</h2>
+        <div className="mb-24 flex flex-col md:row justify-between items-end gap-8">
+          <div className="max-w-2xl">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-4">Portfólio</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter leading-[0.8]">Projetos que dão forma às ideias.</h2>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {CHALES.map((chale, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+          {PROJETOS.map((projeto, idx) => (
             <motion.div 
-              key={chale.id}
-              initial={{ opacity: 0, y: 30 }}
+              key={projeto.id}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.2, duration: 0.8 }}
-              className="group cursor-pointer"
+              transition={{ delay: idx % 2 * 0.2, duration: 1 }}
+              className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-32" : "")}
             >
-              <div className="aspect-[3/4] overflow-hidden mb-6 relative">
+              <div className="aspect-[4/5] overflow-hidden mb-8 relative">
                 <img 
-                  src={chale.image} 
-                  alt={chale.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  src={projeto.image} 
+                  alt={projeto.name}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500"></div>
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div className="absolute top-6 left-6 text-white text-[10px] uppercase tracking-widest font-bold bg-primary px-4 py-2">
+                  {projeto.category}
+                </div>
               </div>
-              <h3 className="text-3xl font-serif font-bold mb-3">{chale.name}</h3>
-              <p className="text-muted-foreground text-base mb-6 leading-relaxed">{chale.description}</p>
-              <div className="flex flex-col gap-4">
-                <Link 
-                  to="/chale/$chaleId" 
-                  params={{ chaleId: chale.id.toString() }}
-                  className="text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-primary/50 pb-1 w-fit group-hover:border-primary transition-all"
-                >
-                  Ver detalhes
-                </Link>
-                <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-muted-foreground font-sans">
-                  <span className="flex items-center gap-1.5"><Star size={10} className="text-primary" fill="currentColor" /> 4.9</span>
-                  <span className="w-1 h-1 bg-border rounded-full"></span>
-                  <span>2 Hóspedes</span>
-                  <span className="w-1 h-1 bg-border rounded-full"></span>
-                  <span>Wifi Fibra</span>
+              <div className="flex justify-between items-start">
+                <div className="max-w-md">
+                  <span className="text-primary text-[10px] uppercase tracking-widest font-bold mb-2 block">Projeto 0{projeto.id}</span>
+                  <h3 className="text-4xl font-serif font-bold mb-4">{projeto.name}</h3>
+                  <p className="text-muted-foreground text-base mb-8 leading-relaxed">{projeto.description}</p>
+                  <Link 
+                    to="/chale/$chaleId" 
+                    params={{ chaleId: projeto.id.toString() }}
+                    className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-bold"
+                  >
+                    <span>Explorar Projeto</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -258,6 +265,7 @@ export const Accommodations = () => {
     </section>
   );
 };
+
 
 const REVIEWS = [
   {
