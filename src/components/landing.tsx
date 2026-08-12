@@ -294,19 +294,19 @@ const REVIEWS = [
 
 export const SocialProof = () => {
   return (
-    <section className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
+    <section id="diferenciais" className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
           <div className="lg:col-span-1">
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Depoimentos</span>
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Confiança</span>
             <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-8">
-              O que dizem nossos convidados
+              Compromisso com a excelência
             </h2>
             <div className="flex items-center gap-4 mb-8">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-2 border-background overflow-hidden bg-muted">
-                    <img src={`https://i.pravatar.cc/150?u=${i + 10}`} alt="Guest" className="w-full h-full object-cover" />
+                    <img src={`https://i.pravatar.cc/150?u=${i + 20}`} alt="Client" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -314,10 +314,11 @@ export const SocialProof = () => {
                 <div className="flex text-primary mb-1">
                   {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}
                 </div>
-                <p className="text-xs uppercase tracking-widest font-sans font-bold">500+ Estadias Concluídas</p>
+                <p className="text-xs uppercase tracking-widest font-sans font-bold">Projetos Executados com Precisão</p>
               </div>
             </div>
           </div>
+
           
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
             {REVIEWS.slice(0, 2).map((review) => (
