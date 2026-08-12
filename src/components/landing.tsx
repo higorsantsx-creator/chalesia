@@ -359,6 +359,7 @@ export const Investment = () => {
   );
 };
 
+export const Projects = () => {
   return (
     <section id="projetos" className="py-32 bg-secondary/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -412,6 +413,7 @@ export const Investment = () => {
     </section>
   );
 };
+
 
 
 const REVIEWS = [
