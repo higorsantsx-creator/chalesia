@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar, Footer } from "@/components/landing";
 import { motion } from "framer-motion";
-import { Star, Wifi, Users, Maximize, Coffee, Wind, Shield, ArrowLeft } from "lucide-react";
-import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
+import { Hammer, Maximize, Ruler, Compass, HardHat, Layers, ArrowLeft } from "lucide-react";
+import chale_1 from "@/assets/chale_1.jpeg.asset.json";
+import chale_2 from "@/assets/chale_2.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3.jpeg.asset.json";
+import chale_4 from "@/assets/chale_4.jpeg.asset.json";
 
 export const Route = createFileRoute("/chale/$chaleId")({
   component: ChaleDetailsPage,
@@ -10,30 +13,43 @@ export const Route = createFileRoute("/chale/$chaleId")({
 
 const CHALE_DATA: Record<string, any> = {
   "1": {
-    name: "Chalé Loft A-Frame",
-    description: "Um ícone da arquitetura moderna, o Loft A-Frame combina a rusticidade da pedra com a leveza do vidro. Projetado para casais que buscam uma imersão completa no design sem abrir mão do conforto absoluto.",
-    image: chaleRefAsset.url,
-    price: "R$ 1.200 / noite",
-    features: ["Fachada de vidro duplo", "Automação via IA", "Banheira de imersão", "Lareira suspensa"],
-    specs: { size: "85m²", capacity: "2 Hóspedes", wifi: "600Mbps" }
+    name: "Chalé Contemporâneo",
+    category: "Arquitetura Moderna",
+    description: "Um ícone da arquitetura moderna, o Loft Contemporâneo combina a rusticidade da pedra com a leveza do vidro. Projetado para quem busca uma imersão completa no design contemporâneo.",
+    image: chale_1.url,
+    tagline: "Geometria limpa e vãos de vidro.",
+    features: ["Fachada em Vidro Duplo", "Estrutura em Aço Corten", "Acabamento em Pedra Natural", "Automação Residencial"],
+    specs: { size: "85m²", time: "6 Meses", energy: "A+" }
   },
   "2": {
-    name: "Chalé Alpine",
-    description: "Inspirado nos refúgios dos Alpes Suíços, este chalé oferece uma vista panorâmica de tirar o fôlego. O deck privativo com borda infinita é o convite perfeito para manhãs contemplativas.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1600",
-    price: "R$ 1.500 / noite",
-    features: ["Piscina aquecida", "Sauna seca privativa", "Cozinha gourmet", "Adega climatizada"],
-    specs: { size: "120m²", capacity: "2 Hóspedes", wifi: "600Mbps" }
+    name: "Chalé Alpine Elite",
+    category: "Conceito Nordic",
+    description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres e isolamento térmico de última geração.",
+    image: chale_2.url,
+    tagline: "Conforto térmico e design icônico.",
+    features: ["Isolamento Térmico Premium", "Madeira de Lei Certificada", "Lareira de Alta Performance", "Piso Aquecido"],
+    specs: { size: "120m²", time: "8 Meses", energy: "A++" }
   },
   "3": {
-    name: "Chalé Nordic",
-    description: "O epítome do Hygge. Minimalismo escandinavo traduzido em texturas naturais, tons terrosos e uma iluminação cuidadosamente projetada para criar uma atmosfera de paz profunda.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1600",
-    price: "R$ 1.100 / noite",
-    features: ["Piso aquecido", "Enxoval 1000 fios", "Som ambiente hi-fi", "Claraboia para estrelas"],
-    specs: { size: "75m²", capacity: "2 Hóspedes", wifi: "600Mbps" }
+    name: "Chalé Hillside",
+    category: "Integração Natureza",
+    description: "Especialmente desenvolvido para terrenos íngremes. A estrutura suspensa minimiza o impacto ambiental enquanto maximiza a vista panorâmica.",
+    image: chale_3.url,
+    tagline: "Respeito ao relevo e à vegetação.",
+    features: ["Fundação em Estacas", "Deck em Madeira Nobre", "Ventilação Cruzada Natural", "Recolhimento de Água Pluvial"],
+    specs: { size: "95m²", time: "7 Meses", energy: "A" }
+  },
+  "4": {
+    name: "Studio Minimalista",
+    category: "Design Compacto",
+    description: "A prova de que luxo não depende de tamanho. Eficiência espacial levada ao limite com acabamentos de altíssimo padrão.",
+    image: chale_4.url,
+    tagline: "Máxima sofisticação em espaço otimizado.",
+    features: ["Mobiliário Sob Medida", "Iluminação Cênica", "Revestimentos Importados", "Conceito Aberto"],
+    specs: { size: "45m²", time: "4 Meses", energy: "A++" }
   }
 };
+
 
 function ChaleDetailsPage() {
   const { chaleId } = Route.useParams();
@@ -74,38 +90,41 @@ function ChaleDetailsPage() {
             {/* Main Info */}
             <div className="lg:col-span-2 space-y-12">
               <div>
-                <h2 className="text-sm uppercase tracking-[0.3em] text-primary font-bold mb-6">Sobre o Refúgio</h2>
-                <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground font-serif italic">
+                <h2 className="text-sm uppercase tracking-[0.3em] text-primary font-bold mb-6">Conceito do Projeto</h2>
+                <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground font-serif italic mb-6">
                   "{chale.description}"
+                </p>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Cada detalhe foi meticulosamente planejado para oferecer uma experiência estética e funcional única. Este projeto prioriza a conexão com o entorno e o uso de materiais de altíssima qualidade.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-white/10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-foreground/10">
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Maximize className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.size}</span>
+                  <Ruler className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.size} de área</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Users className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.capacity}</span>
+                  <Compass className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Implantação Inteligente</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Wifi className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.wifi}</span>
+                  <Layers className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Classe {chale.specs.energy}</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Shield className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">Privacidade Total</span>
+                  <HardHat className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">~{chale.specs.time} de obra</span>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-2xl font-serif font-bold mb-8">Comodidades Exclusivas</h3>
+                <h3 className="text-2xl font-serif font-bold mb-8">Diferenciais Técnicos</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {chale.features.map((feature: string) => (
-                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/10 border border-white/5">
+                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/20 border border-foreground/5">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm uppercase tracking-widest font-medium">{feature}</span>
+                      <span className="text-xs uppercase tracking-widest font-bold">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -114,32 +133,32 @@ function ChaleDetailsPage() {
 
             {/* Sticky Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-32 bg-card p-10 border border-white/10 shadow-2xl">
+              <div className="sticky top-32 bg-card p-10 border border-foreground/10 shadow-2xl">
                 <div className="mb-8">
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">A partir de</span>
-                  <p className="text-4xl font-serif font-bold text-primary">{chale.price}</p>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Investimento Estimado</span>
+                  <p className="text-3xl font-serif font-bold text-primary">Sob Consulta</p>
                 </div>
                 
                 <div className="space-y-6 mb-10">
-                  <div className="flex items-center justify-between text-xs uppercase tracking-widest font-bold">
-                    <span>Avaliação</span>
-                    <span className="flex items-center gap-1">4.9 <Star size={12} fill="currentColor" className="text-primary" /></span>
+                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
+                    <span>Prazo de Entrega</span>
+                    <span className="text-muted-foreground">{chale.specs.time}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs uppercase tracking-widest font-bold">
-                    <span>Taxa de Serviço</span>
-                    <span className="text-muted-foreground italic">Inclusa</span>
+                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
+                    <span>Personalização</span>
+                    <span className="text-primary">Disponível</span>
                   </div>
                 </div>
 
                 <a 
                   href="/#orcamento" 
-                  className="block w-full bg-primary text-primary-foreground py-5 text-center uppercase tracking-[0.2em] text-xs font-bold hover:opacity-90 transition-all shadow-xl shadow-primary/10"
+                  className="block w-full bg-primary text-primary-foreground py-5 text-center uppercase tracking-[0.2em] text-xs font-bold hover:bg-primary/90 transition-all shadow-xl shadow-primary/10"
                 >
-                  Solicitar Reserva
+                  Solicitar Orçamento
                 </a>
                 
                 <p className="text-[9px] text-center mt-6 text-muted-foreground uppercase tracking-[0.2em] leading-loose">
-                  *Sujeito a disponibilidade. O orçamento final será enviado em até 24h.
+                  *Os valores e prazos variam de acordo com a localização e topografia do terreno.
                 </p>
               </div>
             </div>
@@ -151,3 +170,4 @@ function ChaleDetailsPage() {
     </div>
   );
 }
+

@@ -49,25 +49,25 @@
 
 :root {
   --radius: 0rem;
-  --background: oklch(0.12 0.015 260); /* Deep modern slate/blue, removing forest green */
-  --foreground: oklch(0.99 0.005 60); /* Stark white/cream */
-  --card: oklch(0.14 0.02 200);
-  --card-foreground: oklch(0.99 0.005 60);
-  --popover: oklch(0.14 0.02 200);
-  --popover-foreground: oklch(0.99 0.005 60);
-  --primary: oklch(0.88 0.12 95); /* Brighter, more "striking" gold/champagne */
-  --primary-foreground: oklch(0.1 0.01 200);
-  --secondary: oklch(0.2 0.03 200);
-  --secondary-foreground: oklch(0.99 0.005 60);
-  --muted: oklch(0.2 0.03 200);
-  --muted-foreground: oklch(0.75 0.02 200);
-  --accent: oklch(0.88 0.12 95);
-  --accent-foreground: oklch(0.1 0.01 200);
+  --background: oklch(0.98 0.005 90); /* Soft Off-White */
+  --foreground: oklch(0.15 0.01 260); /* Charcoal/Dark Slate */
+  --card: oklch(0.95 0.01 90);
+  --card-foreground: oklch(0.15 0.01 260);
+  --popover: oklch(0.95 0.01 90);
+  --popover-foreground: oklch(0.15 0.01 260);
+  --primary: oklch(0.40 0.08 140); /* Deep Forest Green */
+  --primary-foreground: oklch(0.99 0.005 60);
+  --secondary: oklch(0.85 0.02 90); /* Sand */
+  --secondary-foreground: oklch(0.15 0.01 260);
+  --muted: oklch(0.90 0.01 90);
+  --muted-foreground: oklch(0.40 0.02 260);
+  --accent: oklch(0.40 0.08 140);
+  --accent-foreground: oklch(0.99 0.005 60);
   --destructive: oklch(0.5 0.25 25);
   --destructive-foreground: oklch(0.99 0.005 60);
-  --border: oklch(1 0 0 / 15%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.88 0.12 95);
+  --border: oklch(0.15 0.01 260 / 20%);
+  --input: oklch(0.15 0.01 260 / 20%);
+  --ring: oklch(0.40 0.08 140);
   
   --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Inter", sans-serif;

@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
+import chale_1 from "@/assets/chale_1.jpeg.asset.json";
+import chale_2 from "@/assets/chale_2.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3.jpeg.asset.json";
+import chale_4 from "@/assets/chale_4.jpeg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
+
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -32,10 +36,13 @@ export const Navbar = () => {
             CHALÉS IA
           </a>
           <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans">
-            <a href="/#experiencia" className="hover:text-primary transition-colors">Experiência</a>
-            <a href="/#chales" className="hover:text-primary transition-colors">Chalés</a>
-            <a href="/avaliacoes" className="hover:text-primary transition-colors">Avaliações</a>
+            <a href="/" className="hover:text-primary transition-colors">Início</a>
+            <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
+            <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
+            <a href="/#processo" className="hover:text-primary transition-colors">Processo</a>
+            <a href="/#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
             <a href="/#contato" className="hover:text-primary transition-colors">Contato</a>
+
           </div>
         </div>
         
@@ -85,9 +92,10 @@ export const Hero = () => {
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-7xl md:text-[10rem] font-serif font-bold leading-[0.8] mb-12 tracking-tighter drop-shadow-2xl"
         >
-          Onde o luxo <br />
-          <span className="italic text-primary/90 font-medium">encontra</span> o <br />
-          design
+          Seu refúgio <br />
+          começa no <br />
+          <span className="italic text-primary/90 font-medium">projeto.</span>
+
         </motion.h1>
         
         <motion.div
@@ -100,15 +108,16 @@ export const Hero = () => {
             href="#chales" 
             className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
           >
-            <span className="relative z-10">Conheça nossos chalés</span>
+            <span className="relative z-10">Solicitar Orçamento</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
           
           <a 
-            href="#experiencia" 
-            className="inline-flex items-center gap-3 border border-white/20 px-12 py-5 hover:bg-white/10 backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
+            href="#projetos" 
+            className="inline-flex items-center gap-3 border border-foreground/20 px-12 py-5 hover:bg-foreground/5 backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
           >
-            A Experiência
+            Ver Projetos
+
           </a>
         </motion.div>
       </div>
@@ -124,9 +133,13 @@ export const Hero = () => {
   );
 };
 
-export const Experience = () => {
+export const Philosophy = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useSpring(useTransform(scrollYProgress, [0, 0.5], [0, -100]), { stiffness: 100, damping: 30 });
+
   return (
-    <section id="experiencia" className="py-24 md:py-40 px-6 overflow-hidden">
+
+    <section id="sobre" className="py-24 md:py-40 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <motion.div
@@ -135,21 +148,16 @@ export const Experience = () => {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">A Experiência</span>
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Filosofia</span>
             <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
-              Fuja da rotina com design de ponta.
+              Não construímos apenas chalés.
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg">
-              Nos Chalés IA, cada detalhe foi pensado para proporcionar uma imersão completa em arquitetura e bem-estar. Uma curadoria de luxo contemporâneo para momentos inesquecíveis.
+              Cada projeto representa um espaço pensado para determinado estilo de vida, objetivo e ambiente. Acreditamos que seu refúgio deve ser uma extensão da sua identidade e uma resposta ao seu terreno.
             </p>
-            <div className="grid grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-serif text-2xl mb-2">Privacidade</h4>
-                <p className="text-sm text-muted-foreground">Localização isolada para total discrição.</p>
-              </div>
-              <div>
-                <h4 className="font-serif text-2xl mb-2">Conforto</h4>
-                <p className="text-sm text-muted-foreground">Enxovais premium e amenities de luxo.</p>
+            <div className="grid grid-cols-1 gap-6">
+              <div className="border-l-2 border-primary/20 pl-6 py-2">
+                <p className="text-sm font-medium italic">"Cada terreno é diferente. Cada cliente é diferente. Cada projeto deve ser único."</p>
               </div>
             </div>
           </motion.div>
@@ -161,85 +169,250 @@ export const Experience = () => {
             transition={{ duration: 1.2 }}
             className="relative"
           >
-            <div className="aspect-[4/5] overflow-hidden">
+            <motion.div 
+              style={{ y }}
+              className="aspect-[4/5] overflow-hidden"
+            >
               <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop" 
-                alt="Estrutura do Chalé"
+                src={chale_1.url} 
+                alt="Conceito Arquitetônico"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
+
             <div className="absolute -bottom-10 -left-10 w-2/3 aspect-square border border-primary/20 -z-10 hidden md:block"></div>
           </motion.div>
+
         </div>
       </div>
     </section>
   );
 };
 
-const CHALES = [
+const PROJETOS = [
   {
     id: 1,
-    name: "Chalé Loft A-Frame",
-    description: "Design icônico em A-frame com fachada de vidro total e acabamento em pedra.",
-    image: chaleRefAsset.url,
+    name: "Chalé Contemporâneo",
+    category: "Arquitetura Moderna",
+    description: "Geometria limpa e integração máxima com o exterior através de grandes vãos de vidro.",
+    image: chale_1.url,
   },
   {
     id: 2,
-    name: "Chalé Alpine",
-    description: "Design contemporâneo com vista privilegiada para as montanhas e piscina.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Alpine Elite",
+    category: "Conceito Nordic",
+    description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
+    image: chale_2.url,
   },
   {
     id: 3,
-    name: "Chalé Nordic",
-    description: "Minimalismo escandinavo com máximo conforto térmico e elegância.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Hillside",
+    category: "Integração Natureza",
+    description: "Projeto suspenso adaptado a terrenos íngremes, preservando a vegetação nativa.",
+    image: chale_3.url,
+  },
+  {
+    id: 4,
+    name: "Studio Minimalista",
+    category: "Design Compacto",
+    description: "Eficiência espacial sem abrir mão do luxo e da sofisticação arquitetônica.",
+    image: chale_4.url,
   }
 ];
 
-export const Accommodations = () => {
+export const Process = () => {
+  const steps = [
+    {
+      num: "01",
+      title: "Conversa",
+      desc: "Entendemos profundamente o que você deseja, seu estilo de vida e objetivos.",
+      icon: <Mail className="text-primary" size={24} />
+    },
+    {
+      num: "02",
+      title: "Conceito",
+      desc: "Transformamos a ideia em uma proposta arquitetônica preliminar e inspiradora.",
+      icon: <PenTool className="text-primary" size={24} />
+    },
+    {
+      num: "03",
+      title: "Projeto",
+      desc: "Definimos cada detalhe: ambientes, materiais, iluminação e especificações técnicas.",
+      icon: <Sparkles className="text-primary" size={24} />
+    },
+    {
+      num: "04",
+      title: "Construção",
+      desc: "Executamos a obra com rigor técnico, acompanhamento próximo e cuidado artesanal.",
+      icon: <Hammer className="text-primary" size={24} />
+    },
+    {
+      num: "05",
+      title: "Entrega",
+      desc: "O projeto sai do papel e se transforma no seu refúgio real, pronto para viver.",
+      icon: <CheckCircle className="text-primary" size={24} />
+    }
+  ];
+
   return (
-    <section id="chales" className="py-32 bg-secondary/20">
+    <section id="processo" className="py-32 md:py-48 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-24">
-          <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-4">Acomodações</span>
-          <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter">Escolha seu refúgio</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+          <div className="sticky top-32">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Metodologia</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.85] tracking-tighter mb-10">
+              Do sonho <br /> à obra.
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-md leading-relaxed">
+              Acompanhamos cada etapa da jornada, garantindo que a essência do projeto original seja preservada até o último detalhe da construção.
+            </p>
+          </div>
+          
+          <div className="space-y-12">
+            {steps.map((step, idx) => (
+              <motion.div 
+                key={step.num}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.8 }}
+                className="group flex gap-8 items-start pb-12 border-b border-border/10 last:border-0"
+              >
+                <div className="text-5xl font-serif font-bold text-primary/20 group-hover:text-primary/100 transition-colors duration-500 leading-none">
+                  {step.num}
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    {step.icon}
+                    <h3 className="text-2xl font-serif font-bold">{step.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed max-w-sm">
+                    {step.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const Details = () => {
+  return (
+    <section className="py-32 bg-foreground text-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5 }}
+            className="aspect-square overflow-hidden"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1449156001446-515864afdacf?q=80&w=1200&auto=format&fit=crop" 
+              alt="Detalhes Construtivos"
+              className="w-full h-full object-cover opacity-80"
+            />
+          </motion.div>
+          
+          <div>
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Qualidade</span>
+            <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
+              Cada detalhe <br /> importa.
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-12 max-w-md">
+              A curadoria de materiais — da madeira certificada à pedra natural — define a identidade e a longevidade de cada chalé que construímos.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-10">
+              <div>
+                <h4 className="text-primary text-xs uppercase tracking-widest font-bold mb-4">Materialidade</h4>
+                <p className="text-sm opacity-60 leading-relaxed">Madeira, pedra e vidro em harmonia estrutural.</p>
+              </div>
+              <div>
+                <h4 className="text-primary text-xs uppercase tracking-widest font-bold mb-4">Execução</h4>
+                <p className="text-sm opacity-60 leading-relaxed">Mão de obra especializada em estruturas complexas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const Investment = () => {
+  return (
+    <section className="py-24 md:py-40 px-6 bg-secondary/20">
+      <div className="max-w-5xl mx-auto text-center">
+        <TrendingUp className="mx-auto text-primary mb-8" size={48} />
+        <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8">Um projeto pensado para seu objetivo.</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+          Seja para lazer próprio ou para gerar renda através de aluguel por temporada, desenvolvemos soluções arquitetônicas que valorizam seu patrimônio e maximizam o potencial do seu terreno.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          {["Uso Próprio", "Hospedagem", "Investimento"].map((item) => (
+            <div key={item} className="bg-background p-8 border border-border/10">
+              <h4 className="font-serif text-xl font-bold mb-4">{item}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Design estratégico focado na experiência do usuário e na valorização imobiliária a longo prazo.
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const Projects = () => {
+  return (
+    <section id="projetos" className="py-32 bg-secondary/20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="mb-24 flex flex-col md:row justify-between items-end gap-8">
+          <div className="max-w-2xl">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-4">Portfólio</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter leading-[0.8]">Projetos que dão forma às ideias.</h2>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {CHALES.map((chale, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+          {PROJETOS.map((projeto, idx) => (
             <motion.div 
-              key={chale.id}
-              initial={{ opacity: 0, y: 30 }}
+              key={projeto.id}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.2, duration: 0.8 }}
-              className="group cursor-pointer"
+              transition={{ delay: idx % 2 * 0.2, duration: 1 }}
+              className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-32" : "")}
             >
-              <div className="aspect-[3/4] overflow-hidden mb-6 relative">
+              <div className="aspect-[4/5] overflow-hidden mb-8 relative">
                 <img 
-                  src={chale.image} 
-                  alt={chale.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  src={projeto.image} 
+                  alt={projeto.name}
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500"></div>
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                <div className="absolute top-6 left-6 text-white text-[10px] uppercase tracking-widest font-bold bg-primary px-4 py-2">
+                  {projeto.category}
+                </div>
               </div>
-              <h3 className="text-3xl font-serif font-bold mb-3">{chale.name}</h3>
-              <p className="text-muted-foreground text-base mb-6 leading-relaxed">{chale.description}</p>
-              <div className="flex flex-col gap-4">
-                <Link 
-                  to="/chale/$chaleId" 
-                  params={{ chaleId: chale.id.toString() }}
-                  className="text-xs uppercase tracking-[0.2em] font-bold border-b-2 border-primary/50 pb-1 w-fit group-hover:border-primary transition-all"
-                >
-                  Ver detalhes
-                </Link>
-                <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-muted-foreground font-sans">
-                  <span className="flex items-center gap-1.5"><Star size={10} className="text-primary" fill="currentColor" /> 4.9</span>
-                  <span className="w-1 h-1 bg-border rounded-full"></span>
-                  <span>2 Hóspedes</span>
-                  <span className="w-1 h-1 bg-border rounded-full"></span>
-                  <span>Wifi Fibra</span>
+              <div className="flex justify-between items-start">
+                <div className="max-w-md">
+                  <span className="text-primary text-[10px] uppercase tracking-widest font-bold mb-2 block">Projeto 0{projeto.id}</span>
+                  <h3 className="text-4xl font-serif font-bold mb-4">{projeto.name}</h3>
+                  <p className="text-muted-foreground text-base mb-8 leading-relaxed">{projeto.description}</p>
+                  <Link 
+                    to="/chale/$chaleId" 
+                    params={{ chaleId: projeto.id.toString() }}
+                    className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-bold"
+                  >
+                    <span>Explorar Projeto</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -250,45 +423,48 @@ export const Accommodations = () => {
   );
 };
 
+
+
 const REVIEWS = [
   {
     id: 1,
-    author: "Marina Siqueira",
-    role: "Designer de Interiores",
-    content: "Uma experiência transformadora. O cuidado com o design e a tecnologia é algo que nunca vi igual no Brasil. Voltarei com certeza.",
+    author: "Bruno Andrade",
+    role: "Proprietário de Terreno",
+    content: "O acompanhamento da Chalés IA foi fundamental. Eles não apenas construíram um chalé, eles deram vida à visão que eu tinha para minha propriedade na serra.",
     rating: 5,
   },
   {
     id: 2,
-    author: "Ricardo Fontes",
-    role: "Empresário",
-    content: "O refúgio perfeito para quem busca desconectar sem abrir mão do luxo. O atendimento é impecável e a privacidade é o ponto alto.",
+    author: "Mariana Costa",
+    role: "Investidora",
+    content: "Construí três chalés para aluguel por temporada e o resultado superou todas as expectativas. O design atrai hóspedes e a qualidade construtiva é impecável.",
     rating: 5,
   },
   {
     id: 3,
-    author: "Elena Cavalcanti",
-    role: "Fotógrafa",
-    content: "Cada ângulo deste lugar é uma obra de arte. A luz, os materiais, a paz... Chalés IA elevou meu padrão para o que chamo de hospedagem boutique.",
+    author: "Carlos Mendes",
+    role: "Arquiteto Colaborador",
+    content: "A precisão na execução dos detalhes arquitetônicos e a escolha dos materiais fazem da Chalés IA uma parceira de confiança para projetos de alto padrão.",
     rating: 5,
   }
 ];
 
+
 export const SocialProof = () => {
   return (
-    <section className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
+    <section id="diferenciais" className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
           <div className="lg:col-span-1">
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Depoimentos</span>
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Confiança</span>
             <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-8">
-              O que dizem nossos convidados
+              Compromisso com a excelência
             </h2>
             <div className="flex items-center gap-4 mb-8">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-2 border-background overflow-hidden bg-muted">
-                    <img src={`https://i.pravatar.cc/150?u=${i + 10}`} alt="Guest" className="w-full h-full object-cover" />
+                    <img src={`https://i.pravatar.cc/150?u=${i + 20}`} alt="Client" className="w-full h-full object-cover" />
                   </div>
                 ))}
               </div>
@@ -296,10 +472,11 @@ export const SocialProof = () => {
                 <div className="flex text-primary mb-1">
                   {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}
                 </div>
-                <p className="text-xs uppercase tracking-widest font-sans font-bold">500+ Estadias Concluídas</p>
+                <p className="text-xs uppercase tracking-widest font-sans font-bold">Projetos Executados com Precisão</p>
               </div>
             </div>
           </div>
+
           
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
             {REVIEWS.slice(0, 2).map((review) => (
@@ -346,66 +523,91 @@ export const BookingForm = () => {
     
     const name = formData.get("name");
     const email = formData.get("email");
-    const checkin = formData.get("checkin");
-    const checkout = formData.get("checkout");
-    const guests = formData.get("guests");
     const whatsapp = formData.get("whatsapp");
+    const city = formData.get("city");
+    const projectType = formData.get("projectType");
+    const objective = formData.get("objective");
+    const numberOfChalets = formData.get("numberOfChalets");
+    const hasLand = formData.get("hasLand");
     const message = formData.get("message");
 
-    const text = `Olá! Gostaria de solicitar um orçamento para os Chalés IA.%0A%0A*Detalhes da Solicitação:*%0A- *Nome:* ${name}%0A- *E-mail:* ${email}%0A- *Check-in:* ${checkin}%0A- *Check-out:* ${checkout}%0A- *Hóspedes:* ${guests}%0A- *WhatsApp:* ${whatsapp}%0A${message ? `- *Preferências:* ${message}` : ""}%0A%0AAguardamos o contato com a proposta personalizada.`;
+    const text = `Olá! Gostaria de solicitar um orçamento para construção com a Chalés IA.%0A%0A*Dados do Projeto:*%0A- *Nome:* ${name}%0A- *WhatsApp:* ${whatsapp}%0A- *Cidade/Região:* ${city}%0A- *Tipo de Projeto:* ${projectType}%0A- *Objetivo:* ${objective}%0A- *Número de Chalés:* ${numberOfChalets}%0A- *Possui Terreno:* ${hasLand}%0A${message ? `- *Mensagem:* ${message}` : ""}%0A%0AEstou interessado em transformar meu refúgio em realidade.`;
     
     window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
   };
 
   return (
-    <section id="orcamento" className="py-24 md:py-40 px-6">
-      <div className="max-w-4xl mx-auto bg-card p-8 md:p-20 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+    <section id="orcamento" className="py-24 md:py-40 px-6 bg-secondary/10">
+      <div className="max-w-5xl mx-auto bg-card p-8 md:p-20 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
         
         <div className="relative z-10 text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-serif mb-6">Planeje sua estadia</h2>
-          <p className="text-muted-foreground">Preencha os dados abaixo e entraremos em contato com uma proposta personalizada.</p>
+          <span className="text-primary text-[10px] uppercase tracking-[0.3em] font-sans font-bold block mb-4">Contato</span>
+          <h2 className="text-4xl md:text-6xl font-serif mb-6">Vamos tirar seu projeto do papel?</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">Conte um pouco sobre o que você imagina. A partir daí, podemos começar a transformar essa ideia em um projeto real.</p>
         </div>
         
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
           <div className="space-y-2">
             <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Nome Completo</label>
             <input name="name" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Maria Silva" />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail de Contato</label>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
+            <input name="whatsapp" type="tel" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail</label>
             <input name="email" type="email" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="seu@email.com" />
           </div>
           <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Data de Check-in</label>
-            <input name="checkin" type="date" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm [color-scheme:dark]" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Data de Check-out</label>
-            <input name="checkout" type="date" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm [color-scheme:dark]" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Quantidade de Hóspedes</label>
-            <select name="guests" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="1 Hóspede">1 Hóspede</option>
-              <option value="2 Hóspedes (Casal)">2 Hóspedes (Casal)</option>
-              <option value="3 ou mais Hóspedes">3 ou mais Hóspedes</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
-            <input name="whatsapp" type="tel" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
-          </div>
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Preferências ou Ocasião Especial</label>
-            <textarea name="message" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={2} placeholder="Ex: Aniversário de casamento, preferência por chalé com vista específica..."></textarea>
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Cidade/Região da Obra</label>
+            <input name="city" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Gramado, RS" />
           </div>
           
-          <div className="md:col-span-2 pt-8">
-            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/10">
-              Verificar Disponibilidade & Solicitar Orçamento
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Tipo de Projeto</label>
+            <select name="projectType" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="Chalé Contemporâneo">Chalé Contemporâneo</option>
+              <option value="Chalé A-Frame">Chalé A-Frame / Alpine</option>
+              <option value="Chalé Minimalista">Chalé Minimalista / Nordic</option>
+              <option value="Projeto Personalizado">Projeto Personalizado / Outros</option>
+            </select>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Objetivo</label>
+            <select name="objective" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="Uso Próprio / Lazer">Uso Próprio / Lazer</option>
+              <option value="Aluguel por Temporada">Aluguel por Temporada / Investimento</option>
+              <option value="Moradia">Moradia</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Possui Terreno?</label>
+            <select name="hasLand" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
+              <option value="Sim">Sim, já possuo</option>
+              <option value="Não">Não, estou procurando</option>
+              <option value="Em negociação">Em fase de negociação</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Número de Chalés</label>
+            <input name="numberOfChalets" type="number" min="1" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: 1" />
+          </div>
+
+          <div className="md:col-span-2 space-y-2">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Conte mais sobre sua ideia</label>
+            <textarea name="message" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={3} placeholder="Descreva o que você imagina para o seu refúgio..."></textarea>
+          </div>
+          
+          <div className="md:col-span-2 pt-10">
+            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:bg-primary/90 transition-all duration-300 shadow-xl shadow-primary/10">
+              Solicitar Orçamento do Projeto
             </button>
-            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Resposta em até 24 horas úteis</p>
+            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Nosso time de arquitetura entrará em contato em breve.</p>
           </div>
         </form>
       </div>
@@ -413,14 +615,33 @@ export const BookingForm = () => {
   );
 };
 
+
+export const WhatsAppButton = () => {
+  return (
+    <a
+      href="https://wa.me/5582999357645?text=Olá! Conheci a Chalés IA e gostaria de conversar sobre a construção de um chalé."
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
+      aria-label="Contato via WhatsApp"
+    >
+      <Phone size={24} fill="currentColor" className="group-hover:rotate-12 transition-transform" />
+      <span className="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-3 transition-all duration-500 whitespace-nowrap text-xs font-bold uppercase tracking-widest">
+        Falar com Especialista
+      </span>
+    </a>
+  );
+};
+
 export const Footer = () => {
+
   return (
     <footer id="contato" className="bg-background border-t border-border/10 py-20 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
           <a href="/" className="text-3xl font-serif tracking-tighter block mb-8">CHALÉS IA</a>
           <p className="text-muted-foreground max-w-sm mb-10 leading-relaxed">
-            Uma experiência de hospedagem onde a inovação e o design se encontram com o luxo contemporâneo.
+            Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
@@ -436,11 +657,11 @@ export const Footer = () => {
         </div>
         
         <div>
-          <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Localização</h4>
-          <ul className="space-y-4 text-sm text-muted-foreground">
+          <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Atuação</h4>
+          <ul className="space-y-4 text-sm text-muted-foreground font-sans">
             <li className="flex gap-3">
               <MapPin size={16} className="text-primary shrink-0" />
-              Serra Gaúcha, RS<br />Brasil
+              Projetos em todo o Brasil.<br />Execução sob consulta.
             </li>
           </ul>
         </div>
@@ -449,12 +670,13 @@ export const Footer = () => {
           <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Navegação</h4>
           <ul className="space-y-4 text-sm text-muted-foreground uppercase tracking-wider font-sans text-[10px]">
             <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
-            <li><a href="/#experiencia" className="hover:text-primary transition-colors">A Experiência</a></li>
-            <li><a href="/#chales" className="hover:text-primary transition-colors">Acomodações</a></li>
-            <li><a href="/avaliacoes" className="hover:text-primary transition-colors">Avaliações</a></li>
-            <li><a href="/#orcamento" className="hover:text-primary transition-colors">Orçamentos</a></li>
+            <li><a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a></li>
+            <li><a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a></li>
+            <li><a href="/#processo" className="hover:text-primary transition-colors">Processo</a></li>
+            <li><a href="/#orcamento" className="hover:text-primary transition-colors">Solicitar Orçamento</a></li>
           </ul>
         </div>
+
       </div>
       
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-border/10 flex flex-col md:row justify-between items-center gap-4">
