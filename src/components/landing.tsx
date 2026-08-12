@@ -207,7 +207,7 @@ export const Philosophy = () => {
           
           <div className="relative">
             <ParallaxImage 
-              src={chale_1.url} 
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop" 
               alt="Conceito Arquitetônico"
               containerClassName="aspect-[3/4] rounded-sm shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)]"
             />
@@ -220,7 +220,7 @@ export const Philosophy = () => {
               className="absolute -bottom-16 -right-16 w-1/2 aspect-square hidden lg:block"
             >
               <ParallaxImage 
-                src={chale_2.url} 
+                src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200&auto=format&fit=crop" 
                 alt="Detalhe de Materialidade"
                 containerClassName="w-full h-full rounded-sm border-8 border-background shadow-2xl"
               />
