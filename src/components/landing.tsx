@@ -8,7 +8,7 @@ import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
 import chale_3 from "@/assets/chale_3.jpeg.asset.json";
 import chale_4 from "@/assets/chale_4.jpeg.asset.json";
-import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
+import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
 import logoAsset from "@/assets/logo-chales-ia.jpeg.asset.json";
 
 
