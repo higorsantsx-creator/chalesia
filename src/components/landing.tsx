@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
