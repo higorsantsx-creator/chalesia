@@ -211,7 +211,154 @@ const PROJETOS = [
   }
 ];
 
-export const Projects = () => {
+export const Process = () => {
+  const steps = [
+    {
+      num: "01",
+      title: "Conversa",
+      desc: "Entendemos profundamente o que você deseja, seu estilo de vida e objetivos.",
+      icon: <Mail className="text-primary" size={24} />
+    },
+    {
+      num: "02",
+      title: "Conceito",
+      desc: "Transformamos a ideia em uma proposta arquitetônica preliminar e inspiradora.",
+      icon: <PenTool className="text-primary" size={24} />
+    },
+    {
+      num: "03",
+      title: "Projeto",
+      desc: "Definimos cada detalhe: ambientes, materiais, iluminação e especificações técnicas.",
+      icon: <Sparkles className="text-primary" size={24} />
+    },
+    {
+      num: "04",
+      title: "Construção",
+      desc: "Executamos a obra com rigor técnico, acompanhamento próximo e cuidado artesanal.",
+      icon: <Hammer className="text-primary" size={24} />
+    },
+    {
+      num: "05",
+      title: "Entrega",
+      desc: "O projeto sai do papel e se transforma no seu refúgio real, pronto para viver.",
+      icon: <CheckCircle className="text-primary" size={24} />
+    }
+  ];
+
+  return (
+    <section id="processo" className="py-32 md:py-48 bg-background relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+          <div className="sticky top-32">
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Metodologia</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.85] tracking-tighter mb-10">
+              Do sonho <br /> à obra.
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-md leading-relaxed">
+              Acompanhamos cada etapa da jornada, garantindo que a essência do projeto original seja preservada até o último detalhe da construção.
+            </p>
+          </div>
+          
+          <div className="space-y-12">
+            {steps.map((step, idx) => (
+              <motion.div 
+                key={step.num}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.8 }}
+                className="group flex gap-8 items-start pb-12 border-b border-border/10 last:border-0"
+              >
+                <div className="text-5xl font-serif font-bold text-primary/20 group-hover:text-primary/100 transition-colors duration-500 leading-none">
+                  {step.num}
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    {step.icon}
+                    <h3 className="text-2xl font-serif font-bold">{step.title}</h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed max-w-sm">
+                    {step.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const Details = () => {
+  return (
+    <section className="py-32 bg-foreground text-background overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5 }}
+            className="aspect-square overflow-hidden"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1449156001446-515864afdacf?q=80&w=1200&auto=format&fit=crop" 
+              alt="Detalhes Construtivos"
+              className="w-full h-full object-cover opacity-80"
+            />
+          </motion.div>
+          
+          <div>
+            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Qualidade</span>
+            <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
+              Cada detalhe <br /> importa.
+            </h2>
+            <p className="text-muted-foreground text-lg leading-relaxed mb-12 max-w-md">
+              A curadoria de materiais — da madeira certificada à pedra natural — define a identidade e a longevidade de cada chalé que construímos.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-10">
+              <div>
+                <h4 className="text-primary text-xs uppercase tracking-widest font-bold mb-4">Materialidade</h4>
+                <p className="text-sm opacity-60 leading-relaxed">Madeira, pedra e vidro em harmonia estrutural.</p>
+              </div>
+              <div>
+                <h4 className="text-primary text-xs uppercase tracking-widest font-bold mb-4">Execução</h4>
+                <p className="text-sm opacity-60 leading-relaxed">Mão de obra especializada em estruturas complexas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export const Investment = () => {
+  return (
+    <section className="py-24 md:py-40 px-6 bg-secondary/20">
+      <div className="max-w-5xl mx-auto text-center">
+        <TrendingUp className="mx-auto text-primary mb-8" size={48} />
+        <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8">Um projeto pensado para seu objetivo.</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+          Seja para lazer próprio ou para gerar renda através de aluguel por temporada, desenvolvemos soluções arquitetônicas que valorizam seu patrimônio e maximizam o potencial do seu terreno.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          {["Uso Próprio", "Hospedagem", "Investimento"].map((item) => (
+            <div key={item} className="bg-background p-8 border border-border/10">
+              <h4 className="font-serif text-xl font-bold mb-4">{item}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Design estratégico focado na experiência do usuário e na valorização imobiliária a longo prazo.
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
   return (
     <section id="projetos" className="py-32 bg-secondary/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
