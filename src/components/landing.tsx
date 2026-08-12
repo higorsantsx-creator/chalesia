@@ -465,7 +465,7 @@ export const Footer = () => {
         <div className="md:col-span-2">
           <a href="/" className="text-3xl font-serif tracking-tighter block mb-8">CHALÉS IA</a>
           <p className="text-muted-foreground max-w-sm mb-10 leading-relaxed">
-            Uma experiência de hospedagem onde a inovação e o design se encontram com o luxo contemporâneo.
+            Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
@@ -481,11 +481,11 @@ export const Footer = () => {
         </div>
         
         <div>
-          <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Localização</h4>
-          <ul className="space-y-4 text-sm text-muted-foreground">
+          <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Atuação</h4>
+          <ul className="space-y-4 text-sm text-muted-foreground font-sans">
             <li className="flex gap-3">
               <MapPin size={16} className="text-primary shrink-0" />
-              Serra Gaúcha, RS<br />Brasil
+              Projetos em todo o Brasil.<br />Execução sob consulta.
             </li>
           </ul>
         </div>
@@ -494,12 +494,13 @@ export const Footer = () => {
           <h4 className="text-xs uppercase tracking-widest font-sans mb-8">Navegação</h4>
           <ul className="space-y-4 text-sm text-muted-foreground uppercase tracking-wider font-sans text-[10px]">
             <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
-            <li><a href="/#experiencia" className="hover:text-primary transition-colors">A Experiência</a></li>
-            <li><a href="/#chales" className="hover:text-primary transition-colors">Acomodações</a></li>
-            <li><a href="/avaliacoes" className="hover:text-primary transition-colors">Avaliações</a></li>
-            <li><a href="/#orcamento" className="hover:text-primary transition-colors">Orçamentos</a></li>
+            <li><a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a></li>
+            <li><a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a></li>
+            <li><a href="/#processo" className="hover:text-primary transition-colors">Processo</a></li>
+            <li><a href="/#orcamento" className="hover:text-primary transition-colors">Solicitar Orçamento</a></li>
           </ul>
         </div>
+
       </div>
       
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-border/10 flex flex-col md:row justify-between items-center gap-4">
