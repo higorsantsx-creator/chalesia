@@ -85,9 +85,10 @@ export const Hero = () => {
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-7xl md:text-[10rem] font-serif font-bold leading-[0.8] mb-12 tracking-tighter drop-shadow-2xl"
         >
-          Onde o luxo <br />
-          <span className="italic text-primary/90 font-medium">encontra</span> o <br />
-          design
+          Seu refúgio <br />
+          começa no <br />
+          <span className="italic text-primary/90 font-medium">projeto.</span>
+
         </motion.h1>
         
         <motion.div
