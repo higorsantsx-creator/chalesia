@@ -45,7 +45,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brand-gold: #C6A56A;
 }
+
 
 :root {
   --radius: 0.5rem;

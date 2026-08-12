@@ -110,7 +110,7 @@ export const Hero = () => {
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-2xl"
         >
-          Arquitetura <br />
+          <span className="text-[#C6A56A]">Arquitetura</span> <br />
           <span className="italic text-primary/90 font-medium">que respira.</span>
         </motion.h1>
         
