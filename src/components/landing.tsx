@@ -27,7 +27,7 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 md:px-12",
-        isScrolled ? "bg-background/80 backdrop-blur-md py-3 shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-background/90 backdrop-blur-xl py-3 shadow-lg border-b border-border/10" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -48,7 +48,7 @@ export const Navbar = () => {
         
         <a 
           href="#orcamento" 
-          className="bg-primary text-primary-foreground px-6 py-2.5 text-xs uppercase tracking-widest font-medium hover:opacity-90 transition-all flex items-center gap-2"
+          className="bg-primary text-primary-foreground px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 rounded-sm"
         >
           Solicitar Orçamento
           <ArrowRight size={14} />
@@ -106,7 +106,7 @@ export const Hero = () => {
         >
           <a 
             href="#chales" 
-            className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
+            className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold rounded-sm shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-95"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
@@ -114,7 +114,7 @@ export const Hero = () => {
           
           <a 
             href="#projetos" 
-            className="inline-flex items-center gap-3 border border-foreground/20 px-12 py-5 hover:bg-foreground/5 backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold"
+            className="inline-flex items-center gap-3 border border-foreground/30 px-12 py-5 hover:bg-foreground hover:text-background backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold rounded-sm active:scale-95"
           >
             Ver Projetos
 
@@ -152,7 +152,7 @@ export const Philosophy = () => {
             <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
               Não construímos apenas chalés.
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-10 max-w-lg">
+            <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed mb-10 max-w-lg font-serif italic font-medium">
               Cada projeto representa um espaço pensado para determinado estilo de vida, objetivo e ambiente. Acreditamos que seu refúgio deve ser uma extensão da sua identidade e uma resposta ao seu terreno.
             </p>
             <div className="grid grid-cols-1 gap-6">
@@ -263,7 +263,7 @@ export const Process = () => {
             <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.85] tracking-tighter mb-10">
               Do sonho <br /> à obra.
             </h2>
-            <p className="text-muted-foreground text-lg max-w-md leading-relaxed">
+            <p className="text-muted-foreground text-xl leading-relaxed max-w-md font-serif italic">
               Acompanhamos cada etapa da jornada, garantindo que a essência do projeto original seja preservada até o último detalhe da construção.
             </p>
           </div>
@@ -323,7 +323,7 @@ export const Details = () => {
             <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
               Cada detalhe <br /> importa.
             </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-12 max-w-md">
+            <p className="text-muted-foreground text-xl leading-relaxed mb-12 max-w-md font-serif italic">
               A curadoria de materiais — da madeira certificada à pedra natural — define a identidade e a longevidade de cada chalé que construímos.
             </p>
             
@@ -350,12 +350,12 @@ export const Investment = () => {
       <div className="max-w-5xl mx-auto text-center">
         <TrendingUp className="mx-auto text-primary mb-8" size={48} />
         <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8">Um projeto pensado para seu objetivo.</h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
+        <p className="text-muted-foreground text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-serif italic">
           Seja para lazer próprio ou para gerar renda através de aluguel por temporada, desenvolvemos soluções arquitetônicas que valorizam seu patrimônio e maximizam o potencial do seu terreno.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           {["Uso Próprio", "Hospedagem", "Investimento"].map((item) => (
-            <div key={item} className="bg-background p-8 border border-border/10">
+            <div key={item} className="bg-background p-8 border border-border/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
               <h4 className="font-serif text-xl font-bold mb-4">{item}</h4>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Design estratégico focado na experiência do usuário e na valorização imobiliária a longo prazo.
@@ -389,7 +389,7 @@ export const Projects = () => {
               transition={{ delay: idx % 2 * 0.2, duration: 1 }}
               className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-32" : "")}
             >
-              <div className="aspect-[4/5] overflow-hidden mb-8 relative">
+              <div className="aspect-[4/5] overflow-hidden mb-8 relative rounded-sm shadow-2xl shadow-foreground/5">
                 <img 
                   src={projeto.image} 
                   alt={projeto.name}
@@ -408,7 +408,7 @@ export const Projects = () => {
                   <Link 
                     to="/chale/$chaleId" 
                     params={{ chaleId: projeto.id.toString() }}
-                    className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.2em] font-bold"
+                    className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-bold hover:text-primary transition-colors"
                   >
                     <span>Explorar Projeto</span>
                     <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
@@ -453,7 +453,8 @@ const REVIEWS = [
 export const SocialProof = () => {
   return (
     <section id="diferenciais" className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 bg-secondary/30 py-20 md:py-32 rounded-sm shadow-inner border border-border/5">
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
           <div className="lg:col-span-1">
             <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Confiança</span>
