@@ -87,7 +87,9 @@ export const Hero = () => {
           alt="Chalé de Luxo Arquitetônico"
           className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-background"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/20 to-background"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.4)_0%,transparent_70%)] md:bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.3)_0%,transparent_60%)]"></div>
+
       </motion.div>
       
       <motion.div 
@@ -108,7 +110,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-2xl"
+          className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white"
         >
           <span className="text-brand-gold">Arquitetura</span> <br />
           <span className="italic text-primary/90 font-medium">que respira.</span>
