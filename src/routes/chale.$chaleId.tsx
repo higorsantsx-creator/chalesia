@@ -16,7 +16,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Chalé Contemporâneo",
     category: "Arquitetura Moderna",
     description: "Um ícone da arquitetura moderna, o Loft Contemporâneo combina a rusticidade da pedra com a leveza do vidro. Projetado para quem busca uma imersão completa no design contemporâneo.",
-    image: chale_1.url,
+    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
     tagline: "Geometria limpa e vãos de vidro.",
     features: ["Fachada em Vidro Duplo", "Estrutura em Aço Corten", "Acabamento em Pedra Natural", "Automação Residencial"],
     specs: { size: "85m²", time: "6 Meses", energy: "A+" }
@@ -25,7 +25,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres e isolamento térmico de última geração.",
-    image: chale_2.url,
+    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop",
     tagline: "Conforto térmico e design icônico.",
     features: ["Isolamento Térmico Premium", "Madeira de Lei Certificada", "Lareira de Alta Performance", "Piso Aquecido"],
     specs: { size: "120m²", time: "8 Meses", energy: "A++" }
@@ -34,7 +34,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Chalé Hillside",
     category: "Integração Natureza",
     description: "Especialmente desenvolvido para terrenos íngremes. A estrutura suspensa minimiza o impacto ambiental enquanto maximiza a vista panorâmica.",
-    image: chale_3.url,
+    image: "https://images.unsplash.com/photo-1493101530225-b44c84964177?q=80&w=1200&auto=format&fit=crop",
     tagline: "Respeito ao relevo e à vegetação.",
     features: ["Fundação em Estacas", "Deck em Madeira Nobre", "Ventilação Cruzada Natural", "Recolhimento de Água Pluvial"],
     specs: { size: "95m²", time: "7 Meses", energy: "A" }
@@ -43,11 +43,12 @@ const CHALE_DATA: Record<string, any> = {
     name: "Studio Minimalista",
     category: "Design Compacto",
     description: "A prova de que luxo não depende de tamanho. Eficiência espacial levada ao limite com acabamentos de altíssimo padrão.",
-    image: chale_4.url,
+    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
     tagline: "Máxima sofisticação em espaço otimizado.",
     features: ["Mobiliário Sob Medida", "Iluminação Cênica", "Revestimentos Importados", "Conceito Aberto"],
     specs: { size: "45m²", time: "4 Meses", energy: "A++" }
   }
+
 };
 
 
