@@ -90,38 +90,41 @@ function ChaleDetailsPage() {
             {/* Main Info */}
             <div className="lg:col-span-2 space-y-12">
               <div>
-                <h2 className="text-sm uppercase tracking-[0.3em] text-primary font-bold mb-6">Sobre o Refúgio</h2>
-                <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground font-serif italic">
+                <h2 className="text-sm uppercase tracking-[0.3em] text-primary font-bold mb-6">Conceito do Projeto</h2>
+                <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground font-serif italic mb-6">
                   "{chale.description}"
+                </p>
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  Cada detalhe foi meticulosamente planejado para oferecer uma experiência estética e funcional única. Este projeto prioriza a conexão com o entorno e o uso de materiais de altíssima qualidade.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-white/10">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-foreground/10">
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Maximize className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.size}</span>
+                  <Ruler className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.size} de área</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Users className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.capacity}</span>
+                  <Compass className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Implantação Inteligente</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Wifi className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.wifi}</span>
+                  <Layers className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Classe {chale.specs.energy}</span>
                 </div>
                 <div className="flex flex-col items-center text-center gap-3">
-                  <Shield className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">Privacidade Total</span>
+                  <HardHat className="text-primary" size={24} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">~{chale.specs.time} de obra</span>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-2xl font-serif font-bold mb-8">Comodidades Exclusivas</h3>
+                <h3 className="text-2xl font-serif font-bold mb-8">Diferenciais Técnicos</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {chale.features.map((feature: string) => (
-                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/10 border border-white/5">
+                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/20 border border-foreground/5">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm uppercase tracking-widest font-medium">{feature}</span>
+                      <span className="text-xs uppercase tracking-widest font-bold">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -130,32 +133,32 @@ function ChaleDetailsPage() {
 
             {/* Sticky Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-32 bg-card p-10 border border-white/10 shadow-2xl">
+              <div className="sticky top-32 bg-card p-10 border border-foreground/10 shadow-2xl">
                 <div className="mb-8">
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">A partir de</span>
-                  <p className="text-4xl font-serif font-bold text-primary">{chale.price}</p>
+                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Investimento Estimado</span>
+                  <p className="text-3xl font-serif font-bold text-primary">Sob Consulta</p>
                 </div>
                 
                 <div className="space-y-6 mb-10">
-                  <div className="flex items-center justify-between text-xs uppercase tracking-widest font-bold">
-                    <span>Avaliação</span>
-                    <span className="flex items-center gap-1">4.9 <Star size={12} fill="currentColor" className="text-primary" /></span>
+                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
+                    <span>Prazo de Entrega</span>
+                    <span className="text-muted-foreground">{chale.specs.time}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs uppercase tracking-widest font-bold">
-                    <span>Taxa de Serviço</span>
-                    <span className="text-muted-foreground italic">Inclusa</span>
+                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
+                    <span>Personalização</span>
+                    <span className="text-primary">Disponível</span>
                   </div>
                 </div>
 
                 <a 
                   href="/#orcamento" 
-                  className="block w-full bg-primary text-primary-foreground py-5 text-center uppercase tracking-[0.2em] text-xs font-bold hover:opacity-90 transition-all shadow-xl shadow-primary/10"
+                  className="block w-full bg-primary text-primary-foreground py-5 text-center uppercase tracking-[0.2em] text-xs font-bold hover:bg-primary/90 transition-all shadow-xl shadow-primary/10"
                 >
-                  Solicitar Reserva
+                  Solicitar Orçamento
                 </a>
                 
                 <p className="text-[9px] text-center mt-6 text-muted-foreground uppercase tracking-[0.2em] leading-loose">
-                  *Sujeito a disponibilidade. O orçamento final será enviado em até 24h.
+                  *Os valores e prazos variam de acordo com a localização e topografia do terreno.
                 </p>
               </div>
             </div>
@@ -167,3 +170,4 @@ function ChaleDetailsPage() {
     </div>
   );
 }
+
