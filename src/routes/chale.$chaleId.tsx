@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar, Footer } from "@/components/landing";
 import { motion } from "framer-motion";
-import { Star, Wifi, Users, Maximize, Coffee, Wind, Shield, ArrowLeft } from "lucide-react";
-import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
+import { Hammer, Maximize, Ruler, Compass, HardHat, Layers, ArrowLeft } from "lucide-react";
+import chale_1 from "@/assets/chale_1.jpeg.asset.json";
+import chale_2 from "@/assets/chale_2.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3.jpeg.asset.json";
+import chale_4 from "@/assets/chale_4.jpeg.asset.json";
 
 export const Route = createFileRoute("/chale/$chaleId")({
   component: ChaleDetailsPage,
@@ -10,30 +13,43 @@ export const Route = createFileRoute("/chale/$chaleId")({
 
 const CHALE_DATA: Record<string, any> = {
   "1": {
-    name: "Chalé Loft A-Frame",
-    description: "Um ícone da arquitetura moderna, o Loft A-Frame combina a rusticidade da pedra com a leveza do vidro. Projetado para casais que buscam uma imersão completa no design sem abrir mão do conforto absoluto.",
-    image: chaleRefAsset.url,
-    price: "R$ 1.200 / noite",
-    features: ["Fachada de vidro duplo", "Automação via IA", "Banheira de imersão", "Lareira suspensa"],
-    specs: { size: "85m²", capacity: "2 Hóspedes", wifi: "600Mbps" }
+    name: "Chalé Contemporâneo",
+    category: "Arquitetura Moderna",
+    description: "Um ícone da arquitetura moderna, o Loft Contemporâneo combina a rusticidade da pedra com a leveza do vidro. Projetado para quem busca uma imersão completa no design contemporâneo.",
+    image: chale_1.url,
+    tagline: "Geometria limpa e vãos de vidro.",
+    features: ["Fachada em Vidro Duplo", "Estrutura em Aço Corten", "Acabamento em Pedra Natural", "Automação Residencial"],
+    specs: { size: "85m²", time: "6 Meses", energy: "A+" }
   },
   "2": {
-    name: "Chalé Alpine",
-    description: "Inspirado nos refúgios dos Alpes Suíços, este chalé oferece uma vista panorâmica de tirar o fôlego. O deck privativo com borda infinita é o convite perfeito para manhãs contemplativas.",
-    image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1600",
-    price: "R$ 1.500 / noite",
-    features: ["Piscina aquecida", "Sauna seca privativa", "Cozinha gourmet", "Adega climatizada"],
-    specs: { size: "120m²", capacity: "2 Hóspedes", wifi: "600Mbps" }
+    name: "Chalé Alpine Elite",
+    category: "Conceito Nordic",
+    description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres e isolamento térmico de última geração.",
+    image: chale_2.url,
+    tagline: "Conforto térmico e design icônico.",
+    features: ["Isolamento Térmico Premium", "Madeira de Lei Certificada", "Lareira de Alta Performance", "Piso Aquecido"],
+    specs: { size: "120m²", time: "8 Meses", energy: "A++" }
   },
   "3": {
-    name: "Chalé Nordic",
-    description: "O epítome do Hygge. Minimalismo escandinavo traduzido em texturas naturais, tons terrosos e uma iluminação cuidadosamente projetada para criar uma atmosfera de paz profunda.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1600",
-    price: "R$ 1.100 / noite",
-    features: ["Piso aquecido", "Enxoval 1000 fios", "Som ambiente hi-fi", "Claraboia para estrelas"],
-    specs: { size: "75m²", capacity: "2 Hóspedes", wifi: "600Mbps" }
+    name: "Chalé Hillside",
+    category: "Integração Natureza",
+    description: "Especialmente desenvolvido para terrenos íngremes. A estrutura suspensa minimiza o impacto ambiental enquanto maximiza a vista panorâmica.",
+    image: chale_3.url,
+    tagline: "Respeito ao relevo e à vegetação.",
+    features: ["Fundação em Estacas", "Deck em Madeira Nobre", "Ventilação Cruzada Natural", "Recolhimento de Água Pluvial"],
+    specs: { size: "95m²", time: "7 Meses", energy: "A" }
+  },
+  "4": {
+    name: "Studio Minimalista",
+    category: "Design Compacto",
+    description: "A prova de que luxo não depende de tamanho. Eficiência espacial levada ao limite com acabamentos de altíssimo padrão.",
+    image: chale_4.url,
+    tagline: "Máxima sofisticação em espaço otimizado.",
+    features: ["Mobiliário Sob Medida", "Iluminação Cênica", "Revestimentos Importados", "Conceito Aberto"],
+    specs: { size: "45m²", time: "4 Meses", energy: "A++" }
   }
 };
+
 
 function ChaleDetailsPage() {
   const { chaleId } = Route.useParams();
