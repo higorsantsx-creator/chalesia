@@ -134,7 +134,11 @@ export const Hero = () => {
 };
 
 export const Philosophy = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useSpring(useTransform(scrollYProgress, [0, 0.5], [0, -100]), { stiffness: 100, damping: 30 });
+
   return (
+
     <section id="sobre" className="py-24 md:py-40 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
@@ -166,7 +170,7 @@ export const Philosophy = () => {
             className="relative"
           >
             <motion.div 
-              style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -100]) }}
+              style={{ y }}
               className="aspect-[4/5] overflow-hidden"
             >
               <img 
@@ -175,6 +179,7 @@ export const Philosophy = () => {
                 className="w-full h-full object-cover"
               />
             </motion.div>
+
             <div className="absolute -bottom-10 -left-10 w-2/3 aspect-square border border-primary/20 -z-10 hidden md:block"></div>
           </motion.div>
 
