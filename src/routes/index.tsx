@@ -26,11 +26,16 @@ function Index() {
         <Hero />
         <Philosophy />
         <Projects />
-
+        <Process />
+        <Details />
+        <Investment />
         <SocialProof />
         <BookingForm />
+
       </main>
       <Footer />
+      <WhatsAppButton />
+
       <Toaster position="top-center" expand={false} richColors />
     </div>
   );
