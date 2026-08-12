@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import chaleRefAsset from "@/assets/chale-referencia.png.asset.json";
+import chale_1 from "@/assets/chale_1.jpeg.asset.json";
+import chale_2 from "@/assets/chale_2.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3.jpeg.asset.json";
+import chale_4 from "@/assets/chale_4.jpeg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
+
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
