@@ -27,8 +27,9 @@ export const Navbar = () => {
       animate={{ y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 md:px-12",
-        isScrolled ? "bg-background/90 backdrop-blur-xl py-3 shadow-lg border-b border-border/10" : "bg-transparent"
+        isScrolled ? "bg-background/95 backdrop-blur-2xl py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-border/5" : "bg-transparent"
       )}
+
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-8">
@@ -106,7 +107,7 @@ export const Hero = () => {
         >
           <a 
             href="#chales" 
-            className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold rounded-sm shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-95"
+            className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.25em] text-[10px] font-bold rounded-sm shadow-[0_20px_50px_rgba(64,128,89,0.2)] hover:shadow-[0_20px_50px_rgba(64,128,89,0.3)] hover:-translate-y-1 active:scale-95 active:translate-y-0"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
@@ -389,7 +390,7 @@ export const Projects = () => {
               transition={{ delay: idx % 2 * 0.2, duration: 1 }}
               className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-32" : "")}
             >
-              <div className="aspect-[4/5] overflow-hidden mb-8 relative rounded-sm shadow-2xl shadow-foreground/5">
+              <div className="aspect-[4/5] overflow-hidden mb-10 relative rounded-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-shadow duration-700">
                 <img 
                   src={projeto.image} 
                   alt={projeto.name}
@@ -486,7 +487,7 @@ export const SocialProof = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-card p-10 relative"
+                className="bg-card p-12 relative rounded-sm shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)] transition-all duration-700 border border-border/5"
               >
                 <Quote className="absolute top-6 right-6 text-primary/10" size={60} />
                 <div className="flex text-primary mb-6">
@@ -539,7 +540,7 @@ export const BookingForm = () => {
 
   return (
     <section id="orcamento" className="py-24 md:py-40 px-6 bg-secondary/10">
-      <div className="max-w-5xl mx-auto bg-card p-8 md:p-20 shadow-2xl relative overflow-hidden">
+      <div className="max-w-5xl mx-auto bg-card p-8 md:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden rounded-sm border border-border/5">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
         
         <div className="relative z-10 text-center mb-16">
@@ -605,7 +606,7 @@ export const BookingForm = () => {
           </div>
           
           <div className="md:col-span-2 pt-10">
-            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-xs hover:bg-primary/90 transition-all duration-300 shadow-xl shadow-primary/10">
+            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-primary/95 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-500 shadow-[0_20px_40px_rgba(64,128,89,0.15)] rounded-sm">
               Solicitar Orçamento do Projeto
             </button>
             <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Nosso time de arquitetura entrará em contato em breve.</p>
@@ -623,7 +624,7 @@ export const WhatsAppButton = () => {
       href="https://wa.me/5582999357645?text=Olá! Conheci a Chalés IA e gostaria de conversar sobre a construção de um chalé."
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group"
+      className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-[0_15px_40px_rgba(37,211,102,0.3)] hover:scale-110 active:scale-90 transition-all duration-300 flex items-center justify-center group"
       aria-label="Contato via WhatsApp"
     >
       <Phone size={24} fill="currentColor" className="group-hover:rotate-12 transition-transform" />
