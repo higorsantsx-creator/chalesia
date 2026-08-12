@@ -99,8 +99,8 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-primary text-sm md:text-base uppercase tracking-[0.6em] font-sans font-bold block mb-10 drop-shadow-md">
-            Arquitetura & Construção Premium
+          <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-12 drop-shadow-md">
+            Escritório de Arquitetura & Construção
           </span>
         </motion.div>
         
@@ -110,25 +110,32 @@ export const Hero = () => {
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-2xl"
         >
-          A forma <br />
-          do seu <br />
-          <span className="italic text-primary/90 font-medium">refúgio.</span>
+          Arquitetura <br />
+          <span className="italic text-primary/90 font-medium">que respira.</span>
         </motion.h1>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row items-center justify-center gap-8"
+          className="flex flex-col md:flex-row items-center justify-center gap-12"
         >
           <a 
+            href="#projetos"
+            data-cursor="Explorar"
+            className="group flex items-center gap-6 text-white text-[11px] uppercase tracking-[0.4em] font-bold hover:text-primary transition-all duration-500"
+          >
+            <span>Ver Portfólio</span>
+            <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform duration-500" />
+          </a>
+          <a 
             href="#orcamento" 
-            data-cursor="Iniciar Projeto"
-            className="group relative inline-flex items-center gap-4 bg-primary text-primary-foreground px-14 py-6 overflow-hidden transition-all duration-500 uppercase tracking-[0.3em] text-[11px] font-bold rounded-sm shadow-[0_25px_60px_rgba(64,128,89,0.25)] hover:shadow-[0_25px_60px_rgba(64,128,89,0.4)] hover:-translate-y-1 active:scale-95"
+            data-cursor="Iniciar"
+            className="group relative inline-flex items-center bg-primary text-primary-foreground px-14 py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[11px] font-bold rounded-sm shadow-[0_30px_70px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
+
           
           <a 
             href="#projetos" 
