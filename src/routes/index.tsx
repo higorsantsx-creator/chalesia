@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar, Hero, Philosophy, Projects, Process, Details, Investment, BookingForm, Footer, SocialProof, WhatsAppButton } from "@/components/landing";
 import { Toaster } from "@/components/ui/sonner";
+import { SmoothScroll, CustomCursor } from "@/components/ui/smooth-scroll";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,21 +24,24 @@ function Index() {
   return (
     <div className="bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
       <Navbar />
-      <main>
-        <Hero />
-        <Philosophy />
-        <Projects />
-        <Process />
-        <Details />
-        <Investment />
-        <SocialProof />
-        <BookingForm />
-
-      </main>
-      <Footer />
-      <WhatsAppButton />
+      <CustomCursor />
+      <SmoothScroll>
+        <main>
+          <Hero />
+          <Philosophy />
+          <Projects />
+          <Process />
+          <Details />
+          <Investment />
+          <SocialProof />
+          <BookingForm />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </SmoothScroll>
 
       <Toaster position="top-center" expand={false} richColors />
+
     </div>
   );
 }

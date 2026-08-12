@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ParallaxImage } from "./ui/parallax-image";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
 import chale_3 from "@/assets/chale_3.jpeg.asset.json";
 import chale_4 from "@/assets/chale_4.jpeg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale.png.asset.json";
 import logoAsset from "@/assets/logo-chales-ia.jpeg.asset.json";
+
 
 
 
@@ -69,30 +71,36 @@ export const Navbar = () => {
 };
 
 export const Hero = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
+
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-[110vh] w-full flex items-center justify-center overflow-hidden">
       <motion.div 
-        initial={{ scale: 1.2 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        style={{ y: y1, scale }}
         className="absolute inset-0 z-0"
       >
         <img 
           src={heroChaleAsset.url} 
           alt="Chalé de Luxo Arquitetônico"
-          className="w-full h-full object-cover brightness-[0.7] contrast-[1.05] saturate-[1.1]"
+          className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-background/40 via-transparent to-background/80"></div>
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-background"></div>
       </motion.div>
       
-      <div className="relative z-10 max-w-6xl px-6 text-center">
+      <motion.div 
+        style={{ opacity }}
+        className="relative z-10 max-w-6xl px-6 text-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-primary text-sm md:text-base uppercase tracking-[0.5em] font-sans font-bold block mb-8 drop-shadow-sm">
-            Um refúgio exclusivo de arquitetura premium
+          <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-12 drop-shadow-md">
+            Escritório de Arquitetura & Construção
           </span>
         </motion.div>
         
@@ -100,104 +108,130 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-7xl md:text-[10rem] font-serif font-bold leading-[0.8] mb-12 tracking-tighter drop-shadow-2xl"
+          className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-2xl"
         >
-          Seu refúgio <br />
-          começa no <br />
-          <span className="italic text-primary/90 font-medium">projeto.</span>
-
+          Arquitetura <br />
+          <span className="italic text-primary/90 font-medium">que respira.</span>
         </motion.h1>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row items-center justify-center gap-6"
+          className="flex flex-col md:flex-row items-center justify-center gap-12"
         >
           <a 
-            href="#chales" 
-            className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-12 py-5 overflow-hidden transition-all duration-500 uppercase tracking-[0.25em] text-[10px] font-bold rounded-sm shadow-[0_20px_50px_rgba(64,128,89,0.2)] hover:shadow-[0_20px_50px_rgba(64,128,89,0.3)] hover:-translate-y-1 active:scale-95 active:translate-y-0"
+            href="#projetos"
+            data-cursor="Explorar"
+            className="group flex items-center gap-6 text-white text-[11px] uppercase tracking-[0.4em] font-bold hover:text-primary transition-all duration-500"
+          >
+            <span>Ver Portfólio</span>
+            <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform duration-500" />
+          </a>
+          <a 
+            href="#orcamento" 
+            data-cursor="Iniciar"
+            className="group relative inline-flex items-center bg-primary text-primary-foreground px-14 py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[11px] font-bold rounded-sm shadow-[0_30px_70px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
           </a>
+
           
           <a 
             href="#projetos" 
-            className="inline-flex items-center gap-3 border border-foreground/30 px-12 py-5 hover:bg-foreground hover:text-background backdrop-blur-sm transition-all duration-500 uppercase tracking-[0.2em] text-[10px] font-bold rounded-sm active:scale-95"
+            className="inline-flex items-center gap-4 border border-white/20 px-14 py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[11px] font-bold rounded-sm active:scale-95"
           >
-            Ver Projetos
-
+            Explorar Obras
           </a>
         </motion.div>
-      </div>
+      </motion.div>
       
       <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-4"
       >
-        <div className="w-[1px] h-12 bg-white/30 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:bg-white after:rounded-full"></div>
+        <span className="text-[10px] uppercase tracking-[0.4em] text-white/40 font-bold">Scroll</span>
+        <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
+          <motion.div 
+            animate={{ y: [0, 64, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="absolute top-0 left-0 w-full h-1/2 bg-primary/60"
+          />
+        </div>
       </motion.div>
     </section>
   );
 };
 
+
 export const Philosophy = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useSpring(useTransform(scrollYProgress, [0, 0.5], [0, -100]), { stiffness: 100, damping: 30 });
 
   return (
-
-    <section id="sobre" className="py-24 md:py-40 px-6 overflow-hidden">
+    <section id="sobre" className="py-32 md:py-56 px-6 overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 md:gap-32 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Filosofia</span>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
-              Não construímos apenas chalés.
+            <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">O Conceito</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.9] mb-12 tracking-tighter">
+              Arquitetura que <br />
+              conecta o <span className="italic font-medium text-primary">homem</span> <br />
+              ao seu lugar.
             </h2>
-            <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed mb-10 max-w-lg font-serif italic font-medium">
-              Cada projeto representa um espaço pensado para determinado estilo de vida, objetivo e ambiente. Acreditamos que seu refúgio deve ser uma extensão da sua identidade e uma resposta ao seu terreno.
-            </p>
-            <div className="grid grid-cols-1 gap-6">
-              <div className="border-l-2 border-primary/20 pl-6 py-2">
-                <p className="text-sm font-medium italic">"Cada terreno é diferente. Cada cliente é diferente. Cada projeto deve ser único."</p>
-              </div>
+            <div className="space-y-8 text-muted-foreground text-lg md:text-xl leading-relaxed max-w-lg font-serif italic">
+              <p>
+                Não construímos apenas chalés. Criamos experiências espaciais que respeitam a topografia, a luz natural e a materialidade bruta de cada terreno.
+              </p>
+              <p>
+                Acreditamos que o luxo contemporâneo reside na simplicidade sofisticada e na integração absoluta com o ambiente.
+              </p>
             </div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="mt-16 flex items-center gap-6"
+            >
+              <div className="w-16 h-[1px] bg-primary/30"></div>
+              <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-primary">Nossa Essência</p>
+            </motion.div>
           </motion.div>
           
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="relative"
-          >
+          <div className="relative">
+            <ParallaxImage 
+              src={chale_1.url} 
+              alt="Conceito Arquitetônico"
+              containerClassName="aspect-[3/4] rounded-sm shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)]"
+            />
+            
             <motion.div 
-              style={{ y }}
-              className="aspect-[4/5] overflow-hidden"
+              initial={{ opacity: 0, scale: 0.8, x: 50 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute -bottom-16 -right-16 w-1/2 aspect-square hidden lg:block"
             >
-              <img 
-                src={chale_1.url} 
-                alt="Conceito Arquitetônico"
-                className="w-full h-full object-cover"
+              <ParallaxImage 
+                src={chale_2.url} 
+                alt="Detalhe de Materialidade"
+                containerClassName="w-full h-full rounded-sm border-8 border-background shadow-2xl"
               />
             </motion.div>
-
-            <div className="absolute -bottom-10 -left-10 w-2/3 aspect-square border border-primary/20 -z-10 hidden md:block"></div>
-          </motion.div>
-
+          </div>
         </div>
       </div>
     </section>
   );
 };
+
 
 const PROJETOS = [
   {
@@ -234,69 +268,66 @@ export const Process = () => {
   const steps = [
     {
       num: "01",
-      title: "Conversa",
-      desc: "Entendemos profundamente o que você deseja, seu estilo de vida e objetivos.",
-      icon: <Mail className="text-primary" size={24} />
+      title: "Arquitetura",
+      desc: "Análise do terreno e desenvolvimento do conceito autoral.",
+      icon: <Compass className="text-primary" size={24} />
     },
     {
       num: "02",
-      title: "Conceito",
-      desc: "Transformamos a ideia em uma proposta arquitetônica preliminar e inspiradora.",
-      icon: <PenTool className="text-primary" size={24} />
+      title: "Engenharia",
+      desc: "Cálculos estruturais e planejamento técnico rigoroso.",
+      icon: <Ruler className="text-primary" size={24} />
     },
     {
       num: "03",
-      title: "Projeto",
-      desc: "Definimos cada detalhe: ambientes, materiais, iluminação e especificações técnicas.",
-      icon: <Sparkles className="text-primary" size={24} />
+      title: "Execução",
+      desc: "Construção com equipe própria e gestão de alto padrão.",
+      icon: <HardHat className="text-primary" size={24} />
     },
     {
       num: "04",
-      title: "Construção",
-      desc: "Executamos a obra com rigor técnico, acompanhamento próximo e cuidado artesanal.",
-      icon: <Hammer className="text-primary" size={24} />
-    },
-    {
-      num: "05",
-      title: "Entrega",
-      desc: "O projeto sai do papel e se transforma no seu refúgio real, pronto para viver.",
-      icon: <CheckCircle className="text-primary" size={24} />
+      title: "Curadoria",
+      desc: "Escolha minuciosa de revestimentos e acabamentos.",
+      icon: <Sparkles className="text-primary" size={24} />
     }
   ];
 
   return (
-    <section id="processo" className="py-32 md:py-48 bg-background relative overflow-hidden">
+    <section id="processo" className="py-32 md:py-56 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-          <div className="sticky top-32">
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Metodologia</span>
-            <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.85] tracking-tighter mb-10">
-              Do sonho <br /> à obra.
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
+          <div className="lg:sticky lg:top-40">
+            <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">O Percurso</span>
+            <h2 className="text-6xl md:text-9xl font-serif font-bold leading-[0.8] tracking-tighter mb-12">
+              Do terreno <br />
+              <span className="italic font-medium text-primary">ao chalé.</span>
             </h2>
             <p className="text-muted-foreground text-xl leading-relaxed max-w-md font-serif italic">
-              Acompanhamos cada etapa da jornada, garantindo que a essência do projeto original seja preservada até o último detalhe da construção.
+              Um processo verticalizado que garante a integridade do design da primeira linha do desenho até a última telha da obra.
             </p>
           </div>
           
-          <div className="space-y-12">
+          <div className="space-y-24">
             {steps.map((step, idx) => (
               <motion.div 
                 key={step.num}
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: idx * 0.1, duration: 0.8 }}
-                className="group flex gap-8 items-start pb-12 border-b border-border/10 last:border-0"
+                className="group flex gap-12 items-start pb-24 border-b border-border/10 last:border-0"
               >
-                <div className="text-5xl font-serif font-bold text-primary/20 group-hover:text-primary/100 transition-colors duration-500 leading-none">
+                <div className="text-6xl md:text-8xl font-serif font-bold text-primary/5 group-hover:text-primary/20 transition-all duration-700 leading-none">
                   {step.num}
                 </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    {step.icon}
-                    <h3 className="text-2xl font-serif font-bold">{step.title}</h3>
+                <div className="pt-2">
+                  <div className="flex items-center gap-6 mb-8">
+                    <div className="p-4 rounded-full bg-primary/5 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                      {step.icon}
+                    </div>
+                    <h3 className="text-3xl md:text-5xl font-serif font-bold tracking-tight">{step.title}</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed max-w-sm">
+                  <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-sm font-serif italic">
                     {step.desc}
                   </p>
                 </div>
@@ -309,42 +340,51 @@ export const Process = () => {
   );
 };
 
+
 export const Details = () => {
   return (
-    <section className="py-32 bg-foreground text-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 1.1 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5 }}
-            className="aspect-square overflow-hidden"
-          >
-            <img 
+    <section id="diferenciais" className="py-32 md:py-56 bg-foreground text-background overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
+          <div className="relative group">
+            <ParallaxImage 
               src="https://images.unsplash.com/photo-1449156001446-515864afdacf?q=80&w=1200&auto=format&fit=crop" 
               alt="Detalhes Construtivos"
-              className="w-full h-full object-cover opacity-80"
+              containerClassName="aspect-square rounded-sm overflow-hidden"
+              className="opacity-90 group-hover:scale-105 transition-transform duration-1000"
             />
-          </motion.div>
+            <div className="absolute inset-0 border border-primary/20 m-8 -z-10 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
+          </div>
           
           <div>
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Qualidade</span>
-            <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-8">
-              Cada detalhe <br /> importa.
+            <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">Materialidade</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.9] mb-12 tracking-tighter">
+              A alma da <br />
+              <span className="italic font-medium text-primary text-4xl md:text-7xl block mt-4">arquitetura premium.</span>
             </h2>
-            <p className="text-muted-foreground text-xl leading-relaxed mb-12 max-w-md font-serif italic">
-              A curadoria de materiais — da madeira certificada à pedra natural — define a identidade e a longevidade de cada chalé que construímos.
+            <p className="text-muted-foreground text-xl leading-relaxed mb-16 max-w-md font-serif italic">
+              A curadoria de materiais — da madeira certificada à pedra bruta e ao vidro de alta performance — define a identidade e a longevidade de cada obra.
             </p>
             
-            <div className="grid grid-cols-2 gap-10">
-              <div>
-                <h4 className="text-primary text-xs uppercase tracking-widest font-bold mb-4">Materialidade</h4>
-                <p className="text-sm opacity-60 leading-relaxed">Madeira, pedra e vidro em harmonia estrutural.</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 text-primary">
+                  <Sparkles size={20} />
+                  <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold">Texturas Reais</h4>
+                </div>
+                <p className="text-sm opacity-50 leading-relaxed font-serif italic">Madeira natural, pedra vulcânica e concreto aparente em harmonia estrutural.</p>
               </div>
-              <div>
-                <h4 className="text-primary text-xs uppercase tracking-widest font-bold mb-4">Execução</h4>
-                <p className="text-sm opacity-60 leading-relaxed">Mão de obra especializada em estruturas complexas.</p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 text-primary">
+                  <Hammer size={20} />
+                  <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold">Rigor Técnico</h4>
+                </div>
+                <p className="text-sm opacity-50 leading-relaxed font-serif italic">Mão de obra especializada em estruturas complexas e acabamentos milimétricos.</p>
               </div>
             </div>
           </div>
@@ -353,77 +393,114 @@ export const Details = () => {
     </section>
   );
 };
+
 
 export const Investment = () => {
   return (
-    <section className="py-24 md:py-40 px-6 bg-secondary/20">
-      <div className="max-w-5xl mx-auto text-center">
-        <TrendingUp className="mx-auto text-primary mb-8" size={48} />
-        <h2 className="text-4xl md:text-6xl font-serif font-bold mb-8">Um projeto pensado para seu objetivo.</h2>
-        <p className="text-muted-foreground text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-serif italic">
-          Seja para lazer próprio ou para gerar renda através de aluguel por temporada, desenvolvemos soluções arquitetônicas que valorizam seu patrimônio e maximizam o potencial do seu terreno.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-          {["Uso Próprio", "Hospedagem", "Investimento"].map((item) => (
-            <div key={item} className="bg-background p-8 border border-border/10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
-              <h4 className="font-serif text-xl font-bold mb-4">{item}</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Design estratégico focado na experiência do usuário e na valorização imobiliária a longo prazo.
-              </p>
+    <section className="py-32 md:py-56 bg-secondary/5 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+          <div>
+            <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">Viabilidade</span>
+            <h2 className="text-5xl md:text-8xl font-serif font-bold leading-[0.9] tracking-tighter mb-12">
+              Investir em <br />
+              <span className="italic font-medium text-primary">patrimônio vivo.</span>
+            </h2>
+            <p className="text-muted-foreground text-xl leading-relaxed max-w-md font-serif italic">
+              Seja para moradia ou investimento, nossos projetos são otimizados para maximizar o valor de revenda e o potencial de retorno sobre o capital.
+            </p>
+          </div>
+          <div className="relative">
+            <TrendingUp className="text-primary/10 absolute -top-24 -right-12" size={300} strokeWidth={0.5} />
+            <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {[
+                { t: "Uso Próprio", d: "Foco total no bem-estar, conforto térmico e exclusividade do morador." },
+                { t: "Hospedagem", d: "Design estratégico para alta performance em plataformas de locação." },
+                { t: "Land Equity", d: "Valorização imediata do terreno através de arquitetura de grife." },
+                { t: "Sustentabilidade", d: "Eficiência energética que reduz custos fixos e atrai investidores." }
+              ].map((item, idx) => (
+                <motion.div 
+                  key={item.t}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.8 }}
+                  className="bg-background p-10 border border-border/5 rounded-sm hover:border-primary/30 transition-all duration-700 group"
+                >
+                  <h4 className="font-serif text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{item.t}</h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-serif italic">
+                    {item.d}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
+
+
 export const Projects = () => {
   return (
-    <section id="projetos" className="py-32 bg-secondary/20 overflow-hidden">
+    <section id="projetos" className="py-32 md:py-56 bg-secondary/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-24 flex flex-col md:row justify-between items-end gap-8">
-          <div className="max-w-2xl">
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-4">Portfólio</span>
-            <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter leading-[0.8]">Projetos que dão forma às ideias.</h2>
+        <div className="mb-32 flex flex-col md:row justify-between items-end gap-12">
+          <div className="max-w-3xl">
+            <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Portfólio Editorial</span>
+            <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
+              Obras que <br />
+              <span className="italic font-medium text-primary">materializam</span> <br />
+              visões.
+            </h2>
           </div>
+          <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-sm mb-4">
+            Uma seleção de nossos projetos mais emblemáticos, onde a arquitetura contemporânea encontra a excelência executiva.
+          </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
           {PROJETOS.map((projeto, idx) => (
             <motion.div 
               key={projeto.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx % 2 * 0.2, duration: 1 }}
-              className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-32" : "")}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-48" : "")}
+              data-cursor="Explorar"
             >
-              <div className="aspect-[4/5] overflow-hidden mb-10 relative rounded-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.2)] transition-shadow duration-700">
-                <img 
+              <div className="aspect-[4/5] overflow-hidden mb-12 relative rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
+                <ParallaxImage 
                   src={projeto.image} 
                   alt={projeto.name}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                  className="transition-transform duration-1000 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                <div className="absolute top-6 left-6 text-white text-[10px] uppercase tracking-widest font-bold bg-primary px-4 py-2">
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700"></div>
+                <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3">
                   {projeto.category}
                 </div>
               </div>
-              <div className="flex justify-between items-start">
-                <div className="max-w-md">
-                  <span className="text-primary text-[10px] uppercase tracking-widest font-bold mb-2 block">Projeto 0{projeto.id}</span>
-                  <h3 className="text-4xl font-serif font-bold mb-4">{projeto.name}</h3>
-                  <p className="text-muted-foreground text-base mb-8 leading-relaxed">{projeto.description}</p>
-                  <Link 
-                    to="/chale/$chaleId" 
-                    params={{ chaleId: projeto.id.toString() }}
-                    className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-bold hover:text-primary transition-colors"
-                  >
-                    <span>Explorar Projeto</span>
-                    <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
-                  </Link>
-                </div>
+              
+              <div className="space-y-6 px-4">
+                <span className="text-primary text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
+                <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
+                  {projeto.name}
+                </h3>
+                <p className="text-muted-foreground text-lg leading-relaxed max-w-md font-serif italic">
+                  {projeto.description}
+                </p>
+                
+                <Link 
+                  to="/chale/$chaleId" 
+                  params={{ chaleId: projeto.id.toString() }}
+                  className="inline-flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300"
+                >
+                  <span>Ver Detalhes da Obra</span>
+                  <ArrowRight size={14} />
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -432,6 +509,7 @@ export const Projects = () => {
     </section>
   );
 };
+
 
 
 
@@ -461,64 +539,75 @@ const REVIEWS = [
 
 
 export const SocialProof = () => {
-  return (
-    <section id="diferenciais" className="py-24 md:py-40 bg-secondary/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 bg-secondary/30 py-20 md:py-32 rounded-sm shadow-inner border border-border/5">
+  const [index, setIndex] = React.useState(0);
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
-          <div className="lg:col-span-1">
-            <span className="text-primary text-sm uppercase tracking-[0.3em] font-sans font-bold block mb-6">Confiança</span>
-            <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight mb-8">
-              Compromisso com a excelência
-            </h2>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-12 h-12 rounded-full border-2 border-background overflow-hidden bg-muted">
-                    <img src={`https://i.pravatar.cc/150?u=${i + 20}`} alt="Client" className="w-full h-full object-cover" />
-                  </div>
+  const next = () => setIndex((i) => (i + 1) % REVIEWS.length);
+  const prev = () => setIndex((i) => (i - 1 + REVIEWS.length) % REVIEWS.length);
+
+  return (
+    <section id="diferenciais" className="py-32 md:py-56 bg-secondary/5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-24">
+          <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Depoimentos</span>
+          <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter leading-[0.9]">
+            Vozes de quem <br />
+            <span className="italic font-medium text-primary">construiu</span> conosco.
+          </h2>
+        </div>
+
+        <div className="relative max-w-5xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-background p-12 md:p-32 rounded-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] border border-border/5 text-center relative"
+            >
+              <Quote className="absolute top-12 left-12 text-primary/5" size={120} />
+              
+              <div className="flex justify-center text-primary mb-12 gap-1">
+                {[...Array(REVIEWS[index].rating)].map((_, i) => (
+                  <Star key={i} size={16} fill="currentColor" />
                 ))}
               </div>
-              <div>
-                <div className="flex text-primary mb-1">
-                  {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}
-                </div>
-                <p className="text-xs uppercase tracking-widest font-sans font-bold">Projetos Executados com Precisão</p>
-              </div>
-            </div>
-          </div>
 
-          
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {REVIEWS.slice(0, 2).map((review) => (
-              <motion.div 
-                key={review.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-card p-12 relative rounded-sm shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)] transition-all duration-700 border border-border/5"
-              >
-                <Quote className="absolute top-6 right-6 text-primary/10" size={60} />
-                <div className="flex text-primary mb-6">
-                  {[...Array(review.rating)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
-                </div>
-                <p className="text-lg leading-relaxed mb-8 relative z-10 italic font-serif">
-                  "{review.content}"
-                </p>
-                <div>
-                  <h4 className="font-bold text-sm uppercase tracking-widest">{review.author}</h4>
-                  <p className="text-xs text-muted-foreground uppercase tracking-widest mt-1">{review.role}</p>
-                </div>
-              </motion.div>
-            ))}
+              <p className="text-2xl md:text-5xl font-serif italic leading-tight mb-16 tracking-tight text-foreground/90">
+                "{REVIEWS[index].content}"
+              </p>
+
+              <div>
+                <h4 className="text-xl font-serif font-bold tracking-tight mb-2">{REVIEWS[index].author}</h4>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-primary font-bold">{REVIEWS[index].role}</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex justify-center items-center gap-12 mt-16">
+            <button 
+              onClick={prev}
+              className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <div className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30">
+              0{index + 1} / 0{REVIEWS.length}
+            </div>
+            <button 
+              onClick={next}
+              className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
         </div>
 
-        <div className="mt-24 pt-24 border-t border-border/10">
-          <p className="text-center text-[10px] uppercase tracking-[0.5em] text-muted-foreground mb-12">Destaque em Publicações de Prestígio</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
-            {["VOGUE", "ARCHITECTURAL DIGEST", "TRAVEL + LEISURE", "CONDE NAST", "MONOCLE"].map((brand) => (
-              <span key={brand} className="text-xl md:text-2xl font-serif font-bold tracking-tighter">{brand}</span>
+        <div className="mt-40 pt-24 border-t border-border/10">
+          <p className="text-center text-[10px] uppercase tracking-[0.6em] text-muted-foreground/40 mb-16 font-bold">Destaque em Publicações de Prestígio</p>
+          <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32 opacity-20 grayscale hover:opacity-60 transition-all duration-1000">
+            {["VOGUE", "AD", "T+L", "MONOCLE", "ARCHDAILY"].map((brand) => (
+              <span key={brand} className="text-2xl md:text-3xl font-serif font-bold tracking-tighter">{brand}</span>
             ))}
           </div>
         </div>
@@ -526,6 +615,7 @@ export const SocialProof = () => {
     </section>
   );
 };
+
 
 export const BookingForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

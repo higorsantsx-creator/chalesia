@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Navbar, Footer } from "@/components/landing";
 import { motion } from "framer-motion";
-import { Hammer, Maximize, Ruler, Compass, HardHat, Layers, ArrowLeft } from "lucide-react";
+import { Hammer, Maximize, Ruler, Compass, HardHat, Layers, ArrowLeft, Quote, Star } from "lucide-react";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
 import chale_3 from "@/assets/chale_3.jpeg.asset.json";
@@ -61,105 +61,146 @@ function ChaleDetailsPage() {
       
       <main className="pt-24">
         {/* Hero Section */}
-        <section className="relative h-[70vh] w-full overflow-hidden">
+        <section className="relative h-[90vh] w-full overflow-hidden">
           <motion.img 
-            initial={{ scale: 1.1 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.5 }}
+            initial={{ scale: 1.15, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
             src={chale.image} 
-            className="w-full h-full object-cover" 
+            className="w-full h-full object-cover grayscale-[0.2] brightness-75" 
           />
-          <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent"></div>
-          <div className="absolute bottom-12 left-6 md:left-12">
-            <Link to="/" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold mb-6 hover:text-primary transition-colors">
-              <ArrowLeft size={14} /> Voltar para o início
-            </Link>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-serif font-bold tracking-tighter"
-            >
-              {chale.name}
-            </motion.h1>
+          <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-black/20"></div>
+          
+          <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-24">
+            <div className="max-w-7xl mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 1 }}
+              >
+                <Link to="/" className="inline-flex items-center gap-4 text-[10px] uppercase tracking-[0.5em] font-bold mb-12 hover:text-primary transition-all group">
+                  <ArrowLeft size={16} className="group-hover:-translate-x-2 transition-transform" /> 
+                  <span>Voltar ao Portfólio</span>
+                </Link>
+                <span className="text-primary text-[10px] uppercase tracking-[0.6em] font-sans font-bold block mb-6">{chale.category}</span>
+                <h1 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
+                  {chale.name.split(' ')[0]} <br />
+                  <span className="italic font-medium text-primary">{chale.name.split(' ').slice(1).join(' ')}</span>
+                </h1>
+              </motion.div>
+            </div>
           </div>
         </section>
 
         {/* Content Section */}
-        <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
-            {/* Main Info */}
-            <div className="lg:col-span-2 space-y-12">
-              <div>
-                <h2 className="text-sm uppercase tracking-[0.3em] text-primary font-bold mb-6">Conceito do Projeto</h2>
-                <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground font-serif italic mb-6">
-                  "{chale.description}"
-                </p>
-                <p className="text-base text-muted-foreground leading-relaxed">
-                  Cada detalhe foi meticulosamente planejado para oferecer uma experiência estética e funcional única. Este projeto prioriza a conexão com o entorno e o uso de materiais de altíssima qualidade.
-                </p>
-              </div>
+        <section className="py-32 md:py-56 px-6 relative">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-24 lg:gap-32">
+              {/* Left Column: Vision & Specs */}
+              <div className="lg:col-span-7 space-y-32">
+                <div className="relative">
+                  <Quote className="text-primary/10 absolute -top-12 -left-12" size={80} />
+                  <h2 className="text-sm uppercase tracking-[0.5em] text-primary font-bold mb-12">Manifesto do Projeto</h2>
+                  <p className="text-3xl md:text-5xl leading-[1.2] text-foreground font-serif italic mb-12 tracking-tight">
+                    "{chale.description}"
+                  </p>
+                  <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl font-serif">
+                    Uma resposta arquitetônica que desafia a convenção, unindo a precisão da engenharia moderna com a alma orgânica dos materiais naturais. Cada linha foi traçada para honrar o terreno e elevar a experiência de habitar.
+                  </p>
+                </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-y border-foreground/10">
-                <div className="flex flex-col items-center text-center gap-3">
-                  <Ruler className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">{chale.specs.size} de área</span>
-                </div>
-                <div className="flex flex-col items-center text-center gap-3">
-                  <Compass className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">Implantação Inteligente</span>
-                </div>
-                <div className="flex flex-col items-center text-center gap-3">
-                  <Layers className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">Classe {chale.specs.energy}</span>
-                </div>
-                <div className="flex flex-col items-center text-center gap-3">
-                  <HardHat className="text-primary" size={24} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">~{chale.specs.time} de obra</span>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-serif font-bold mb-8">Diferenciais Técnicos</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {chale.features.map((feature: string) => (
-                    <div key={feature} className="flex items-center gap-4 p-6 bg-secondary/10 border border-border/5 rounded-sm hover:bg-secondary/20 transition-colors duration-300">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-xs uppercase tracking-widest font-bold">{feature}</span>
+                <div className="grid grid-cols-2 gap-y-16 gap-x-12 py-24 border-y border-foreground/5">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-6 text-primary">
+                      <Maximize size={24} strokeWidth={1.5} />
+                      <h4 className="text-[11px] uppercase tracking-[0.4em] font-bold">Escala</h4>
                     </div>
-                  ))}
+                    <p className="text-2xl font-serif font-bold">{chale.specs.size}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Área Construída</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-6 text-primary">
+                      <Ruler size={24} strokeWidth={1.5} />
+                      <h4 className="text-[11px] uppercase tracking-[0.4em] font-bold">Precisão</h4>
+                    </div>
+                    <p className="text-2xl font-serif font-bold">Milimétrica</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Padrão Executivo</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-6 text-primary">
+                      <Layers size={24} strokeWidth={1.5} />
+                      <h4 className="text-[11px] uppercase tracking-[0.4em] font-bold">Eficiência</h4>
+                    </div>
+                    <p className="text-2xl font-serif font-bold">{chale.specs.energy}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Certificação</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-6 text-primary">
+                      <HardHat size={24} strokeWidth={1.5} />
+                      <h4 className="text-[11px] uppercase tracking-[0.4em] font-bold">Prazo</h4>
+                    </div>
+                    <p className="text-2xl font-serif font-bold">{chale.specs.time}</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest font-bold">Execução Monitorada</p>
+                  </div>
+                </div>
+
+                <div className="space-y-16">
+                  <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">Materialidade & <br /> <span className="text-primary italic font-medium">Componentes.</span></h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {chale.features.map((feature: string, idx: number) => (
+                      <motion.div 
+                        key={feature} 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="flex items-center gap-8 p-10 bg-secondary/5 border border-border/5 rounded-sm group hover:border-primary/30 transition-all duration-700"
+                      >
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover:scale-150 transition-transform"></div>
+                        <span className="text-[10px] uppercase tracking-[0.4em] font-bold">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Sticky Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-32 bg-card p-12 border border-border/5 shadow-[0_30px_70px_-10px_rgba(0,0,0,0.08)] rounded-sm">
-                <div className="mb-8">
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Investimento Estimado</span>
-                  <p className="text-3xl font-serif font-bold text-primary">Sob Consulta</p>
-                </div>
-                
-                <div className="space-y-6 mb-10">
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
-                    <span>Prazo de Entrega</span>
-                    <span className="text-muted-foreground">{chale.specs.time}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-widest font-bold">
-                    <span>Personalização</span>
-                    <span className="text-primary">Disponível</span>
-                  </div>
-                </div>
+              {/* Right Column: Investment Card */}
+              <div className="lg:col-span-5 lg:pl-12">
+                <div className="lg:sticky lg:top-40 bg-foreground text-background p-12 md:p-20 rounded-sm shadow-[0_60px_100px_-20px_rgba(0,0,0,0.3)] relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px]"></div>
+                  
+                  <div className="relative z-10">
+                    <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-bold block mb-8">Investimento</span>
+                    <h3 className="text-4xl md:text-6xl font-serif font-bold mb-4 tracking-tighter">Sob Consulta</h3>
+                    <p className="text-sm opacity-50 mb-16 font-serif italic max-w-xs">Valorização estimada com base no padrão construtivo Chalés IA.</p>
+                    
+                    <div className="space-y-10 mb-16 pt-10 border-t border-background/10">
+                      <div className="flex justify-between items-center group">
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 group-hover:opacity-100 transition-opacity">Personalização</span>
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary">Full Concept</span>
+                      </div>
+                      <div className="flex justify-between items-center group">
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 group-hover:opacity-100 transition-opacity">Engenharia</span>
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Inclusa</span>
+                      </div>
+                      <div className="flex justify-between items-center group">
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-40 group-hover:opacity-100 transition-opacity">Garantia Executiva</span>
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-bold">10 Anos</span>
+                      </div>
+                    </div>
 
-                <a 
-                  href="/#orcamento" 
-                  className="block w-full bg-primary text-primary-foreground py-5 text-center uppercase tracking-[0.2em] text-xs font-bold hover:bg-primary/90 transition-all shadow-xl shadow-primary/10"
-                >
-                  Solicitar Orçamento
-                </a>
-                
-                <p className="text-[9px] text-center mt-6 text-muted-foreground uppercase tracking-[0.2em] leading-loose">
-                  *Os valores e prazos variam de acordo com a localização e topografia do terreno.
-                </p>
+                    <a 
+                      href="/#orcamento" 
+                      className="block w-full bg-primary text-primary-foreground py-6 text-center uppercase tracking-[0.4em] text-[10px] font-bold hover:bg-primary/95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.3)] hover:-translate-y-1 active:translate-y-0 active:scale-95 rounded-sm"
+                    >
+                      Iniciar Viabilidade
+                    </a>
+                    
+                    <p className="text-[9px] text-center mt-10 opacity-30 uppercase tracking-[0.3em] leading-loose max-w-[200px] mx-auto">
+                      Sujeito a análise técnica de solo e localização geográfica.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -170,4 +211,5 @@ function ChaleDetailsPage() {
     </div>
   );
 }
+
 
