@@ -406,7 +406,7 @@ export const Details = () => {
 
 export const Investment = () => {
   return (
-    <section className="py-32 md:py-56 bg-secondary/5 relative overflow-hidden">
+    <section className="py-32 md:py-56 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
           <div>
