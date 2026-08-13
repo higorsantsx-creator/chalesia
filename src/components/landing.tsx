@@ -911,6 +911,207 @@ export const BookingForm = () => {
             ))}
           </div>
         );
+      case 4:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              { label: "CONTEMPORÂNEO", val: "Contemporâneo", img: chale_1.url },
+              { label: "A-FRAME / ALPINE", val: "A-Frame", img: chale_2.url },
+              { label: "NORDIC / MINIMALISTA", val: "Nordic", img: chaleNordicReferencia.url },
+              { label: "PERSONALIZADO", val: "Personalizado", img: interiorChaleAsset.url }
+            ].map((opt) => (
+              <button 
+                key={opt.val}
+                onClick={() => { updateField("architectureStyle", opt.val); nextStep(); }}
+                className={cn(
+                  "relative aspect-[16/10] group overflow-hidden rounded-sm border-2 transition-all",
+                  formData.architectureStyle === opt.val ? "border-primary" : "border-transparent"
+                )}
+              >
+                <img src={opt.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                <div className="absolute bottom-6 left-6 text-left">
+                  <h3 className="text-white text-xs uppercase tracking-[0.3em] font-bold">{opt.label}</h3>
+                </div>
+              </button>
+            ))}
+          </div>
+        );
+      case 5:
+        const differentials = ["Piscina", "Ofurô", "Banheira", "Deck", "Lareira", "Varanda", "Área Gourmet", "Churrasqueira", "Vista Panorâmica"];
+        return (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {differentials.map((item) => (
+              <button 
+                key={item}
+                onClick={() => {
+                  const newFeatures = formData.features.includes(item)
+                    ? formData.features.filter(f => f !== item)
+                    : [...formData.features, item];
+                  updateField("features", newFeatures);
+                }}
+                className={cn(
+                  "p-4 border rounded-sm text-center transition-all text-xs font-bold uppercase tracking-widest",
+                  formData.features.includes(item) ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary/50"
+                )}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        );
+      case 6:
+        return (
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              "Até R$ 150 mil",
+              "R$ 150 mil – R$ 250 mil",
+              "R$ 250 mil – R$ 400 mil",
+              "R$ 400 mil – R$ 600 mil",
+              "Acima de R$ 600 mil",
+              "Ainda não sei"
+            ].map((range) => (
+              <button 
+                key={range}
+                onClick={() => { updateField("budget", range); nextStep(); }}
+                className={cn(
+                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.budget === range ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <span className="text-sm font-bold tracking-widest uppercase">{range}</span>
+              </button>
+            ))}
+            <p className="text-[10px] text-muted-foreground mt-4 italic uppercase tracking-widest">
+              A faixa indicada não representa um orçamento final. O valor depende das características e especificações da obra.
+            </p>
+          </div>
+        );
+      case 7:
+        return (
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Estado</label>
+              <input 
+                value={formData.state} 
+                onChange={(e) => updateField("state", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="Ex: Alagoas"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Cidade / Região</label>
+              <input 
+                value={formData.city} 
+                onChange={(e) => updateField("city", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="Ex: Maceió"
+              />
+            </div>
+          </div>
+        );
+      case 8:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              "Nos próximos 3 meses",
+              "3 – 6 meses",
+              "6 – 12 meses",
+              "Mais de 12 meses",
+              "Ainda estou planejando"
+            ].map((time) => (
+              <button 
+                key={time}
+                onClick={() => { updateField("timeline", time); nextStep(); }}
+                className={cn(
+                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.timeline === time ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <span className="text-[10px] font-bold tracking-widest uppercase">{time}</span>
+              </button>
+            ))}
+          </div>
+        );
+      case 9:
+        return (
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Nome Completo</label>
+              <input 
+                value={formData.name} 
+                onChange={(e) => updateField("name", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="Como podemos te chamar?"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">WhatsApp</label>
+              <input 
+                value={formData.whatsapp} 
+                onChange={(e) => updateField("whatsapp", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="(00) 00000-0000"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">E-mail</label>
+              <input 
+                value={formData.email} 
+                onChange={(e) => updateField("email", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="seu@email.com"
+              />
+            </div>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="space-y-4">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground block">Existe algo especial que você gostaria de nos contar? (Opcional)</label>
+            <textarea 
+              value={formData.message}
+              onChange={(e) => updateField("message", e.target.value)}
+              className="w-full bg-muted/20 border border-border p-6 rounded-sm outline-none focus:border-primary transition-colors min-h-[200px]"
+              placeholder="Ex.: Quero construir três chalés para aluguel, com piscina e vista para as montanhas..."
+            />
+          </div>
+        );
+      case 11:
+        const summary = [
+          { label: "Tipo", val: formData.projectType, step: 0 },
+          { label: "Terreno", val: formData.hasLand, step: 1 },
+          { label: "Chalés", val: formData.numberOfChalets, step: 2 },
+          { label: "Objetivo", val: formData.objective, step: 3 },
+          { label: "Estilo", val: formData.architectureStyle, step: 4 },
+          { label: "Diferenciais", val: formData.features.join(", "), step: 5 },
+          { label: "Investimento", val: formData.budget, step: 6 },
+          { label: "Localização", val: `${formData.city} - ${formData.state}`, step: 7 },
+          { label: "Prazo", val: formData.timeline, step: 8 }
+        ];
+        return (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              {summary.map((item) => (
+                <div key={item.label} className="group relative border-b border-border/10 pb-4">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <span className="text-[8px] uppercase tracking-widest text-muted-foreground block mb-1">{item.label}</span>
+                      <span className="text-sm font-serif font-bold">{item.val || "Não informado"}</span>
+                    </div>
+                    <button onClick={() => setStep(item.step)} className="opacity-0 group-hover:opacity-100 transition-opacity text-[8px] uppercase tracking-widest font-bold text-primary flex items-center gap-1">
+                      <Pencil size={8} /> Editar
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-12 p-8 bg-primary/5 rounded-sm border border-primary/10">
+               <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold mb-4">Seus Contatos</h4>
+               <p className="text-sm font-serif">{formData.name} • {formData.whatsapp} • {formData.email}</p>
+            </div>
+          </div>
+        );
       default:
         return <div className="p-20 text-center text-muted-foreground">Etapa {step + 1} em construção...</div>;
     }
