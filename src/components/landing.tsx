@@ -352,7 +352,7 @@ export const Process = () => {
 
 export const Details = () => {
   return (
-    <section id="diferenciais" className="py-32 md:py-56 bg-foreground text-background overflow-hidden relative">
+    <section id="diferenciais" className="py-32 md:py-56 bg-background text-foreground overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
