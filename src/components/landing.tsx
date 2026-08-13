@@ -168,6 +168,51 @@ const InteractiveGallery = () => {
   );
 };
 
+
+const StyleGallery = ({ images }: { images: string[] }) => {
+  const [hoverIndex, setHoverIndex] = React.useState<number | null>(null);
+  
+  return (
+    <div className="flex w-full h-full overflow-hidden">
+      {images.map((img, idx) => {
+        let width = "33.33%";
+        let opacity = 1;
+        let scale = 1;
+        
+        if (hoverIndex !== null) {
+          if (hoverIndex === idx) {
+            width = "60%";
+            scale = 1.03;
+          } else {
+            width = "20%";
+            opacity = 0.8;
+          }
+        }
+        
+        return (
+          <motion.div
+            key={idx}
+            animate={{ width, opacity }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="h-full relative overflow-hidden cursor-pointer"
+            onMouseEnter={() => setHoverIndex(idx)}
+            onMouseLeave={() => setHoverIndex(null)}
+            onTouchStart={() => setHoverIndex(idx)}
+          >
+            <motion.img
+              src={img}
+              alt={`Galeria estilo ${idx + 1}`}
+              animate={{ scale }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
+
 export const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -912,28 +957,53 @@ export const BookingForm = () => {
           </div>
         );
       case 4:
+        const styles = [
+          { 
+            label: "CONTEMPORÂNEO", 
+            val: "Contemporâneo", 
+            imgs: [chale_1.url, gallery2.url, interiorChaleAsset.url] 
+          },
+          { 
+            label: "A-FRAME / ALPINE", 
+            val: "A-Frame", 
+            imgs: [chale_2.url, chale_5.url, chaleAlpinePool.url] 
+          },
+          { 
+            label: "NORDIC / MINIMALISTA", 
+            val: "Nordic", 
+            imgs: [chaleNordicReferencia.url, chale_4.url, gallery1.url] 
+          },
+          { 
+            label: "PERSONALIZADO", 
+            val: "Personalizado", 
+            imgs: [interiorChaleAsset.url] 
+          }
+        ];
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { label: "CONTEMPORÂNEO", val: "Contemporâneo", img: chale_1.url },
-              { label: "A-FRAME / ALPINE", val: "A-Frame", img: chale_2.url },
-              { label: "NORDIC / MINIMALISTA", val: "Nordic", img: chaleNordicReferencia.url },
-              { label: "PERSONALIZADO", val: "Personalizado", img: interiorChaleAsset.url }
-            ].map((opt) => (
-              <button 
+            {styles.map((opt) => (
+              <div 
                 key={opt.val}
-                onClick={() => { updateField("architectureStyle", opt.val); nextStep(); }}
                 className={cn(
                   "relative aspect-[16/10] group overflow-hidden rounded-sm border-2 transition-all",
                   formData.architectureStyle === opt.val ? "border-primary" : "border-transparent"
                 )}
               >
-                <img src={opt.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                <div className="absolute bottom-6 left-6 text-left">
+                {opt.imgs.length > 1 ? (
+                  <StyleGallery images={opt.imgs} />
+                ) : (
+                  <img src={opt.imgs[0]} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                )}
+                <div className="absolute inset-0 bg-black/40 pointer-events-none group-hover:bg-black/20 transition-colors" />
+                <div className="absolute bottom-6 left-6 text-left pointer-events-none">
                   <h3 className="text-white text-xs uppercase tracking-[0.3em] font-bold">{opt.label}</h3>
                 </div>
-              </button>
+                <button 
+                  onClick={() => { updateField("architectureStyle", opt.val); nextStep(); }}
+                  className="absolute inset-0 z-10 w-full h-full opacity-0"
+                  aria-label={`Selecionar estilo ${opt.label}`}
+                />
+              </div>
             ))}
           </div>
         );
