@@ -1130,8 +1130,18 @@ export const BookingForm = () => {
                <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{steps.length}</span>
             </div>
             
-            <div className="min-h-[400px]">
-              {renderStep()}
+            <div className="min-h-[450px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, x: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.98 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {renderStep()}
+                </motion.div>
+              </AnimatePresence>
             </div>
             
             <div className="flex justify-between mt-12 pt-8 border-t border-border">
