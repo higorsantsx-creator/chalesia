@@ -493,16 +493,8 @@ export const Details = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
-          <div className="relative group">
-            <ParallaxImage 
-              src={interiorChaleAsset.url} 
-              alt="Arquitetura de Chalé de Luxo"
+          <InteractiveGallery />
 
-              containerClassName="aspect-square rounded-sm overflow-hidden"
-              className="opacity-90 group-hover:scale-105 transition-transform duration-1000"
-            />
-            <div className="absolute inset-0 border border-primary/20 m-8 -z-10 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
-          </div>
           
           <div>
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">Materialidade</span>
