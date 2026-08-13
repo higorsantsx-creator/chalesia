@@ -22,6 +22,10 @@ import gallery3 from "@/assets/gallery-3.png.asset.json";
 import contemporaneo1 from "@/assets/chale-contemporaneo-1.png.asset.json";
 import contemporaneo2 from "@/assets/chale-contemporaneo-2.png.asset.json";
 import contemporaneo3 from "@/assets/chale-contemporaneo-3.png.asset.json";
+import alpine1 from "@/assets/chale-alpine-1.png.asset.json";
+import alpine2 from "@/assets/chale-alpine-2.png.asset.json";
+import alpine3 from "@/assets/chale-alpine-3.png.asset.json";
+
 
 
 
@@ -970,7 +974,7 @@ export const BookingForm = () => {
           { 
             label: "A-FRAME / ALPINE", 
             val: "A-Frame", 
-            imgs: [chale_2.url, chale_5.url, chaleAlpinePool.url] 
+            imgs: [alpine1.url, alpine2.url, alpine3.url] 
           },
           { 
             label: "NORDIC / MINIMALISTA", 
