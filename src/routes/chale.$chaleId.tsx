@@ -9,6 +9,7 @@ import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
+import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
 
 export const Route = createFileRoute("/chale/$chaleId")({
   component: ChaleDetailsPage,
