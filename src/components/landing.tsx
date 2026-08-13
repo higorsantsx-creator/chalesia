@@ -862,26 +862,54 @@ export const BookingForm = () => {
     message: ""
   });
 
-  const steps = [
-    { title: "Tipo de Projeto" },
-    { title: "Terreno" },
-    { title: "Quantidade" },
-    { title: "Objetivo" },
-    { title: "Estilo Arquitetônico" },
-    { title: "Ambientes" },
-    { title: "Investimento" },
-    { title: "Localização" },
-    { title: "Prazo" },
-    { title: "Dados Pessoais" },
-    { title: "Mensagem" },
-    { title: "Revisão" }
+  const allSteps = [
+    { id: 'type', title: "Tipo de Projeto" },
+    { id: 'land', title: "Terreno" },
+    { id: 'quantity', title: "Quantidade" },
+    { id: 'objective', title: "Objetivo" },
+    { id: 'style', title: "Estilo Arquitetônico" },
+    { id: 'environments', title: "Ambientes" },
+    { id: 'investment', title: "Investimento" },
+    { id: 'location', title: "Localização" },
+    { id: 'timeline', title: "Prazo" },
+    { id: 'personal', title: "Dados Pessoais" },
+    { id: 'message', title: "Mensagem" },
+    { id: 'review', title: "Revisão" }
   ];
+
+  const activeSteps = React.useMemo(() => {
+    return allSteps.filter(s => {
+      if (formData.projectType === "Um chalé") {
+        if (s.id === 'quantity' || s.id === 'objective') return false;
+      }
+      if (formData.projectType === "Vários chalés") {
+        if (s.id === 'objective') return false;
+      }
+      return true;
+    });
+  }, [formData.projectType]);
+
+  // Handle step index adjustment if project type changes
+  React.useEffect(() => {
+    if (step >= activeSteps.length) {
+      setStep(activeSteps.length - 1);
+    }
+  }, [activeSteps, step]);
+
+  // Clean up data when project type changes
+  React.useEffect(() => {
+    if (formData.projectType === "Um chalé") {
+      setFormData(prev => ({ ...prev, numberOfChalets: "1", objective: "" }));
+    } else if (formData.projectType === "Vários chalés") {
+      setFormData(prev => ({ ...prev, objective: "" }));
+    }
+  }, [formData.projectType]);
 
   const updateField = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, steps.length - 1));
+  const nextStep = () => setStep((s) => Math.min(s + 1, activeSteps.length - 1));
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
 
   const renderStep = () => {
