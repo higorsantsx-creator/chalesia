@@ -454,7 +454,7 @@ export const Investment = () => {
 
 export const Projects = () => {
   return (
-    <section id="projetos" className="py-32 md:py-56 bg-secondary/5 overflow-hidden">
+    <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-32 flex flex-col md:row justify-between items-end gap-12">
           <div className="max-w-3xl">
