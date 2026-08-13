@@ -9,6 +9,7 @@ import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
+import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
 
 export const Route = createFileRoute("/chale/$chaleId")({
   component: ChaleDetailsPage,
@@ -28,7 +29,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres.",
-    image: chaleNordicReferencia.url,
+    image: chaleAlpinePool.url,
     tagline: "Conforto térmico e design icônico.",
     features: ["Isolamento Térmico Premium", "Esquadrias de PVC Wood", "Lareira Central", "Iluminação Zenital"],
     specs: { size: "75m²", time: "5 Meses", energy: "A++" }
