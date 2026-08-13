@@ -168,6 +168,51 @@ const InteractiveGallery = () => {
   );
 };
 
+
+const StyleGallery = ({ images }: { images: string[] }) => {
+  const [hoverIndex, setHoverIndex] = React.useState<number | null>(null);
+  
+  return (
+    <div className="flex w-full h-full overflow-hidden">
+      {images.map((img, idx) => {
+        let width = "33.33%";
+        let opacity = 1;
+        let scale = 1;
+        
+        if (hoverIndex !== null) {
+          if (hoverIndex === idx) {
+            width = "60%";
+            scale = 1.03;
+          } else {
+            width = "20%";
+            opacity = 0.8;
+          }
+        }
+        
+        return (
+          <motion.div
+            key={idx}
+            animate={{ width, opacity }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="h-full relative overflow-hidden cursor-pointer"
+            onMouseEnter={() => setHoverIndex(idx)}
+            onMouseLeave={() => setHoverIndex(null)}
+            onTouchStart={() => setHoverIndex(idx)}
+          >
+            <motion.img
+              src={img}
+              alt={`Galeria estilo ${idx + 1}`}
+              animate={{ scale }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
+
 export const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = React.useState(false);
