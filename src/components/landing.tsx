@@ -938,7 +938,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 1:
+      case 'land':
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {["Sim", "Ainda não", "Em negociação"].map((opt) => (
@@ -956,7 +956,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 2:
+      case 'quantity':
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((num) => (
@@ -973,7 +973,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 3:
+      case 'objective':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -996,7 +996,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 4:
+      case 'style':
         const styles = [
           { 
             label: "CONTEMPORÂNEO", 
@@ -1047,7 +1047,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 5:
+      case 'environments':
         const differentials = ["Piscina", "Ofurô", "Banheira", "Deck", "Lareira", "Varanda", "Área Gourmet", "Churrasqueira", "Vista Panorâmica"];
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -1070,7 +1070,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 6:
+      case 'investment':
         return (
           <div className="grid grid-cols-1 gap-4">
             {[
@@ -1097,7 +1097,7 @@ export const BookingForm = () => {
             </p>
           </div>
         );
-      case 7:
+      case 'location':
         return (
           <div className="space-y-8">
             <div className="space-y-2">
@@ -1120,7 +1120,7 @@ export const BookingForm = () => {
             </div>
           </div>
         );
-      case 8:
+      case 'timeline':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -1143,7 +1143,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 9:
+      case 'personal':
         return (
           <div className="space-y-8">
             <div className="space-y-2">
@@ -1175,7 +1175,7 @@ export const BookingForm = () => {
             </div>
           </div>
         );
-      case 10:
+      case 'message':
         return (
           <div className="space-y-4">
             <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground block">Existe algo especial que você gostaria de nos contar? (Opcional)</label>
@@ -1187,18 +1187,19 @@ export const BookingForm = () => {
             />
           </div>
         );
-      case 11:
+      case 'review':
         const summary = [
-          { label: "Tipo", val: formData.projectType, step: 0 },
-          { label: "Terreno", val: formData.hasLand, step: 1 },
-          { label: "Chalés", val: formData.numberOfChalets, step: 2 },
-          { label: "Objetivo", val: formData.objective, step: 3 },
-          { label: "Estilo", val: formData.architectureStyle, step: 4 },
-          { label: "Diferenciais", val: formData.features.join(", "), step: 5 },
-          { label: "Investimento", val: formData.budget, step: 6 },
-          { label: "Localização", val: `${formData.city} - ${formData.state}`, step: 7 },
-          { label: "Prazo", val: formData.timeline, step: 8 }
-        ];
+          { label: "Tipo", val: formData.projectType, id: 'type' },
+          { label: "Terreno", val: formData.hasLand, id: 'land' },
+          { label: "Chalés", val: formData.numberOfChalets, id: 'quantity' },
+          { label: "Objetivo", val: formData.objective, id: 'objective' },
+          { label: "Estilo", val: formData.architectureStyle, id: 'style' },
+          { label: "Diferenciais", val: formData.features.join(", "), id: 'environments' },
+          { label: "Investimento", val: formData.budget, id: 'investment' },
+          { label: "Localização", val: `${formData.city} - ${formData.state}`, id: 'location' },
+          { label: "Prazo", val: formData.timeline, id: 'timeline' }
+        ].filter(item => activeSteps.some(s => s.id === item.id));
+
         return (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
@@ -1209,7 +1210,13 @@ export const BookingForm = () => {
                       <span className="text-[8px] uppercase tracking-widest text-muted-foreground block mb-1">{item.label}</span>
                       <span className="text-sm font-serif font-bold">{item.val || "Não informado"}</span>
                     </div>
-                    <button onClick={() => setStep(item.step)} className="opacity-0 group-hover:opacity-100 transition-opacity text-[8px] uppercase tracking-widest font-bold text-primary flex items-center gap-1">
+                    <button 
+                      onClick={() => {
+                        const targetStep = activeSteps.findIndex(s => s.id === item.id);
+                        if (targetStep !== -1) setStep(targetStep);
+                      }} 
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[8px] uppercase tracking-widest font-bold text-primary flex items-center gap-1"
+                    >
                       <Pencil size={8} /> Editar
                     </button>
                   </div>
