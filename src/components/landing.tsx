@@ -862,31 +862,60 @@ export const BookingForm = () => {
     message: ""
   });
 
-  const steps = [
-    { title: "Tipo de Projeto" },
-    { title: "Terreno" },
-    { title: "Quantidade" },
-    { title: "Objetivo" },
-    { title: "Estilo Arquitetônico" },
-    { title: "Ambientes" },
-    { title: "Investimento" },
-    { title: "Localização" },
-    { title: "Prazo" },
-    { title: "Dados Pessoais" },
-    { title: "Mensagem" },
-    { title: "Revisão" }
+  const allSteps = [
+    { id: 'type', title: "Tipo de Projeto" },
+    { id: 'land', title: "Terreno" },
+    { id: 'quantity', title: "Quantidade" },
+    { id: 'objective', title: "Objetivo" },
+    { id: 'style', title: "Estilo Arquitetônico" },
+    { id: 'environments', title: "Ambientes" },
+    { id: 'investment', title: "Investimento" },
+    { id: 'location', title: "Localização" },
+    { id: 'timeline', title: "Prazo" },
+    { id: 'personal', title: "Dados Pessoais" },
+    { id: 'message', title: "Mensagem" },
+    { id: 'review', title: "Revisão" }
   ];
+
+  const activeSteps = React.useMemo(() => {
+    return allSteps.filter(s => {
+      if (formData.projectType === "Um chalé") {
+        if (s.id === 'quantity' || s.id === 'objective') return false;
+      }
+      if (formData.projectType === "Vários chalés") {
+        if (s.id === 'objective') return false;
+      }
+      return true;
+    });
+  }, [formData.projectType]);
+
+  // Handle step index adjustment if project type changes
+  React.useEffect(() => {
+    if (step >= activeSteps.length) {
+      setStep(activeSteps.length - 1);
+    }
+  }, [activeSteps, step]);
+
+  // Clean up data when project type changes
+  React.useEffect(() => {
+    if (formData.projectType === "Um chalé") {
+      setFormData(prev => ({ ...prev, numberOfChalets: "1", objective: "" }));
+    } else if (formData.projectType === "Vários chalés") {
+      setFormData(prev => ({ ...prev, objective: "" }));
+    }
+  }, [formData.projectType]);
 
   const updateField = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, steps.length - 1));
+  const nextStep = () => setStep((s) => Math.min(s + 1, activeSteps.length - 1));
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
 
   const renderStep = () => {
-    switch (step) {
-      case 0:
+    const currentStepId = activeSteps[step]?.id;
+    switch (currentStepId) {
+      case 'type':
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -909,7 +938,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 1:
+      case 'land':
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {["Sim", "Ainda não", "Em negociação"].map((opt) => (
@@ -927,7 +956,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 2:
+      case 'quantity':
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((num) => (
@@ -944,7 +973,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 3:
+      case 'objective':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -967,7 +996,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 4:
+      case 'style':
         const styles = [
           { 
             label: "CONTEMPORÂNEO", 
@@ -1018,7 +1047,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 5:
+      case 'environments':
         const differentials = ["Piscina", "Ofurô", "Banheira", "Deck", "Lareira", "Varanda", "Área Gourmet", "Churrasqueira", "Vista Panorâmica"];
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -1041,7 +1070,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 6:
+      case 'investment':
         return (
           <div className="grid grid-cols-1 gap-4">
             {[
@@ -1068,7 +1097,7 @@ export const BookingForm = () => {
             </p>
           </div>
         );
-      case 7:
+      case 'location':
         return (
           <div className="space-y-8">
             <div className="space-y-2">
@@ -1091,7 +1120,7 @@ export const BookingForm = () => {
             </div>
           </div>
         );
-      case 8:
+      case 'timeline':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -1114,7 +1143,7 @@ export const BookingForm = () => {
             ))}
           </div>
         );
-      case 9:
+      case 'personal':
         return (
           <div className="space-y-8">
             <div className="space-y-2">
@@ -1146,7 +1175,7 @@ export const BookingForm = () => {
             </div>
           </div>
         );
-      case 10:
+      case 'message':
         return (
           <div className="space-y-4">
             <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground block">Existe algo especial que você gostaria de nos contar? (Opcional)</label>
@@ -1158,18 +1187,19 @@ export const BookingForm = () => {
             />
           </div>
         );
-      case 11:
+      case 'review':
         const summary = [
-          { label: "Tipo", val: formData.projectType, step: 0 },
-          { label: "Terreno", val: formData.hasLand, step: 1 },
-          { label: "Chalés", val: formData.numberOfChalets, step: 2 },
-          { label: "Objetivo", val: formData.objective, step: 3 },
-          { label: "Estilo", val: formData.architectureStyle, step: 4 },
-          { label: "Diferenciais", val: formData.features.join(", "), step: 5 },
-          { label: "Investimento", val: formData.budget, step: 6 },
-          { label: "Localização", val: `${formData.city} - ${formData.state}`, step: 7 },
-          { label: "Prazo", val: formData.timeline, step: 8 }
-        ];
+          { label: "Tipo", val: formData.projectType, id: 'type' },
+          { label: "Terreno", val: formData.hasLand, id: 'land' },
+          { label: "Chalés", val: formData.numberOfChalets, id: 'quantity' },
+          { label: "Objetivo", val: formData.objective, id: 'objective' },
+          { label: "Estilo", val: formData.architectureStyle, id: 'style' },
+          { label: "Diferenciais", val: formData.features.join(", "), id: 'environments' },
+          { label: "Investimento", val: formData.budget, id: 'investment' },
+          { label: "Localização", val: `${formData.city} - ${formData.state}`, id: 'location' },
+          { label: "Prazo", val: formData.timeline, id: 'timeline' }
+        ].filter(item => activeSteps.some(s => s.id === item.id));
+
         return (
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
@@ -1180,7 +1210,13 @@ export const BookingForm = () => {
                       <span className="text-[8px] uppercase tracking-widest text-muted-foreground block mb-1">{item.label}</span>
                       <span className="text-sm font-serif font-bold">{item.val || "Não informado"}</span>
                     </div>
-                    <button onClick={() => setStep(item.step)} className="opacity-0 group-hover:opacity-100 transition-opacity text-[8px] uppercase tracking-widest font-bold text-primary flex items-center gap-1">
+                    <button 
+                      onClick={() => {
+                        const targetStep = activeSteps.findIndex(s => s.id === item.id);
+                        if (targetStep !== -1) setStep(targetStep);
+                      }} 
+                      className="opacity-0 group-hover:opacity-100 transition-opacity text-[8px] uppercase tracking-widest font-bold text-primary flex items-center gap-1"
+                    >
                       <Pencil size={8} /> Editar
                     </button>
                   </div>
@@ -1204,11 +1240,11 @@ export const BookingForm = () => {
         <div className="flex flex-col md:flex-row gap-16">
           <div className="flex-1">
             <div className="flex justify-between items-end mb-12">
-               <div>
+                <div>
                   <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-2 block">Seu Projeto</span>
-                  <h2 className="text-4xl font-serif">{steps[step].title}</h2>
-               </div>
-               <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{steps.length}</span>
+                  <h2 className="text-4xl font-serif">{activeSteps[step]?.title}</h2>
+                </div>
+                <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{activeSteps.length}</span>
             </div>
             
             <div className="min-h-[450px]">
@@ -1243,10 +1279,12 @@ export const BookingForm = () => {
                 <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
                   <ChevronLeft size={16} /> Voltar
                 </button>
-                {step === steps.length - 1 ? (
+                {step === activeSteps.length - 1 ? (
                    <button 
                      onClick={() => {
-                       const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
+                       const showQuantity = activeSteps.some(s => s.id === 'quantity');
+                       const showObjective = activeSteps.some(s => s.id === 'objective');
+                       const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A${showQuantity ? `%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A` : ""}${showObjective ? `%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A` : ""}%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
                        window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
                      }}
                      className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
@@ -1256,14 +1294,15 @@ export const BookingForm = () => {
                 ) : (
                    <button 
                     onClick={() => {
-                      if (step === 9) { // Validate contact step
+                      const currentStepId = activeSteps[step]?.id;
+                      if (currentStepId === 'personal') { // Validate contact step
                         if (!formData.name || !formData.whatsapp || !formData.email) {
                           alert("Por favor, preencha todos os campos obrigatórios.");
                           return;
                         }
                       }
                       nextStep();
-                    }} 
+                    }}
                     className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all"
                    >
                      Continuar <ChevronRight size={16} />
