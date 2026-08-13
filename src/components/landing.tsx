@@ -41,7 +41,7 @@ export const Navbar = () => {
         <div className="flex items-center gap-8">
           <a href="/" className="flex items-center gap-3 group">
             <img 
-              src={logoAsset.url} 
+              src={logoAssetV2.url} 
               alt="Chalés IA" 
               className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
             />
