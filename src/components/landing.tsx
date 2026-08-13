@@ -1240,11 +1240,11 @@ export const BookingForm = () => {
         <div className="flex flex-col md:flex-row gap-16">
           <div className="flex-1">
             <div className="flex justify-between items-end mb-12">
-               <div>
+                <div>
                   <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-2 block">Seu Projeto</span>
-                  <h2 className="text-4xl font-serif">{steps[step].title}</h2>
-               </div>
-               <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{steps.length}</span>
+                  <h2 className="text-4xl font-serif">{activeSteps[step]?.title}</h2>
+                </div>
+                <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{activeSteps.length}</span>
             </div>
             
             <div className="min-h-[450px]">
