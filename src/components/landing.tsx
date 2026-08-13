@@ -112,16 +112,23 @@ const InteractiveGallery = () => {
         </AnimatePresence>
 
         {/* Lateral Peeks */}
-        <div className="absolute inset-y-0 -left-12 md:-left-24 w-24 md:w-48 z-20 opacity-0 md:opacity-40 group-hover:opacity-60 transition-opacity duration-700 cursor-pointer hidden md:block" onClick={prev}>
+        <div 
+          className="absolute inset-y-0 -left-12 md:-left-24 w-24 md:w-48 z-20 opacity-0 md:opacity-40 group-hover:opacity-60 transition-opacity duration-700 cursor-pointer hidden md:block" 
+          onClick={prev}
+        >
            <div className="w-full h-full overflow-hidden rounded-sm scale-90 blur-sm hover:blur-none hover:scale-95 transition-all duration-700">
              <img src={images[(index - 1 + images.length) % images.length].url} className="w-full h-full object-cover opacity-50" />
            </div>
         </div>
-        <div className="absolute inset-y-0 -right-12 md:-right-24 w-24 md:w-48 z-20 opacity-0 md:opacity-40 group-hover:opacity-60 transition-opacity duration-700 cursor-pointer hidden md:block" onClick={next}>
+        <div 
+          className="absolute inset-y-0 -right-12 md:-right-24 w-24 md:w-48 z-20 opacity-0 md:opacity-40 group-hover:opacity-60 transition-opacity duration-700 cursor-pointer hidden md:block" 
+          onClick={next}
+        >
            <div className="w-full h-full overflow-hidden rounded-sm scale-90 blur-sm hover:blur-none hover:scale-95 transition-all duration-700">
              <img src={images[(index + 1) % images.length].url} className="w-full h-full object-cover opacity-50" />
            </div>
         </div>
+
       </div>
 
       {/* Navigation UI */}
