@@ -11,7 +11,7 @@ import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
-import logoAsset from "@/assets/logo-chales-ia.jpeg.asset.json";
+import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
 
 
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
         <div className="flex items-center gap-8">
           <a href="/" className="flex items-center gap-3 group">
             <img 
-              src={logoAsset.url} 
+              src={logoAssetV2.url} 
               alt="Chalés IA" 
               className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
             />
