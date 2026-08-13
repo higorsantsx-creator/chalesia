@@ -1145,16 +1145,50 @@ export const BookingForm = () => {
             </div>
             
             <div className="flex justify-between mt-12 pt-8 border-t border-border">
-              <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
-                <ChevronLeft size={16} /> Voltar
+              <button onClick={() => {
+                if (window.confirm("Deseja realmente recomeçar o seu projeto? Todas as informações serão perdidas.")) {
+                  setFormData({
+                    projectType: "", hasLand: "", landSize: "", landAccess: "", numberOfChalets: "1",
+                    objective: "", architectureStyle: "", features: [], budget: "", state: "",
+                    city: "", timeline: "", name: "", whatsapp: "", email: "", message: ""
+                  });
+                  setStep(0);
+                }
+              }} className="flex items-center gap-2 text-[8px] uppercase font-bold tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors">
+                <RefreshCw size={10} /> Recomeçar
               </button>
-              {step === steps.length - 1 ? (
-                 <button className="bg-primary text-primary-foreground px-8 py-4 text-xs font-bold uppercase tracking-widest">Solicitar Orçamento</button>
-              ) : (
-                 <button onClick={nextStep} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest">
-                   Continuar <ChevronRight size={16} />
-                 </button>
-              )}
+              
+              <div className="flex gap-8">
+                <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
+                  <ChevronLeft size={16} /> Voltar
+                </button>
+                {step === steps.length - 1 ? (
+                   <button 
+                     onClick={() => {
+                       const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
+                       window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
+                     }}
+                     className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
+                   >
+                     Solicitar Meu Orçamento
+                   </button>
+                ) : (
+                   <button 
+                    onClick={() => {
+                      if (step === 9) { // Validate contact step
+                        if (!formData.name || !formData.whatsapp || !formData.email) {
+                          alert("Por favor, preencha todos os campos obrigatórios.");
+                          return;
+                        }
+                      }
+                      nextStep();
+                    }} 
+                    className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all"
+                   >
+                     Continuar <ChevronRight size={16} />
+                   </button>
+                )}
+              </div>
             </div>
           </div>
           
