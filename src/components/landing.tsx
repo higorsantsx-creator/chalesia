@@ -25,6 +25,9 @@ import contemporaneo3 from "@/assets/chale-contemporaneo-3.png.asset.json";
 import alpine1 from "@/assets/chale-alpine-1.png.asset.json";
 import alpine2 from "@/assets/chale-alpine-2.png.asset.json";
 import alpine3 from "@/assets/chale-alpine-3.png.asset.json";
+import nordic1 from "@/assets/chale-nordic-1.png.asset.json";
+import nordic2 from "@/assets/chale-nordic-2.png.asset.json";
+import nordic3 from "@/assets/chale-nordic-3.png.asset.json";
 
 
 
@@ -979,7 +982,7 @@ export const BookingForm = () => {
           { 
             label: "NORDIC / MINIMALISTA", 
             val: "Nordic", 
-            imgs: [chaleNordicReferencia.url, chale_4.url, gallery1.url] 
+            imgs: [nordic1.url, nordic2.url, nordic3.url] 
           },
           { 
             label: "PERSONALIZADO", 
