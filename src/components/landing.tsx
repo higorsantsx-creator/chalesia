@@ -28,6 +28,8 @@ import alpine3 from "@/assets/chale-alpine-3.png.asset.json";
 import nordic1 from "@/assets/chale-nordic-1.png.asset.json";
 import nordic2 from "@/assets/chale-nordic-2.png.asset.json";
 import nordic3 from "@/assets/chale-nordic-3.png.asset.json";
+import logoBobbyAsset from "@/assets/logo-bobby.png.asset.json";
+
 
 
 
