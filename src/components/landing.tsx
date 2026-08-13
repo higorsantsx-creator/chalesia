@@ -14,6 +14,8 @@ import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
 import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
+import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
+
 
 
 
@@ -374,8 +376,9 @@ export const Details = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
           <div className="relative group">
             <ParallaxImage 
-              src="https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=2000&auto=format&fit=crop" 
+              src={interiorChaleAsset.url} 
               alt="Arquitetura de Chalé de Luxo"
+
               containerClassName="aspect-square rounded-sm overflow-hidden"
               className="opacity-90 group-hover:scale-105 transition-transform duration-1000"
             />
