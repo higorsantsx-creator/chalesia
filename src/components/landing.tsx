@@ -982,7 +982,7 @@ export const BookingForm = () => {
           { 
             label: "NORDIC / MINIMALISTA", 
             val: "Nordic", 
-            imgs: [chaleNordicReferencia.url, chale_4.url, gallery1.url] 
+            imgs: [nordic1.url, nordic2.url, nordic3.url] 
           },
           { 
             label: "PERSONALIZADO", 
