@@ -69,7 +69,7 @@ function ChaleDetailsPage() {
             initial={{ scale: 1.15, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-            src={chale.image || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop"} 
+            src={chale.image || "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=90&w=2000&auto=format&fit=crop"} 
             className="w-full h-full object-cover grayscale-[0.2] brightness-75" 
           />
           <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-black/20"></div>
