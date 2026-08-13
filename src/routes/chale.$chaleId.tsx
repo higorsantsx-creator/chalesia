@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { Hammer, Maximize, Ruler, Compass, HardHat, Layers, ArrowLeft, Quote, Star } from "lucide-react";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
-import chale_3 from "@/assets/chale_3.jpeg.asset.json";
-import chale_4 from "@/assets/chale_4.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
+import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
+import chale_5 from "@/assets/chale_5.jpg.asset.json";
+import chale_6 from "@/assets/chale_6.jpg.asset.json";
 
 export const Route = createFileRoute("/chale/$chaleId")({
   component: ChaleDetailsPage,
@@ -13,40 +15,40 @@ export const Route = createFileRoute("/chale/$chaleId")({
 
 const CHALE_DATA: Record<string, any> = {
   "1": {
-    name: "Chalé Contemporâneo",
-    category: "Arquitetura Moderna",
-    description: "Um ícone da arquitetura moderna, o Loft Contemporâneo combina a rusticidade da pedra com a leveza do vidro. Projetado para quem busca uma imersão completa no design contemporâneo.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
-    tagline: "Geometria limpa e vãos de vidro.",
-    features: ["Fachada em Vidro Duplo", "Estrutura em Aço Corten", "Acabamento em Pedra Natural", "Automação Residencial"],
-    specs: { size: "85m²", time: "6 Meses", energy: "A+" }
+    name: "Chalé A-Frame Classic",
+    category: "Arquitetura Orgânica",
+    description: "Estrutura triangular clássica em madeira, integrada perfeitamente a ambientes de mata nativa. Um ícone de aconchego e design sustentável.",
+    image: chale_5.url,
+    tagline: "O clássico que nunca sai de moda.",
+    features: ["Estrutura 100% Madeira Certificada", "Design A-Frame Autêntico", "Deck Integrado", "Vedação de Alta Performance"],
+    specs: { size: "45m²", time: "3 Meses", energy: "A" }
   },
   "2": {
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
-    description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres e isolamento térmico de última geração.",
-    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop",
+    description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres.",
+    image: chale_3.url,
     tagline: "Conforto térmico e design icônico.",
-    features: ["Isolamento Térmico Premium", "Madeira de Lei Certificada", "Lareira de Alta Performance", "Piso Aquecido"],
-    specs: { size: "120m²", time: "8 Meses", energy: "A++" }
+    features: ["Isolamento Térmico Premium", "Esquadrias de PVC Wood", "Lareira Central", "Iluminação Zenital"],
+    specs: { size: "75m²", time: "5 Meses", energy: "A++" }
   },
   "3": {
-    name: "Chalé Hillside",
-    category: "Integração Natureza",
-    description: "Especialmente desenvolvido para terrenos íngremes. A estrutura suspensa minimiza o impacto ambiental enquanto maximiza a vista panorâmica.",
-    image: "https://images.unsplash.com/photo-1493101530225-b44c84964177?q=80&w=1200&auto=format&fit=crop",
-    tagline: "Respeito ao relevo e à vegetação.",
-    features: ["Fundação em Estacas", "Deck em Madeira Nobre", "Ventilação Cruzada Natural", "Recolhimento de Água Pluvial"],
-    specs: { size: "95m²", time: "7 Meses", energy: "A" }
+    name: "Residência Hillside",
+    category: "Arquitetura Moderna",
+    description: "Design contemporâneo com grandes vãos de vidro, unindo sofisticação urbana e refúgio natural. Perfeito para quem não abre mão da elegância.",
+    image: chale_4.url,
+    tagline: "Transparência e solidez arquitetônica.",
+    features: ["Vãos Livres em Vidro", "Alvenaria Estrutural Aparente", "Pé Direito Duplo", "Acabamentos Premium"],
+    specs: { size: "140m²", time: "8 Meses", energy: "A+" }
   },
   "4": {
-    name: "Studio Minimalista",
-    category: "Design Compacto",
-    description: "A prova de que luxo não depende de tamanho. Eficiência espacial levada ao limite com acabamentos de altíssimo padrão.",
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
-    tagline: "Máxima sofisticação em espaço otimizado.",
-    features: ["Mobiliário Sob Medida", "Iluminação Cênica", "Revestimentos Importados", "Conceito Aberto"],
-    specs: { size: "45m²", time: "4 Meses", energy: "A++" }
+    name: "Chalé Sunset View",
+    category: "Design Icônico",
+    description: "Interior iluminado e pé-direito duplo, projetado para capturar a luz natural. Uma obra-prima de transparência e calor.",
+    image: chale_6.url,
+    tagline: "A luz como elemento de design.",
+    features: ["Fachada de Vidro de Segurança", "Mezanino Panorâmico", "Escada Helicoidal", "Revestimentos em Madeira Nobre"],
+    specs: { size: "110m²", time: "7 Meses", energy: "A++" }
   }
 
 };

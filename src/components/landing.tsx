@@ -6,8 +6,10 @@ import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
-import chale_3 from "@/assets/chale_3.jpeg.asset.json";
-import chale_4 from "@/assets/chale_4.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
+import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
+import chale_5 from "@/assets/chale_5.jpg.asset.json";
+import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
 import logoAsset from "@/assets/logo-chales-ia.jpeg.asset.json";
 
@@ -252,31 +254,31 @@ export const Philosophy = () => {
 const PROJETOS = [
   {
     id: 1,
-    name: "Chalé Contemporâneo",
-    category: "Arquitetura Moderna",
-    description: "Geometria limpa e integração máxima com o exterior através de grandes vãos de vidro.",
-    image: "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé A-Frame Classic",
+    category: "Arquitetura Orgânica",
+    description: "Estrutura triangular clássica em madeira, integrada perfeitamente a ambientes de mata nativa.",
+    image: chale_5.url,
   },
   {
     id: 2,
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
-    image: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=1200&auto=format&fit=crop",
+    image: chale_3.url,
   },
   {
     id: 3,
-    name: "Chalé Hillside",
-    category: "Integração Natureza",
-    description: "Projeto suspenso adaptado a terrenos íngremes, preservando a vegetação nativa.",
-    image: "https://images.unsplash.com/photo-1493101530225-b44c84964177?q=80&w=1200&auto=format&fit=crop",
+    name: "Residência Hillside",
+    category: "Arquitetura Moderna",
+    description: "Design contemporâneo com grandes vãos de vidro, unindo sofisticação urbana e refúgio natural.",
+    image: chale_4.url,
   },
   {
     id: 4,
-    name: "Studio Minimalista",
-    category: "Design Compacto",
-    description: "Eficiência espacial sem abrir mão do luxo e da sofisticação arquitetônica.",
-    image: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop",
+    name: "Chalé Sunset View",
+    category: "Design Icônico",
+    description: "Interior iluminado e pé-direito duplo, projetado para capturar a luz dourada do entardecer.",
+    image: chale_6.url,
   }
 ];
 
