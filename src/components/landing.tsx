@@ -16,11 +16,160 @@ import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.js
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
 import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
 
+import gallery1 from "@/assets/gallery-1.png.asset.json";
+import gallery2 from "@/assets/gallery-2.png.asset.json";
+import gallery3 from "@/assets/gallery-3.png.asset.json";
 
 
+const InteractiveGallery = () => {
+  const [index, setIndex] = React.useState(0);
+  const images = [
+    { url: interiorChaleAsset.url, alt: "Interior de Luxo - Principal" },
+    { url: gallery2.url, alt: "Arquitetura Contemporânea" },
+    { url: gallery1.url, alt: "Vista Panorâmica" }
+  ];
 
+  const next = () => setIndex((prev) => (prev + 1) % images.length);
+  const prev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+    const x = (e.clientX - left) / width - 0.5;
+    const y = (e.clientY - top) / height - 0.5;
+    setMousePos({ x, y });
+  };
+
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+    setIsDragging(false);
+  };
+
+
+  const handleMouseLeave = () => setMousePos({ x: 0, y: 0 });
+
+  return (
+    <div 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      className="relative w-full aspect-[4/5] md:aspect-square group overflow-visible select-none cursor-none md:cursor-default"
+
+    >
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-sm">
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.div
+            key={index}
+            initial={{ 
+              opacity: 0, 
+              scale: 1.1,
+              clipPath: "inset(0% 100% 0% 0%)"
+            }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1,
+              clipPath: "inset(0% 0% 0% 0%)",
+              x: mousePos.x * 20,
+              y: mousePos.y * 20
+            }}
+            exit={{ 
+              opacity: 0, 
+              scale: 0.95,
+              clipPath: "inset(0% 0% 0% 100%)"
+            }}
+            transition={{ 
+              duration: 1.2, 
+              ease: [0.22, 1, 0.36, 1],
+              clipPath: { duration: 1, ease: [0.76, 0, 0.24, 1] }
+            }}
+            className="absolute inset-0 z-10"
+          >
+            <img 
+              src={images[index].url} 
+              alt={images[index].alt}
+              className="w-full h-full object-cover scale-110"
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Lateral Peeks */}
+        <div 
+          className="absolute inset-y-0 -left-12 md:-left-24 w-24 md:w-48 z-20 opacity-0 md:opacity-40 group-hover:opacity-60 transition-opacity duration-700 cursor-pointer hidden md:block" 
+          onClick={prev}
+        >
+           <div className="w-full h-full overflow-hidden rounded-sm scale-90 blur-sm hover:blur-none hover:scale-95 transition-all duration-700">
+             <img src={images[(index - 1 + images.length) % images.length].url} className="w-full h-full object-cover opacity-50" />
+           </div>
+        </div>
+        <div 
+          className="absolute inset-y-0 -right-12 md:-right-24 w-24 md:w-48 z-20 opacity-0 md:opacity-40 group-hover:opacity-60 transition-opacity duration-700 cursor-pointer hidden md:block" 
+          onClick={next}
+        >
+           <div className="w-full h-full overflow-hidden rounded-sm scale-90 blur-sm hover:blur-none hover:scale-95 transition-all duration-700">
+             <img src={images[(index + 1) % images.length].url} className="w-full h-full object-cover opacity-50" />
+           </div>
+        </div>
+
+      </div>
+
+      {/* Navigation UI */}
+      <div className="absolute bottom-8 left-8 right-8 z-30 flex items-center justify-between">
+        <div className="flex items-center gap-6">
+          <button 
+            onClick={prev}
+            className="text-white/40 hover:text-white transition-colors duration-300 p-2"
+          >
+            <ChevronLeft size={24} strokeWidth={1} />
+          </button>
+          <div className="flex flex-col gap-2">
+             <span className="text-white text-[10px] tracking-[0.3em] font-medium font-sans">
+               0{index + 1} / 0{images.length}
+             </span>
+             <div className="w-24 h-[1px] bg-white/10 overflow-hidden">
+               <motion.div 
+                 initial={false}
+                 animate={{ x: `${(index / (images.length - 1)) * 100 - 100}%` }}
+                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                 className="w-full h-full bg-primary"
+               />
+             </div>
+          </div>
+          <button 
+            onClick={next}
+            className="text-white/40 hover:text-white transition-colors duration-300 p-2"
+          >
+            <ChevronRight size={24} strokeWidth={1} />
+          </button>
+        </div>
+      </div>
+
+      {/* Floating Border */}
+      <div className="absolute inset-0 border border-primary/20 m-8 -z-10 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-1000"></div>
+    </div>
+  );
+};
 
 export const Navbar = () => {
+
   const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
@@ -374,16 +523,8 @@ export const Details = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
-          <div className="relative group">
-            <ParallaxImage 
-              src={interiorChaleAsset.url} 
-              alt="Arquitetura de Chalé de Luxo"
+          <InteractiveGallery />
 
-              containerClassName="aspect-square rounded-sm overflow-hidden"
-              className="opacity-90 group-hover:scale-105 transition-transform duration-1000"
-            />
-            <div className="absolute inset-0 border border-primary/20 m-8 -z-10 translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700"></div>
-          </div>
           
           <div>
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">Materialidade</span>
