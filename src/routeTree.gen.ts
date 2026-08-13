@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as BobbyRouteImport } from './routes/bobby'
 import { Route as AvaliacoesRouteImport } from './routes/avaliacoes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChaleChaleIdRouteImport } from './routes/chale.$chaleId'
 
+const BobbyRoute = BobbyRouteImport.update({
+  id: '/bobby',
+  path: '/bobby',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AvaliacoesRoute = AvaliacoesRouteImport.update({
   id: '/avaliacoes',
   path: '/avaliacoes',
@@ -32,35 +38,46 @@ const ChaleChaleIdRoute = ChaleChaleIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/avaliacoes': typeof AvaliacoesRoute
+  '/bobby': typeof BobbyRoute
   '/chale/$chaleId': typeof ChaleChaleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/avaliacoes': typeof AvaliacoesRoute
+  '/bobby': typeof BobbyRoute
   '/chale/$chaleId': typeof ChaleChaleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/avaliacoes': typeof AvaliacoesRoute
+  '/bobby': typeof BobbyRoute
   '/chale/$chaleId': typeof ChaleChaleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/avaliacoes' | '/chale/$chaleId'
+  fullPaths: '/' | '/avaliacoes' | '/bobby' | '/chale/$chaleId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/avaliacoes' | '/chale/$chaleId'
-  id: '__root__' | '/' | '/avaliacoes' | '/chale/$chaleId'
+  to: '/' | '/avaliacoes' | '/bobby' | '/chale/$chaleId'
+  id: '__root__' | '/' | '/avaliacoes' | '/bobby' | '/chale/$chaleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvaliacoesRoute: typeof AvaliacoesRoute
+  BobbyRoute: typeof BobbyRoute
   ChaleChaleIdRoute: typeof ChaleChaleIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/bobby': {
+      id: '/bobby'
+      path: '/bobby'
+      fullPath: '/bobby'
+      preLoaderRoute: typeof BobbyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/avaliacoes': {
       id: '/avaliacoes'
       path: '/avaliacoes'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvaliacoesRoute: AvaliacoesRoute,
+  BobbyRoute: BobbyRoute,
   ChaleChaleIdRoute: ChaleChaleIdRoute,
 }
 export const routeTree = rootRouteImport
