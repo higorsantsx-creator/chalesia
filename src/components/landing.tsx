@@ -70,7 +70,10 @@ const InteractiveGallery = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className="relative w-full aspect-[4/5] md:aspect-square group overflow-visible select-none cursor-none md:cursor-default"
+
     >
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-sm">
         <AnimatePresence initial={false} mode="popLayout">
