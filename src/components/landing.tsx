@@ -961,17 +961,29 @@ export const BookingForm = () => {
           { 
             label: "CONTEMPORÂNEO", 
             val: "Contemporâneo", 
-            imgs: [chale_1.url, gallery2.url, interiorChaleAsset.url] 
+            imgs: [
+              "https://images.openai.com/static-rsc-4/3gcUqK2ZbpkktaqqU0phWZUl39GirVYuh0gmEi5zlRxcQSYtYUI06FlSdQqHLJNczpUZOX1uZrgF8q8vJmYf4L_OwNb20UBrD05faPavQMbPd3DbPTd4fRxnRjARl5XIDRuqhZ5M7lIe2zDJJsk9wDwFQYm4I11wZ4vjTWXAzM8?purpose=inline", 
+              "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=90&w=2000&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=90&w=2000&auto=format&fit=crop"
+            ] 
           },
           { 
             label: "A-FRAME / ALPINE", 
             val: "A-Frame", 
-            imgs: [chale_2.url, chale_5.url, chaleAlpinePool.url] 
+            imgs: [
+              "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=90&w=2000&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=90&w=2000&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=90&w=2000&auto=format&fit=crop"
+            ] 
           },
           { 
             label: "NORDIC / MINIMALISTA", 
             val: "Nordic", 
-            imgs: [chaleNordicReferencia.url, chale_4.url, gallery1.url] 
+            imgs: [
+              "https://images.unsplash.com/photo-1493666438817-866a91353ca9?q=90&w=2000&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=90&w=2000&auto=format&fit=crop", 
+              "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=90&w=2000&auto=format&fit=crop"
+            ] 
           },
           { 
             label: "PERSONALIZADO", 
