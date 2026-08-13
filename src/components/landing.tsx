@@ -965,7 +965,7 @@ export const BookingForm = () => {
           { 
             label: "CONTEMPORÂNEO", 
             val: "Contemporâneo", 
-            imgs: [chale_1.url, gallery2.url, interiorChaleAsset.url] 
+            imgs: [contemporaneo1.url, contemporaneo2.url, contemporaneo3.url] 
           },
           { 
             label: "A-FRAME / ALPINE", 
