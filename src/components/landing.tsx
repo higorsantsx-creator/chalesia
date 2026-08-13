@@ -14,6 +14,8 @@ import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
 import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
+import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
+
 
 
 
