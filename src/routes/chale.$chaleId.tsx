@@ -29,7 +29,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "Inspirado nos refúgios dos Alpes, este projeto oferece uma estrutura robusta e acolhedora. O design A-frame é reinterpretado com materiais nobres.",
-    image: chaleNordicReferencia.url,
+    image: chaleAlpinePool.url,
     tagline: "Conforto térmico e design icônico.",
     features: ["Isolamento Térmico Premium", "Esquadrias de PVC Wood", "Lareira Central", "Iluminação Zenital"],
     specs: { size: "75m²", time: "5 Meses", energy: "A++" }
