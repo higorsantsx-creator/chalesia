@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Projetamos e construímos chalés de alto padrão. Transformamos seu refúgio dos sonhos em realidade com arquitetura contemporânea e exclusiva." },
       { property: "og:title", content: "Chalés IA - Do Projeto à Realidade" },
       { property: "og:description", content: "Especialistas em construção de chalés premium e arquitetura autoral." },
-      { property: "og:image", content: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2000&auto=format&fit=crop" },
+      { property: "og:image", content: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=90&w=2000&auto=format&fit=crop" },
 
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

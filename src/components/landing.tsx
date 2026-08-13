@@ -225,7 +225,7 @@ export const Philosophy = () => {
           
           <div className="relative">
             <ParallaxImage 
-              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=90&w=2000&auto=format&fit=crop" 
               alt="Conceito Arquitetônico"
               containerClassName="aspect-[3/4] rounded-sm shadow-[0_40px_80px_-15px_rgba(0,0,0,0.3)]"
             />
@@ -238,7 +238,7 @@ export const Philosophy = () => {
               className="absolute -bottom-16 -right-16 w-1/2 aspect-square hidden lg:block"
             >
               <ParallaxImage 
-                src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=90&w=2000&auto=format&fit=crop" 
                 alt="Detalhe de Materialidade"
                 containerClassName="w-full h-full rounded-sm border-8 border-background shadow-2xl"
               />
@@ -372,8 +372,8 @@ export const Details = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
           <div className="relative group">
             <ParallaxImage 
-              src="https://images.unsplash.com/photo-1549144464-972323f6e1c3?q=80&w=1200&auto=format&fit=crop" 
-              alt="Detalhes Construtivos"
+              src="https://images.unsplash.com/photo-1503387762-592dea58ef23?q=80&w=2000&auto=format&fit=crop" 
+              alt="Arquitetura de Chalé de Luxo"
               containerClassName="aspect-square rounded-sm overflow-hidden"
               className="opacity-90 group-hover:scale-105 transition-transform duration-1000"
             />
