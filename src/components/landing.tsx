@@ -493,13 +493,16 @@ export const Projects = () => {
               data-cursor="Explorar"
             >
               <div className="aspect-[4/5] overflow-hidden mb-12 relative rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
-                <ParallaxImage 
-                  src={projeto.image} 
-                  alt={projeto.name}
-                  className="transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700"></div>
-                <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3">
+                <div className="absolute inset-0 z-0">
+                  <ParallaxImage 
+                    src={projeto.image} 
+                    alt={projeto.name}
+                    containerClassName="w-full h-full"
+                    className="transition-transform duration-1000 group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
+                <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3 z-20">
                   {projeto.category}
                 </div>
               </div>
