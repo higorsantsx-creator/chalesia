@@ -43,6 +43,26 @@ const InteractiveGallery = () => {
     setMousePos({ x, y });
   };
 
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+    setIsDragging(false);
+  };
+
+
   const handleMouseLeave = () => setMousePos({ x: 0, y: 0 });
 
   return (
