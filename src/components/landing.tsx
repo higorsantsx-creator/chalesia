@@ -913,8 +913,9 @@ export const BookingForm = () => {
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
 
   const renderStep = () => {
-    switch (step) {
-      case 0:
+    const currentStepId = activeSteps[step]?.id;
+    switch (currentStepId) {
+      case 'type':
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
