@@ -352,7 +352,7 @@ export const Process = () => {
 
 export const Details = () => {
   return (
-    <section id="diferenciais" className="py-32 md:py-56 bg-foreground text-background overflow-hidden relative">
+    <section id="diferenciais" className="py-32 md:py-56 bg-background text-foreground overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary rounded-full blur-[120px]"></div>
@@ -406,7 +406,7 @@ export const Details = () => {
 
 export const Investment = () => {
   return (
-    <section className="py-32 md:py-56 bg-secondary/5 relative overflow-hidden">
+    <section className="py-32 md:py-56 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
           <div>
@@ -454,7 +454,7 @@ export const Investment = () => {
 
 export const Projects = () => {
   return (
-    <section id="projetos" className="py-32 md:py-56 bg-secondary/5 overflow-hidden">
+    <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-32 flex flex-col md:row justify-between items-end gap-12">
           <div className="max-w-3xl">
@@ -554,7 +554,7 @@ export const SocialProof = () => {
   const prev = () => setIndex((i) => (i - 1 + REVIEWS.length) % REVIEWS.length);
 
   return (
-    <section id="diferenciais" className="py-32 md:py-56 bg-secondary/5 overflow-hidden">
+    <section id="diferenciais" className="py-32 md:py-56 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24">
           <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Depoimentos</span>
@@ -647,7 +647,7 @@ export const BookingForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-24 md:py-40 px-6 bg-secondary/10">
+    <section id="orcamento" className="py-24 md:py-40 px-6 bg-background">
       <div className="max-w-5xl mx-auto bg-card p-8 md:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden rounded-sm border border-border/5">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
         
