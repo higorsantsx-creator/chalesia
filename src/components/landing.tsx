@@ -957,28 +957,53 @@ export const BookingForm = () => {
           </div>
         );
       case 4:
+        const styles = [
+          { 
+            label: "CONTEMPORÂNEO", 
+            val: "Contemporâneo", 
+            imgs: [chale_1.url, gallery2.url, interiorChaleAsset.url] 
+          },
+          { 
+            label: "A-FRAME / ALPINE", 
+            val: "A-Frame", 
+            imgs: [chale_2.url, chale_5.url, chaleAlpinePool.url] 
+          },
+          { 
+            label: "NORDIC / MINIMALISTA", 
+            val: "Nordic", 
+            imgs: [chaleNordicReferencia.url, chale_4.url, gallery1.url] 
+          },
+          { 
+            label: "PERSONALIZADO", 
+            val: "Personalizado", 
+            imgs: [interiorChaleAsset.url] 
+          }
+        ];
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              { label: "CONTEMPORÂNEO", val: "Contemporâneo", img: chale_1.url },
-              { label: "A-FRAME / ALPINE", val: "A-Frame", img: chale_2.url },
-              { label: "NORDIC / MINIMALISTA", val: "Nordic", img: chaleNordicReferencia.url },
-              { label: "PERSONALIZADO", val: "Personalizado", img: interiorChaleAsset.url }
-            ].map((opt) => (
-              <button 
+            {styles.map((opt) => (
+              <div 
                 key={opt.val}
-                onClick={() => { updateField("architectureStyle", opt.val); nextStep(); }}
                 className={cn(
                   "relative aspect-[16/10] group overflow-hidden rounded-sm border-2 transition-all",
                   formData.architectureStyle === opt.val ? "border-primary" : "border-transparent"
                 )}
               >
-                <img src={opt.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-                <div className="absolute bottom-6 left-6 text-left">
+                {opt.imgs.length > 1 ? (
+                  <StyleGallery images={opt.imgs} />
+                ) : (
+                  <img src={opt.imgs[0]} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                )}
+                <div className="absolute inset-0 bg-black/40 pointer-events-none group-hover:bg-black/20 transition-colors" />
+                <div className="absolute bottom-6 left-6 text-left pointer-events-none">
                   <h3 className="text-white text-xs uppercase tracking-[0.3em] font-bold">{opt.label}</h3>
                 </div>
-              </button>
+                <button 
+                  onClick={() => { updateField("architectureStyle", opt.val); nextStep(); }}
+                  className="absolute inset-0 z-10 w-full h-full opacity-0"
+                  aria-label={`Selecionar estilo ${opt.label}`}
+                />
+              </div>
             ))}
           </div>
         );
