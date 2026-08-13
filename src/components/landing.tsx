@@ -871,6 +871,46 @@ export const BookingForm = () => {
             ))}
           </div>
         );
+      case 2:
+        return (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((num) => (
+              <button 
+                key={num}
+                onClick={() => { updateField("numberOfChalets", num.toString()); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm transition-all hover:border-primary",
+                  formData.numberOfChalets === num.toString() ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <span className="text-4xl font-serif font-bold">{num}</span>
+              </button>
+            ))}
+          </div>
+        );
+      case 3:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { title: "REFÚGIO", desc: "Uso próprio, descanso e lazer.", val: "Refúgio" },
+              { title: "INVESTIMENTO", desc: "Chalés para aluguel e renda.", val: "Investimento" },
+              { title: "MORADIA", desc: "Um espaço pensado para viver.", val: "Moradia" },
+              { title: "HOSPEDAGEM", desc: "Empreendimento profissional.", val: "Hospedagem" }
+            ].map((opt) => (
+              <button 
+                key={opt.val}
+                onClick={() => { updateField("objective", opt.val); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.objective === opt.val ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-2 text-primary">{opt.title}</h3>
+                <p className="text-sm text-muted-foreground">{opt.desc}</p>
+              </button>
+            ))}
+          </div>
+        );
       default:
         return <div className="p-20 text-center text-muted-foreground">Etapa {step + 1} em construção...</div>;
     }
