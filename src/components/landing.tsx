@@ -974,7 +974,7 @@ export const BookingForm = () => {
           { 
             label: "A-FRAME / ALPINE", 
             val: "A-Frame", 
-            imgs: [chale_2.url, chale_5.url, chaleAlpinePool.url] 
+            imgs: [alpine1.url, alpine2.url, alpine3.url] 
           },
           { 
             label: "NORDIC / MINIMALISTA", 
