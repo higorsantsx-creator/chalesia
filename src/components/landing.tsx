@@ -19,6 +19,10 @@ import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
 import gallery1 from "@/assets/gallery-1.png.asset.json";
 import gallery2 from "@/assets/gallery-2.png.asset.json";
 import gallery3 from "@/assets/gallery-3.png.asset.json";
+import contemporaneo1 from "@/assets/chale-contemporaneo-1.png.asset.json";
+import contemporaneo2 from "@/assets/chale-contemporaneo-2.png.asset.json";
+import contemporaneo3 from "@/assets/chale-contemporaneo-3.png.asset.json";
+
 
 
 const InteractiveGallery = () => {
@@ -961,7 +965,7 @@ export const BookingForm = () => {
           { 
             label: "CONTEMPORÂNEO", 
             val: "Contemporâneo", 
-            imgs: [chale_1.url, gallery2.url, interiorChaleAsset.url] 
+            imgs: [contemporaneo1.url, contemporaneo2.url, contemporaneo3.url] 
           },
           { 
             label: "A-FRAME / ALPINE", 
