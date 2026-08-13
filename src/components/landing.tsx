@@ -647,7 +647,7 @@ export const BookingForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-24 md:py-40 px-6 bg-secondary/10">
+    <section id="orcamento" className="py-24 md:py-40 px-6 bg-background">
       <div className="max-w-5xl mx-auto bg-card p-8 md:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden rounded-sm border border-border/5">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
         
