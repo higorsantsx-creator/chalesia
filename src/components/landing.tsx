@@ -106,10 +106,18 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block mb-12"
         >
-          <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-12 drop-shadow-md">
-            Escritório de Arquitetura & Construção
-          </span>
+          <div className="relative group">
+            {/* Soft localized shadow behind the label for depth */}
+            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-150 opacity-50"></div>
+            
+            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
+              <span className="text-white/90 text-[10px] md:text-[11px] uppercase tracking-[0.6em] font-sans font-medium block whitespace-nowrap">
+                Escritório de Arquitetura & Construção
+              </span>
+            </div>
+          </div>
         </motion.div>
         
         <motion.h1 
