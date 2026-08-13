@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
