@@ -1292,14 +1292,15 @@ export const BookingForm = () => {
                 ) : (
                    <button 
                     onClick={() => {
-                      if (step === 9) { // Validate contact step
+                      const currentStepId = activeSteps[step]?.id;
+                      if (currentStepId === 'personal') { // Validate contact step
                         if (!formData.name || !formData.whatsapp || !formData.email) {
                           alert("Por favor, preencha todos os campos obrigatórios.");
                           return;
                         }
                       }
                       nextStep();
-                    }} 
+                    }}
                     className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all"
                    >
                      Continuar <ChevronRight size={16} />
