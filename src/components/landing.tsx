@@ -786,103 +786,139 @@ export const SocialProof = () => {
 
 
 export const BookingForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const whatsapp = formData.get("whatsapp");
-    const city = formData.get("city");
-    const projectType = formData.get("projectType");
-    const objective = formData.get("objective");
-    const numberOfChalets = formData.get("numberOfChalets");
-    const hasLand = formData.get("hasLand");
-    const message = formData.get("message");
+  const [step, setStep] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    projectType: "",
+    hasLand: "",
+    landSize: "",
+    landAccess: "",
+    numberOfChalets: "1",
+    objective: "",
+    architectureStyle: "",
+    features: [] as string[],
+    budget: "",
+    state: "",
+    city: "",
+    timeline: "",
+    name: "",
+    whatsapp: "",
+    email: "",
+    message: ""
+  });
 
-    const text = `Olá! Gostaria de solicitar um orçamento para construção com a Chalés IA.%0A%0A*Dados do Projeto:*%0A- *Nome:* ${name}%0A- *WhatsApp:* ${whatsapp}%0A- *Cidade/Região:* ${city}%0A- *Tipo de Projeto:* ${projectType}%0A- *Objetivo:* ${objective}%0A- *Número de Chalés:* ${numberOfChalets}%0A- *Possui Terreno:* ${hasLand}%0A${message ? `- *Mensagem:* ${message}` : ""}%0A%0AEstou interessado em transformar meu refúgio em realidade.`;
-    
-    window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
+  const steps = [
+    { title: "Tipo de Projeto" },
+    { title: "Terreno" },
+    { title: "Quantidade" },
+    { title: "Objetivo" },
+    { title: "Estilo Arquitetônico" },
+    { title: "Ambientes" },
+    { title: "Investimento" },
+    { title: "Localização" },
+    { title: "Prazo" },
+    { title: "Dados Pessoais" },
+    { title: "Mensagem" },
+    { title: "Revisão" }
+  ];
+
+  const updateField = (field: string, value: any) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const nextStep = () => setStep((s) => Math.min(s + 1, steps.length - 1));
+  const prevStep = () => setStep((s) => Math.max(s - 1, 0));
+
+  const renderStep = () => {
+    switch (step) {
+      case 0:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { label: "Um chalé", desc: "Uso próprio ou lazer", val: "Um chalé" },
+              { label: "Vários chalés", desc: "Hospedagem ou investimento", val: "Vários chalés" },
+              { label: "Personalizado", desc: "Arquitetura sob medida", val: "Projeto personalizado" }
+            ].map((opt) => (
+              <button 
+                key={opt.val}
+                onClick={() => { updateField("projectType", opt.val); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.projectType === opt.val ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <Home className="mb-4 text-primary" size={24} />
+                <h3 className="font-serif font-bold text-lg mb-2">{opt.label}</h3>
+                <p className="text-sm text-muted-foreground">{opt.desc}</p>
+              </button>
+            ))}
+          </div>
+        );
+      case 1:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {["Sim", "Ainda não", "Em negociação"].map((opt) => (
+              <button 
+                key={opt}
+                onClick={() => { updateField("hasLand", opt); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.hasLand === opt ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <Compass className="mb-4 text-primary" size={24} />
+                <h3 className="font-serif font-bold text-lg mb-2">{opt}</h3>
+              </button>
+            ))}
+          </div>
+        );
+      default:
+        return <div className="p-20 text-center text-muted-foreground">Etapa {step + 1} em construção...</div>;
+    }
   };
 
   return (
     <section id="orcamento" className="py-24 md:py-40 px-6 bg-background">
-      <div className="max-w-5xl mx-auto bg-card p-8 md:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden rounded-sm border border-border/5">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
-        
-        <div className="relative z-10 text-center mb-16">
-          <span className="text-primary text-[10px] uppercase tracking-[0.3em] font-sans font-bold block mb-4">Contato</span>
-          <h2 className="text-4xl md:text-6xl font-serif mb-6">Vamos tirar seu projeto do papel?</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">Conte um pouco sobre o que você imagina. A partir daí, podemos começar a transformar essa ideia em um projeto real.</p>
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-16">
+          <div className="flex-1">
+            <div className="flex justify-between items-end mb-12">
+               <div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-2 block">Seu Projeto</span>
+                  <h2 className="text-4xl font-serif">{steps[step].title}</h2>
+               </div>
+               <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{steps.length}</span>
+            </div>
+            
+            <div className="min-h-[400px]">
+              {renderStep()}
+            </div>
+            
+            <div className="flex justify-between mt-12 pt-8 border-t border-border">
+              <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
+                <ChevronLeft size={16} /> Voltar
+              </button>
+              {step === steps.length - 1 ? (
+                 <button className="bg-primary text-primary-foreground px-8 py-4 text-xs font-bold uppercase tracking-widest">Solicitar Orçamento</button>
+              ) : (
+                 <button onClick={nextStep} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest">
+                   Continuar <ChevronRight size={16} />
+                 </button>
+              )}
+            </div>
+          </div>
+          
+          <div className="hidden md:block w-96 bg-card border border-border/10 p-12 relative overflow-hidden">
+             <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-muted-foreground mb-8">Visão do Projeto</h4>
+             <div className="aspect-square bg-muted/20 flex items-center justify-center border border-dashed border-border">
+                <p className="text-xs text-muted-foreground">Seu projeto será construído aqui...</p>
+             </div>
+          </div>
         </div>
-        
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Nome Completo</label>
-            <input name="name" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Maria Silva" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
-            <input name="whatsapp" type="tel" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail</label>
-            <input name="email" type="email" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="seu@email.com" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Cidade/Região da Obra</label>
-            <input name="city" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Gramado, RS" />
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Tipo de Projeto</label>
-            <select name="projectType" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="Chalé Contemporâneo">Chalé Contemporâneo</option>
-              <option value="Chalé A-Frame">Chalé A-Frame / Alpine</option>
-              <option value="Chalé Minimalista">Chalé Minimalista / Nordic</option>
-              <option value="Projeto Personalizado">Projeto Personalizado / Outros</option>
-            </select>
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Objetivo</label>
-            <select name="objective" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="Uso Próprio / Lazer">Uso Próprio / Lazer</option>
-              <option value="Aluguel por Temporada">Aluguel por Temporada / Investimento</option>
-              <option value="Moradia">Moradia</option>
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Possui Terreno?</label>
-            <select name="hasLand" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="Sim">Sim, já possuo</option>
-              <option value="Não">Não, estou procurando</option>
-              <option value="Em negociação">Em fase de negociação</option>
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Número de Chalés</label>
-            <input name="numberOfChalets" type="number" min="1" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: 1" />
-          </div>
-
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Conte mais sobre sua ideia</label>
-            <textarea name="message" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={3} placeholder="Descreva o que você imagina para o seu refúgio..."></textarea>
-          </div>
-          
-          <div className="md:col-span-2 pt-10">
-            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-primary/95 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-500 shadow-[0_20px_40px_rgba(64,128,89,0.15)] rounded-sm">
-              Solicitar Orçamento do Projeto
-            </button>
-            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Nosso time de arquitetura entrará em contato em breve.</p>
-          </div>
-        </form>
       </div>
     </section>
   );
 };
+
 
 
 export const WhatsAppButton = () => {
