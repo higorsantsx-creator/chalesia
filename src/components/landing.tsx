@@ -138,6 +138,7 @@ const InteractiveGallery = () => {
   );
 };
 
+export const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = React.useState(false);
 
