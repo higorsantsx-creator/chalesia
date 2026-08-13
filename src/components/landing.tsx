@@ -947,6 +947,29 @@ export const SocialProof = () => {
 
 export const BookingForm = () => {
   const [step, setStep] = React.useState(0);
+  const [modal, setModal] = React.useState<{
+    isOpen: boolean;
+    type: 'info' | 'warning' | 'success' | 'error' | 'confirm';
+    title: string;
+    message: string;
+    confirmLabel?: string;
+    cancelLabel?: string;
+    onConfirm?: () => void;
+    details?: string[];
+  }>({
+    isOpen: false,
+    type: 'info',
+    title: '',
+    message: ''
+  });
+
+  const showModal = (config: Partial<typeof modal>) => {
+    setModal(prev => ({ ...prev, ...config, isOpen: true }));
+  };
+
+  const closeModal = () => {
+    setModal(prev => ({ ...prev, isOpen: false }));
+  };
   const [formData, setFormData] = React.useState({
     projectType: "",
     hasLand: "",
