@@ -1279,7 +1279,7 @@ export const BookingForm = () => {
                 <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
                   <ChevronLeft size={16} /> Voltar
                 </button>
-                {step === steps.length - 1 ? (
+                {step === activeSteps.length - 1 ? (
                    <button 
                      onClick={() => {
                        const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
