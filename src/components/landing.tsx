@@ -492,13 +492,13 @@ export const Projects = () => {
               className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-48" : "")}
               data-cursor="Explorar"
             >
-              <div className="aspect-[4/5] overflow-hidden mb-12 relative rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
-                <div className="absolute inset-0 z-0">
+              <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
+                <div className="aspect-[4/5]">
                   <ParallaxImage 
                     src={projeto.image} 
                     alt={projeto.name}
                     containerClassName="w-full h-full"
-                    className="transition-transform duration-1000 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
                 </div>
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
