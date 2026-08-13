@@ -950,7 +950,33 @@ export const BookingForm = () => {
           <div className="hidden md:block w-96 bg-card border border-border/10 p-12 relative overflow-hidden">
              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-muted-foreground mb-8">Visão do Projeto</h4>
              <div className="aspect-square bg-muted/20 flex items-center justify-center border border-dashed border-border">
-                <p className="text-xs text-muted-foreground">Seu projeto será construído aqui...</p>
+                <div className="relative w-full h-full">
+                  {/* Base Layer */}
+                  <motion.div 
+                    animate={{ 
+                      scale: formData.numberOfChalets === "1" ? 1 : 0.8,
+                      x: formData.numberOfChalets === "1" ? 0 : -20
+                    }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                     <div className="w-24 h-32 bg-primary/20 border border-primary/40 relative">
+                        <div className="absolute top-0 left-0 w-full h-0 border-l-[48px] border-l-transparent border-r-[48px] border-r-transparent border-b-[32px] border-b-primary/30 -translate-y-full"></div>
+                     </div>
+                  </motion.div>
+                  
+                  {/* Multiplier for more chalets */}
+                  {(parseInt(formData.numberOfChalets) > 1) && (
+                    <motion.div 
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 20 }}
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                       <div className="w-20 h-24 bg-primary/10 border border-primary/20 relative">
+                          <div className="absolute top-0 left-0 w-full h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[24px] border-b-primary/20 -translate-y-full"></div>
+                       </div>
+                    </motion.div>
+                  )}
+                </div>
              </div>
           </div>
         </div>
