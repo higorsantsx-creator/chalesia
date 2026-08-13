@@ -554,7 +554,7 @@ export const SocialProof = () => {
   const prev = () => setIndex((i) => (i - 1 + REVIEWS.length) % REVIEWS.length);
 
   return (
-    <section id="diferenciais" className="py-32 md:py-56 bg-secondary/5 overflow-hidden">
+    <section id="diferenciais" className="py-32 md:py-56 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24">
           <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Depoimentos</span>
