@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
@@ -221,6 +221,110 @@ const StyleGallery = ({ images }: { images: string[] }) => {
         );
       })}
     </div>
+  );
+};
+
+interface NotificationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  type: 'info' | 'warning' | 'success' | 'error' | 'confirm';
+  title: string;
+  message: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  onConfirm?: () => void;
+  details?: string[];
+}
+
+const NotificationModal = ({ 
+  isOpen, 
+  onClose, 
+  type, 
+  title, 
+  message, 
+  confirmLabel = "Entendido", 
+  cancelLabel = "Cancelar", 
+  onConfirm,
+  details 
+}: NotificationModalProps) => {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 bg-background/60 backdrop-blur-md"
+            onClick={type !== 'confirm' ? onClose : undefined}
+          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 10 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full max-w-md bg-card border border-border/10 shadow-[0_40px_80px_rgba(0,0,0,0.1)] p-8 md:p-10 rounded-sm overflow-hidden"
+          >
+            {/* Background Texture/Accent */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-primary/20" />
+            
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-6 p-4 rounded-full bg-primary/5">
+                {type === 'info' && <Info size={32} strokeWidth={1.5} className="text-primary" />}
+                {type === 'warning' && <AlertCircle size={32} strokeWidth={1.5} className="text-primary" />}
+                {type === 'success' && <CheckCircle size={32} strokeWidth={1.5} className="text-primary" />}
+                {type === 'error' && <AlertCircle size={32} strokeWidth={1.5} className="text-destructive" />}
+                {type === 'confirm' && <RefreshCw size={32} strokeWidth={1.5} className="text-primary" />}
+              </div>
+
+              <h3 className="text-xl md:text-2xl font-serif font-bold mb-3 tracking-tight">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-sans tracking-wide">{message}</p>
+
+              {details && details.length > 0 && (
+                <ul className="w-full space-y-3 mb-8 text-left bg-muted/5 p-4 border border-border/5 rounded-sm">
+                  {details.map((detail, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-xs font-bold uppercase tracking-widest text-primary/80">
+                      <div className="w-1 h-1 rounded-full bg-primary mt-1.5 shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                {type === 'confirm' && (
+                  <button
+                    onClick={onClose}
+                    className="flex-1 px-8 py-4 border border-border text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-muted/10 transition-all rounded-sm"
+                  >
+                    {cancelLabel}
+                  </button>
+                )}
+                <button
+                  onClick={onConfirm || onClose}
+                  className={cn(
+                    "flex-1 px-8 py-4 text-[10px] uppercase tracking-[0.2em] font-bold transition-all rounded-sm shadow-lg",
+                    type === 'error' ? "bg-destructive text-destructive-foreground hover:bg-destructive/90" : "bg-primary text-primary-foreground hover:bg-primary/90"
+                  )}
+                >
+                  {confirmLabel}
+                </button>
+              </div>
+            </div>
+
+            {type !== 'confirm' && (
+              <button 
+                onClick={onClose}
+                className="absolute top-6 right-6 text-muted-foreground hover:text-foreground transition-colors p-2"
+              >
+                <X size={20} strokeWidth={1} />
+              </button>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };
 
@@ -1263,14 +1367,22 @@ export const BookingForm = () => {
             
             <div className="flex justify-between mt-12 pt-8 border-t border-border">
               <button onClick={() => {
-                if (window.confirm("Deseja realmente recomeçar o seu projeto? Todas as informações serão perdidas.")) {
-                  setFormData({
-                    projectType: "", hasLand: "", landSize: "", landAccess: "", numberOfChalets: "1",
-                    objective: "", architectureStyle: "", features: [], budget: "", state: "",
-                    city: "", timeline: "", name: "", whatsapp: "", email: "", message: ""
-                  });
-                  setStep(0);
-                }
+                showModal({
+                  type: 'confirm',
+                  title: 'Deseja recomeçar?',
+                  message: 'Você perderá todas as respostas preenchidas até agora e voltará ao início do configurador.',
+                  confirmLabel: 'Recomeçar Projeto',
+                  cancelLabel: 'Cancelar',
+                  onConfirm: () => {
+                    setFormData({
+                      projectType: "", hasLand: "", landSize: "", landAccess: "", numberOfChalets: "1",
+                      objective: "", architectureStyle: "", features: [], budget: "", state: "",
+                      city: "", timeline: "", name: "", whatsapp: "", email: "", message: ""
+                    });
+                    setStep(0);
+                    closeModal();
+                  }
+                });
               }} className="flex items-center gap-2 text-[8px] uppercase font-bold tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors">
                 <RefreshCw size={10} /> Recomeçar
               </button>
@@ -1284,9 +1396,19 @@ export const BookingForm = () => {
                      onClick={() => {
                        const showQuantity = activeSteps.some(s => s.id === 'quantity');
                        const showObjective = activeSteps.some(s => s.id === 'objective');
-                       const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A${showQuantity ? `%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A` : ""}${showObjective ? `%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A` : ""}%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
-                       window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
-                     }}
+                        const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A${showQuantity ? `%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A` : ""}${showObjective ? `%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A` : ""}%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
+                        
+                        showModal({
+                          type: 'success',
+                          title: 'Tudo pronto!',
+                          message: 'Seu projeto foi preparado com sucesso. Estamos abrindo o WhatsApp para continuar o atendimento personalizado.',
+                          confirmLabel: 'Abrir WhatsApp',
+                          onConfirm: () => {
+                            window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
+                            closeModal();
+                          }
+                        });
+                      }}
                      className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
                    >
                      Solicitar Meu Orçamento
@@ -1297,7 +1419,18 @@ export const BookingForm = () => {
                       const currentStepId = activeSteps[step]?.id;
                       if (currentStepId === 'personal') { // Validate contact step
                         if (!formData.name || !formData.whatsapp || !formData.email) {
-                          alert("Por favor, preencha todos os campos obrigatórios.");
+                          const missing = [];
+                          if (!formData.name) missing.push("Nome Completo");
+                          if (!formData.whatsapp) missing.push("WhatsApp");
+                          if (!formData.email) missing.push("E-mail");
+
+                          showModal({
+                            type: 'warning',
+                            title: 'Complete seu projeto',
+                            message: 'Antes de continuar, precisamos de mais algumas informações de contato para personalizar seu atendimento.',
+                            details: missing,
+                            confirmLabel: 'Voltar ao Projeto'
+                          });
                           return;
                         }
                       }
@@ -1361,6 +1494,10 @@ export const BookingForm = () => {
           </div>
         </div>
       </div>
+      <NotificationModal 
+        {...modal}
+        onClose={closeModal}
+      />
     </section>
   );
 };
