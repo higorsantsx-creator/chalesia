@@ -266,7 +266,7 @@ const PROJETOS = [
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
-    image: chaleNordicReferencia.url,
+    image: chaleAlpinePool.url,
   },
   {
     id: 3,
