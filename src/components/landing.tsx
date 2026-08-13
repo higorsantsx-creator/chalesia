@@ -12,6 +12,7 @@ import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
 import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
+import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 
 
 
@@ -264,7 +265,7 @@ const PROJETOS = [
     name: "Chalé Alpine Elite",
     category: "Conceito Nordic",
     description: "A-frame reinterpretado com materiais nobres e foco em conforto térmico extremo.",
-    image: chale_3.url,
+    image: chaleNordicReferencia.url,
   },
   {
     id: 3,
