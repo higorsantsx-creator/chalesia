@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
@@ -786,103 +786,465 @@ export const SocialProof = () => {
 
 
 export const BookingForm = () => {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const whatsapp = formData.get("whatsapp");
-    const city = formData.get("city");
-    const projectType = formData.get("projectType");
-    const objective = formData.get("objective");
-    const numberOfChalets = formData.get("numberOfChalets");
-    const hasLand = formData.get("hasLand");
-    const message = formData.get("message");
+  const [step, setStep] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    projectType: "",
+    hasLand: "",
+    landSize: "",
+    landAccess: "",
+    numberOfChalets: "1",
+    objective: "",
+    architectureStyle: "",
+    features: [] as string[],
+    budget: "",
+    state: "",
+    city: "",
+    timeline: "",
+    name: "",
+    whatsapp: "",
+    email: "",
+    message: ""
+  });
 
-    const text = `Olá! Gostaria de solicitar um orçamento para construção com a Chalés IA.%0A%0A*Dados do Projeto:*%0A- *Nome:* ${name}%0A- *WhatsApp:* ${whatsapp}%0A- *Cidade/Região:* ${city}%0A- *Tipo de Projeto:* ${projectType}%0A- *Objetivo:* ${objective}%0A- *Número de Chalés:* ${numberOfChalets}%0A- *Possui Terreno:* ${hasLand}%0A${message ? `- *Mensagem:* ${message}` : ""}%0A%0AEstou interessado em transformar meu refúgio em realidade.`;
-    
-    window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
+  const steps = [
+    { title: "Tipo de Projeto" },
+    { title: "Terreno" },
+    { title: "Quantidade" },
+    { title: "Objetivo" },
+    { title: "Estilo Arquitetônico" },
+    { title: "Ambientes" },
+    { title: "Investimento" },
+    { title: "Localização" },
+    { title: "Prazo" },
+    { title: "Dados Pessoais" },
+    { title: "Mensagem" },
+    { title: "Revisão" }
+  ];
+
+  const updateField = (field: string, value: any) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const nextStep = () => setStep((s) => Math.min(s + 1, steps.length - 1));
+  const prevStep = () => setStep((s) => Math.max(s - 1, 0));
+
+  const renderStep = () => {
+    switch (step) {
+      case 0:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { label: "Um chalé", desc: "Uso próprio ou lazer", val: "Um chalé" },
+              { label: "Vários chalés", desc: "Hospedagem ou investimento", val: "Vários chalés" },
+              { label: "Personalizado", desc: "Arquitetura sob medida", val: "Projeto personalizado" }
+            ].map((opt) => (
+              <button 
+                key={opt.val}
+                onClick={() => { updateField("projectType", opt.val); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.projectType === opt.val ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <Home className="mb-4 text-primary" size={24} />
+                <h3 className="font-serif font-bold text-lg mb-2">{opt.label}</h3>
+                <p className="text-sm text-muted-foreground">{opt.desc}</p>
+              </button>
+            ))}
+          </div>
+        );
+      case 1:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {["Sim", "Ainda não", "Em negociação"].map((opt) => (
+              <button 
+                key={opt}
+                onClick={() => { updateField("hasLand", opt); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.hasLand === opt ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <Compass className="mb-4 text-primary" size={24} />
+                <h3 className="font-serif font-bold text-lg mb-2">{opt}</h3>
+              </button>
+            ))}
+          </div>
+        );
+      case 2:
+        return (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((num) => (
+              <button 
+                key={num}
+                onClick={() => { updateField("numberOfChalets", num.toString()); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm transition-all hover:border-primary",
+                  formData.numberOfChalets === num.toString() ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <span className="text-4xl font-serif font-bold">{num}</span>
+              </button>
+            ))}
+          </div>
+        );
+      case 3:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { title: "REFÚGIO", desc: "Uso próprio, descanso e lazer.", val: "Refúgio" },
+              { title: "INVESTIMENTO", desc: "Chalés para aluguel e renda.", val: "Investimento" },
+              { title: "MORADIA", desc: "Um espaço pensado para viver.", val: "Moradia" },
+              { title: "HOSPEDAGEM", desc: "Empreendimento profissional.", val: "Hospedagem" }
+            ].map((opt) => (
+              <button 
+                key={opt.val}
+                onClick={() => { updateField("objective", opt.val); nextStep(); }}
+                className={cn(
+                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.objective === opt.val ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-2 text-primary">{opt.title}</h3>
+                <p className="text-sm text-muted-foreground">{opt.desc}</p>
+              </button>
+            ))}
+          </div>
+        );
+      case 4:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              { label: "CONTEMPORÂNEO", val: "Contemporâneo", img: chale_1.url },
+              { label: "A-FRAME / ALPINE", val: "A-Frame", img: chale_2.url },
+              { label: "NORDIC / MINIMALISTA", val: "Nordic", img: chaleNordicReferencia.url },
+              { label: "PERSONALIZADO", val: "Personalizado", img: interiorChaleAsset.url }
+            ].map((opt) => (
+              <button 
+                key={opt.val}
+                onClick={() => { updateField("architectureStyle", opt.val); nextStep(); }}
+                className={cn(
+                  "relative aspect-[16/10] group overflow-hidden rounded-sm border-2 transition-all",
+                  formData.architectureStyle === opt.val ? "border-primary" : "border-transparent"
+                )}
+              >
+                <img src={opt.img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                <div className="absolute bottom-6 left-6 text-left">
+                  <h3 className="text-white text-xs uppercase tracking-[0.3em] font-bold">{opt.label}</h3>
+                </div>
+              </button>
+            ))}
+          </div>
+        );
+      case 5:
+        const differentials = ["Piscina", "Ofurô", "Banheira", "Deck", "Lareira", "Varanda", "Área Gourmet", "Churrasqueira", "Vista Panorâmica"];
+        return (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {differentials.map((item) => (
+              <button 
+                key={item}
+                onClick={() => {
+                  const newFeatures = formData.features.includes(item)
+                    ? formData.features.filter(f => f !== item)
+                    : [...formData.features, item];
+                  updateField("features", newFeatures);
+                }}
+                className={cn(
+                  "p-4 border rounded-sm text-center transition-all text-xs font-bold uppercase tracking-widest",
+                  formData.features.includes(item) ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-primary/50"
+                )}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        );
+      case 6:
+        return (
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              "Até R$ 150 mil",
+              "R$ 150 mil – R$ 250 mil",
+              "R$ 250 mil – R$ 400 mil",
+              "R$ 400 mil – R$ 600 mil",
+              "Acima de R$ 600 mil",
+              "Ainda não sei"
+            ].map((range) => (
+              <button 
+                key={range}
+                onClick={() => { updateField("budget", range); nextStep(); }}
+                className={cn(
+                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.budget === range ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <span className="text-sm font-bold tracking-widest uppercase">{range}</span>
+              </button>
+            ))}
+            <p className="text-[10px] text-muted-foreground mt-4 italic uppercase tracking-widest">
+              A faixa indicada não representa um orçamento final. O valor depende das características e especificações da obra.
+            </p>
+          </div>
+        );
+      case 7:
+        return (
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Estado</label>
+              <input 
+                value={formData.state} 
+                onChange={(e) => updateField("state", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="Ex: Alagoas"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Cidade / Região</label>
+              <input 
+                value={formData.city} 
+                onChange={(e) => updateField("city", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="Ex: Maceió"
+              />
+            </div>
+          </div>
+        );
+      case 8:
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              "Nos próximos 3 meses",
+              "3 – 6 meses",
+              "6 – 12 meses",
+              "Mais de 12 meses",
+              "Ainda estou planejando"
+            ].map((time) => (
+              <button 
+                key={time}
+                onClick={() => { updateField("timeline", time); nextStep(); }}
+                className={cn(
+                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.timeline === time ? "border-primary bg-primary/5" : "border-border"
+                )}
+              >
+                <span className="text-[10px] font-bold tracking-widest uppercase">{time}</span>
+              </button>
+            ))}
+          </div>
+        );
+      case 9:
+        return (
+          <div className="space-y-8">
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">Nome Completo</label>
+              <input 
+                value={formData.name} 
+                onChange={(e) => updateField("name", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="Como podemos te chamar?"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">WhatsApp</label>
+              <input 
+                value={formData.whatsapp} 
+                onChange={(e) => updateField("whatsapp", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="(00) 00000-0000"
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground">E-mail</label>
+              <input 
+                value={formData.email} 
+                onChange={(e) => updateField("email", e.target.value)}
+                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                placeholder="seu@email.com"
+              />
+            </div>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="space-y-4">
+            <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted-foreground block">Existe algo especial que você gostaria de nos contar? (Opcional)</label>
+            <textarea 
+              value={formData.message}
+              onChange={(e) => updateField("message", e.target.value)}
+              className="w-full bg-muted/20 border border-border p-6 rounded-sm outline-none focus:border-primary transition-colors min-h-[200px]"
+              placeholder="Ex.: Quero construir três chalés para aluguel, com piscina e vista para as montanhas..."
+            />
+          </div>
+        );
+      case 11:
+        const summary = [
+          { label: "Tipo", val: formData.projectType, step: 0 },
+          { label: "Terreno", val: formData.hasLand, step: 1 },
+          { label: "Chalés", val: formData.numberOfChalets, step: 2 },
+          { label: "Objetivo", val: formData.objective, step: 3 },
+          { label: "Estilo", val: formData.architectureStyle, step: 4 },
+          { label: "Diferenciais", val: formData.features.join(", "), step: 5 },
+          { label: "Investimento", val: formData.budget, step: 6 },
+          { label: "Localização", val: `${formData.city} - ${formData.state}`, step: 7 },
+          { label: "Prazo", val: formData.timeline, step: 8 }
+        ];
+        return (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              {summary.map((item) => (
+                <div key={item.label} className="group relative border-b border-border/10 pb-4">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <span className="text-[8px] uppercase tracking-widest text-muted-foreground block mb-1">{item.label}</span>
+                      <span className="text-sm font-serif font-bold">{item.val || "Não informado"}</span>
+                    </div>
+                    <button onClick={() => setStep(item.step)} className="opacity-0 group-hover:opacity-100 transition-opacity text-[8px] uppercase tracking-widest font-bold text-primary flex items-center gap-1">
+                      <Pencil size={8} /> Editar
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-12 p-8 bg-primary/5 rounded-sm border border-primary/10">
+               <h4 className="text-[10px] uppercase tracking-[0.2em] font-bold mb-4">Seus Contatos</h4>
+               <p className="text-sm font-serif">{formData.name} • {formData.whatsapp} • {formData.email}</p>
+            </div>
+          </div>
+        );
+      default:
+        return <div className="p-20 text-center text-muted-foreground">Etapa {step + 1} em construção...</div>;
+    }
   };
 
   return (
     <section id="orcamento" className="py-24 md:py-40 px-6 bg-background">
-      <div className="max-w-5xl mx-auto bg-card p-8 md:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)] relative overflow-hidden rounded-sm border border-border/5">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
-        
-        <div className="relative z-10 text-center mb-16">
-          <span className="text-primary text-[10px] uppercase tracking-[0.3em] font-sans font-bold block mb-4">Contato</span>
-          <h2 className="text-4xl md:text-6xl font-serif mb-6">Vamos tirar seu projeto do papel?</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">Conte um pouco sobre o que você imagina. A partir daí, podemos começar a transformar essa ideia em um projeto real.</p>
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-16">
+          <div className="flex-1">
+            <div className="flex justify-between items-end mb-12">
+               <div>
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-primary mb-2 block">Seu Projeto</span>
+                  <h2 className="text-4xl font-serif">{steps[step].title}</h2>
+               </div>
+               <span className="text-xs font-bold font-mono tracking-widest text-muted-foreground">0{step + 1} / 0{steps.length}</span>
+            </div>
+            
+            <div className="min-h-[450px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, x: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.98 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {renderStep()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            
+            <div className="flex justify-between mt-12 pt-8 border-t border-border">
+              <button onClick={() => {
+                if (window.confirm("Deseja realmente recomeçar o seu projeto? Todas as informações serão perdidas.")) {
+                  setFormData({
+                    projectType: "", hasLand: "", landSize: "", landAccess: "", numberOfChalets: "1",
+                    objective: "", architectureStyle: "", features: [], budget: "", state: "",
+                    city: "", timeline: "", name: "", whatsapp: "", email: "", message: ""
+                  });
+                  setStep(0);
+                }
+              }} className="flex items-center gap-2 text-[8px] uppercase font-bold tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors">
+                <RefreshCw size={10} /> Recomeçar
+              </button>
+              
+              <div className="flex gap-8">
+                <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
+                  <ChevronLeft size={16} /> Voltar
+                </button>
+                {step === steps.length - 1 ? (
+                   <button 
+                     onClick={() => {
+                       const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
+                       window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
+                     }}
+                     className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
+                   >
+                     Solicitar Meu Orçamento
+                   </button>
+                ) : (
+                   <button 
+                    onClick={() => {
+                      if (step === 9) { // Validate contact step
+                        if (!formData.name || !formData.whatsapp || !formData.email) {
+                          alert("Por favor, preencha todos os campos obrigatórios.");
+                          return;
+                        }
+                      }
+                      nextStep();
+                    }} 
+                    className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all"
+                   >
+                     Continuar <ChevronRight size={16} />
+                   </button>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          <div className="hidden md:block w-96 bg-card border border-border/10 p-12 relative overflow-hidden">
+             <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-muted-foreground mb-8">Visão do Projeto</h4>
+             <div className="aspect-[3/4] bg-muted/10 flex items-center justify-center border border-border/20 rounded-sm relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10" />
+                
+                <div className="relative z-0 w-full h-full flex items-center justify-center">
+                  <AnimatePresence>
+                    {Array.from({ length: parseInt(formData.numberOfChalets) || 1 }).map((_, i) => (
+                      <motion.div 
+                        key={i}
+                        initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                        animate={{ 
+                          opacity: 1, 
+                          y: 0, 
+                          scale: 1,
+                          x: (i - ((parseInt(formData.numberOfChalets) - 1) / 2)) * 40,
+                          z: -i * 10
+                        }}
+                        exit={{ opacity: 0, scale: 0.5 }}
+                        transition={{ type: "spring", stiffness: 100, delay: i * 0.1 }}
+                        className="absolute"
+                      >
+                         <div className="w-24 h-32 bg-primary/20 border-2 border-primary/40 relative shadow-2xl backdrop-blur-sm">
+                            <div className="absolute top-0 left-0 w-full h-0 border-l-[48px] border-l-transparent border-r-[48px] border-r-transparent border-b-[32px] border-b-primary/30 -translate-y-full"></div>
+                            {/* Window details */}
+                            <div className="absolute inset-4 border border-primary/10 flex flex-col gap-2">
+                              <div className="h-full w-full bg-primary/5" />
+                            </div>
+                         </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+
+                <div className="absolute bottom-8 left-0 w-full px-8 z-20">
+                   <div className="space-y-2">
+                      <p className="text-[8px] uppercase tracking-[0.3em] font-bold text-primary">Configuração Atual</p>
+                      <h5 className="text-lg font-serif">{formData.architectureStyle || "Estilo Indefinido"}</h5>
+                      <div className="flex flex-wrap gap-2 mt-4">
+                         {formData.features.slice(0, 3).map(f => (
+                           <span key={f} className="text-[6px] uppercase tracking-widest bg-primary/10 px-2 py-1 rounded-full">{f}</span>
+                         ))}
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
         </div>
-        
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Nome Completo</label>
-            <input name="name" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Maria Silva" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">WhatsApp</label>
-            <input name="whatsapp" type="tel" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="(00) 00000-0000" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">E-mail</label>
-            <input name="email" type="email" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="seu@email.com" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Cidade/Região da Obra</label>
-            <input name="city" type="text" required className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: Gramado, RS" />
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Tipo de Projeto</label>
-            <select name="projectType" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="Chalé Contemporâneo">Chalé Contemporâneo</option>
-              <option value="Chalé A-Frame">Chalé A-Frame / Alpine</option>
-              <option value="Chalé Minimalista">Chalé Minimalista / Nordic</option>
-              <option value="Projeto Personalizado">Projeto Personalizado / Outros</option>
-            </select>
-          </div>
-          
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Objetivo</label>
-            <select name="objective" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="Uso Próprio / Lazer">Uso Próprio / Lazer</option>
-              <option value="Aluguel por Temporada">Aluguel por Temporada / Investimento</option>
-              <option value="Moradia">Moradia</option>
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Possui Terreno?</label>
-            <select name="hasLand" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors appearance-none text-sm">
-              <option value="Sim">Sim, já possuo</option>
-              <option value="Não">Não, estou procurando</option>
-              <option value="Em negociação">Em fase de negociação</option>
-            </select>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Número de Chalés</label>
-            <input name="numberOfChalets" type="number" min="1" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors text-sm" placeholder="Ex: 1" />
-          </div>
-
-          <div className="md:col-span-2 space-y-2">
-            <label className="text-[10px] uppercase tracking-[0.2em] font-sans font-bold text-muted-foreground/60">Conte mais sobre sua ideia</label>
-            <textarea name="message" className="w-full bg-transparent border-b border-border py-3 focus:border-primary outline-none transition-colors resize-none text-sm" rows={3} placeholder="Descreva o que você imagina para o seu refúgio..."></textarea>
-          </div>
-          
-          <div className="md:col-span-2 pt-10">
-            <button type="submit" className="w-full bg-primary text-primary-foreground py-6 uppercase tracking-[0.3em] font-bold text-[10px] hover:bg-primary/95 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-500 shadow-[0_20px_40px_rgba(64,128,89,0.15)] rounded-sm">
-              Solicitar Orçamento do Projeto
-            </button>
-            <p className="text-[10px] text-center mt-6 text-muted-foreground uppercase tracking-widest opacity-50">Nosso time de arquitetura entrará em contato em breve.</p>
-          </div>
-        </form>
       </div>
     </section>
   );
 };
+
 
 
 export const WhatsAppButton = () => {
