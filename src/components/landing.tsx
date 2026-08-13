@@ -43,11 +43,17 @@ export const Navbar = () => {
               alt="Chalés IA" 
               className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
             />
-            <span className="text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity">
+            <span className={cn(
+              "text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity",
+              !isScrolled && "text-black"
+            )}>
               CHALÉS IA
             </span>
           </a>
-          <div className="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans">
+          <div className={cn(
+            "hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans",
+            !isScrolled && "text-black/80"
+          )}>
             <a href="/" className="hover:text-primary transition-colors">Início</a>
             <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
             <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
