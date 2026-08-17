@@ -10,6 +10,7 @@ import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
+import chaleObra4 from "@/assets/chale-obra-4.jpg.asset.json";
 
 export const Route = createFileRoute("/chale/$chaleId")({
   component: ChaleDetailsPage,
@@ -47,7 +48,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Chalé Sunset View",
     category: "Design Icônico",
     description: "Interior iluminado e pé-direito duplo, projetado para capturar a luz natural. Uma obra-prima de transparência e calor.",
-    image: chale_6.url,
+    image: chaleObra4.url,
     tagline: "A luz como elemento de design.",
     features: ["Fachada de Vidro de Segurança", "Mezanino Panorâmico", "Escada Helicoidal", "Revestimentos em Madeira Nobre"],
     specs: { size: "110m²", time: "7 Meses", energy: "A++" }
