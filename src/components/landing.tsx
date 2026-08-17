@@ -612,6 +612,61 @@ export const Philosophy = () => {
 };
 
 
+const CATALOG_PROJECTS = [
+  {
+    id: 1,
+    name: "Chalé Alpine A-Frame",
+    category: "A-Frame",
+    description: "Um projeto compacto, acolhedor e pensado para aproveitar ao máximo a paisagem.",
+    image: alpine1.url,
+    gallery: [alpine1.url, alpine2.url, alpine3.url],
+    sqm: "42m²",
+    bedrooms: "2 quartos",
+    bathrooms: "1 banheiro",
+    features: ["Varanda Panorâmica", "Deck em Madeira", "Isolamento Térmico"],
+    floorPlan: alpine1.url, // Placeholder
+  },
+  {
+    id: 2,
+    name: "Residência Nordic Glass",
+    category: "Premium",
+    description: "Arquitetura minimalista com grandes panos de vidro e integração total com a natureza.",
+    image: nordic1.url,
+    gallery: [nordic1.url, nordic2.url, nordic3.url],
+    sqm: "85m²",
+    bedrooms: "3 quartos",
+    bathrooms: "2 banheiros",
+    features: ["Fachada em Vidro", "Pé-direito Duplo", "Acabamentos Premium"],
+    floorPlan: nordic1.url,
+  },
+  {
+    id: 3,
+    name: "Refúgio Contemporâneo",
+    category: "Contemporâneos",
+    description: "Design moderno que desafia as formas tradicionais com elegância e sofisticação.",
+    image: contemporaneo1.url,
+    gallery: [contemporaneo1.url, contemporaneo2.url, contemporaneo3.url],
+    sqm: "120m²",
+    bedrooms: "3 quartos",
+    bathrooms: "3 banheiros",
+    features: ["Piscina Integrada", "Smart Home", "Energia Solar"],
+    floorPlan: contemporaneo1.url,
+  },
+  {
+    id: 4,
+    name: "Chalé Rústico Moderno",
+    category: "Rústicos",
+    description: "A releitura do rústico com toques de modernidade e extremo conforto.",
+    image: chale_1.url,
+    gallery: [chale_1.url, chale_2.url, chale_3.url],
+    sqm: "65m²",
+    bedrooms: "2 quartos",
+    bathrooms: "1 banheiro",
+    features: ["Lareira Central", "Pedra Natural", "Cozinha Integrada"],
+    floorPlan: chale_1.url,
+  }
+];
+
 const PROJETOS = [
   {
     id: 1,
@@ -642,6 +697,7 @@ const PROJETOS = [
     image: chale_obra_4.url,
   }
 ];
+
 
 
 export const Process = () => {
