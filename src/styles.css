@@ -119,6 +119,13 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }
 
