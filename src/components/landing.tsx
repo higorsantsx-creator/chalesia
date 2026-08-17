@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X, Zap } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from "framer-motion";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X, Zap, Maximize2, Bed, Bath, Square } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
+import { CATALOG_DATA, ProjectModel } from "@/lib/catalog-data";
 import { enhanceImageWithAI } from "@/lib/image-enhancement.functions";
 import { useServerFn } from "@tanstack/react-start";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
