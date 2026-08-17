@@ -13,6 +13,12 @@ import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
+import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
+import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
+import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
+import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
+import arquiteturaOrganicaAsset from "@/assets/chale-arquitetura-organica.jpg.asset.json";
+
 
 import gallery1 from "@/assets/gallery-1.png.asset.json";
 import gallery2 from "@/assets/gallery-2.png.asset.json";
