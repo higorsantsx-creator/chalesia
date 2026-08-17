@@ -1687,7 +1687,7 @@ export const Footer = () => {
             Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
           <div className="flex gap-4">
-            <a href="https://instagram.com/chalesia" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
+            <a href="https://www.instagram.com/chales_ia/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
               <svg 
                 viewBox="0 0 24 24" 
                 width="18" 
