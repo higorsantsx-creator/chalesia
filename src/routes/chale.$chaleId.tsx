@@ -39,7 +39,7 @@ const CHALE_DATA: Record<string, any> = {
     name: "Residência Hillside",
     category: "Arquitetura Moderna",
     description: "Design contemporâneo com grandes vãos de vidro, unindo sofisticação urbana e refúgio natural. Perfeito para quem não abre mão da elegância.",
-    image: chale_4.url,
+    image: chale_3.url,
     tagline: "Transparência e solidez arquitetônica.",
     features: ["Vãos Livres em Vidro", "Alvenaria Estrutural Aparente", "Pé Direito Duplo", "Acabamentos Premium"],
     specs: { size: "140m²", time: "8 Meses", energy: "A+" }

@@ -659,7 +659,7 @@ const PROJETOS = [
     name: "Residência Hillside",
     category: "Arquitetura Moderna",
     description: "Design contemporâneo com grandes vãos de vidro, unindo sofisticação urbana e refúgio natural.",
-    image: chale_4.url,
+    image: chale_3.url,
   },
   {
     id: 4,
