@@ -445,7 +445,7 @@ export const Navbar = () => {
 
             <button 
               onClick={() => setIsMenuOpen(true)}
-              className={cn(
+              aria-label="Abrir menu"
                 "lg:hidden p-2 transition-colors",
                 !isScrolled ? "text-black" : "text-foreground"
               )}
