@@ -420,6 +420,7 @@ export const Navbar = () => {
           )}>
             <a href="/" className="hover:text-primary transition-colors">Início</a>
             <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
+            <a href="/#catalogo" className="hover:text-primary transition-colors">Catálogo</a>
             <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
             <a href="/#processo" className="hover:text-primary transition-colors">Processo</a>
             <a href="/#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
