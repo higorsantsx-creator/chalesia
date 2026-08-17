@@ -377,10 +377,10 @@ const NotificationModal = ({
 };
 
 export const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [isScrolled, setIsScrolled] = React.useState(false);
-
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -388,56 +388,124 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { href: "/", label: "Início" },
+    { href: "/#projetos", label: "Projetos" },
+    { href: "/#sobre", label: "Sobre" },
+    { href: "/#processo", label: "Processo" },
+    { href: "/#catalogo", label: "Catálogo" },
+    { href: "/#diferenciais", label: "Diferenciais" },
+    { href: "/#contato", label: "Contato" },
+  ];
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 md:px-12",
-        isScrolled ? "bg-background/95 backdrop-blur-2xl py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-border/5" : "bg-white/95 backdrop-blur-md"
-      )}
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 md:px-12",
+          isScrolled ? "bg-background/95 backdrop-blur-2xl py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-border/5" : "bg-white/95 backdrop-blur-md"
+        )}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <a href="/" className="flex items-center gap-3 group">
+              <img 
+                src={logoAssetV2.url} 
+                alt="Chalés IA" 
+                className="h-8 w-8 md:h-10 md:w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
+              />
+              <span className={cn(
+                "text-xl md:text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity",
+                !isScrolled && "text-black"
+              )}>
+                CHALÉS IA
+              </span>
+            </a>
+          </div>
 
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <a href="/" className="flex items-center gap-3 group">
-            <img 
-              src={logoAssetV2.url} 
-              alt="Chalés IA" 
-              className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
-            />
-            <span className={cn(
-              "text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity",
-              !isScrolled && "text-black"
+          <div className="flex items-center gap-4 md:gap-8">
+            <div className={cn(
+              "hidden lg:flex items-center gap-6 text-[10px] uppercase tracking-widest font-sans font-bold",
+              !isScrolled && "text-black/80"
             )}>
-              CHALÉS IA
-            </span>
-          </a>
-          <div className={cn(
-            "hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans",
-            !isScrolled && "text-black/80"
-          )}>
-            <a href="/" className="hover:text-primary transition-colors">Início</a>
-            <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
-            <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
-            <a href="/#processo" className="hover:text-primary transition-colors">Processo</a>
-            <a href="/#catalogo" className="hover:text-primary transition-colors">Catálogo</a>
-            <a href="/#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
-            <a href="/#contato" className="hover:text-primary transition-colors">Contato</a>
+              {navLinks.map(link => (
+                <a key={link.label} href={link.href} className="hover:text-primary transition-colors">{link.label}</a>
+              ))}
+            </div>
+            
+            <a 
+              href="#orcamento" 
+              className="hidden sm:flex bg-primary text-primary-foreground px-4 md:px-6 py-2 md:py-2.5 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-300 items-center gap-2 rounded-sm"
+            >
+              Orçamento
+              <ArrowRight size={14} />
+            </a>
 
-
+            <button 
+              onClick={() => setIsMenuOpen(true)}
+              className={cn(
+                "lg:hidden p-2 transition-colors",
+                !isScrolled ? "text-black" : "text-foreground"
+              )}
+            >
+              <div className="w-6 h-5 flex flex-col justify-between items-end">
+                <span className="w-full h-[1px] bg-current" />
+                <span className="w-2/3 h-[1px] bg-current" />
+                <span className="w-full h-[1px] bg-current" />
+              </div>
+            </button>
           </div>
         </div>
-        
-        <a 
-          href="#orcamento" 
-          className="bg-primary text-primary-foreground px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 rounded-sm"
-        >
-          Solicitar Orçamento
-          <ArrowRight size={14} />
-        </a>
-      </div>
-    </motion.nav>
+      </motion.nav>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-background lg:hidden"
+          >
+            <div className="flex flex-col h-full p-8">
+              <div className="flex items-center justify-between mb-16">
+                <img src={logoAssetV2.url} alt="Chalés IA" className="h-8 w-8 object-contain" />
+                <button onClick={() => setIsMenuOpen(false)} className="p-2">
+                  <X size={32} strokeWidth={1} />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-8">
+                {navLinks.map((link, idx) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-4xl md:text-6xl font-serif font-bold tracking-tighter hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="mt-auto pt-12 border-t border-border/10">
+                <a 
+                  href="#orcamento"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full bg-primary text-primary-foreground py-6 text-center text-[10px] uppercase tracking-[0.4em] font-bold rounded-sm block"
+                >
+                  Solicitar Orçamento
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
@@ -448,7 +516,7 @@ export const Hero = () => {
   const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
 
   return (
-    <section className="relative h-[110vh] w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-[110vh] w-full flex items-center justify-center overflow-x-hidden">
       <motion.div 
         style={{ y: y1, scale }}
         className="absolute inset-0 z-0"
@@ -465,20 +533,20 @@ export const Hero = () => {
       
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 max-w-6xl px-6 text-center"
+        className="relative z-10 w-full max-w-6xl px-4 sm:px-6 text-center overflow-x-hidden"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block mb-12"
+          className="inline-block mb-12 max-w-[95vw] mx-auto"
         >
           <div className="relative group">
             {/* Soft localized shadow behind the label for depth */}
-            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-150 opacity-50"></div>
+            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-100 sm:scale-150 opacity-50"></div>
             
-            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
-              <span className="text-white/90 text-[10px] md:text-[11px] uppercase tracking-[0.6em] font-sans font-medium block whitespace-nowrap">
+            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-4 sm:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
+              <span className="text-white/90 text-[8px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.6em] font-sans font-medium block whitespace-normal">
                 Escritório de Arquitetura & Construção
               </span>
             </div>
@@ -489,7 +557,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white"
+          className="text-5xl sm:text-7xl md:text-[11rem] font-serif font-bold leading-[0.85] md:leading-[0.75] mb-12 md:mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white w-full overflow-hidden"
         >
           <span className="text-brand-gold">Arquitetura</span> <br />
           <span className="italic text-primary/90 font-medium">que respira.</span>
@@ -499,30 +567,30 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row items-center justify-center gap-12"
+          className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-4 w-full"
         >
-          <a 
-            href="#projetos"
-            data-cursor="Explorar"
-            className="group flex items-center gap-6 text-white text-[11px] uppercase tracking-[0.4em] font-bold hover:text-primary transition-all duration-500"
-          >
-            <span>Ver Portfólio</span>
-            <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform duration-500" />
-          </a>
           <a 
             href="#orcamento" 
             data-cursor="Iniciar"
-            className="group relative inline-flex items-center bg-primary text-primary-foreground px-14 py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[11px] font-bold rounded-sm shadow-[0_30px_70px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95"
+            className="group relative inline-flex items-center justify-center bg-primary text-primary-foreground w-full sm:w-auto px-8 md:px-14 py-5 md:py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[10px] md:text-[11px] font-bold rounded-sm shadow-[0_20px_50px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95 order-1 md:order-2"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
           </a>
 
-          
           <a 
             href="#projetos" 
-            className="inline-flex items-center gap-4 border border-white/20 px-14 py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[11px] font-bold rounded-sm active:scale-95"
+            className="inline-flex items-center justify-center gap-4 border border-white/20 w-full sm:w-auto px-8 md:px-14 py-5 md:py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-bold rounded-sm active:scale-95 order-2 md:order-3"
           >
             Explorar Obras
+          </a>
+
+          <a 
+            href="#projetos"
+            data-cursor="Explorar"
+            className="group hidden md:flex items-center gap-6 text-white text-[11px] uppercase tracking-[0.4em] font-bold hover:text-primary transition-all duration-500 order-3 md:order-1"
+          >
+            <span>Ver Portfólio</span>
+            <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform duration-500" />
           </a>
         </motion.div>
       </motion.div>
@@ -731,8 +799,8 @@ export const Process = () => {
   ];
 
   return (
-    <section id="processo" className="py-32 md:py-56 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="processo" className="py-32 md:py-56 bg-background relative overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
           <div className="lg:sticky lg:top-40">
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">O Percurso</span>
@@ -740,7 +808,8 @@ export const Process = () => {
               Do terreno <br />
               <span className="italic font-medium text-primary">ao chalé.</span>
             </h2>
-            <p className="text-muted-foreground text-xl leading-relaxed max-w-md font-serif italic">
+            <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-md font-serif italic">
+
               Um processo verticalizado que garante a integridade do design da primeira linha do desenho até a última telha da obra.
             </p>
           </div>
@@ -753,9 +822,9 @@ export const Process = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: idx * 0.1, duration: 0.8 }}
-                className="group flex gap-12 items-start pb-24 border-b border-border/10 last:border-0"
+                className="group flex flex-col md:flex-row gap-8 md:gap-12 items-start pb-20 md:pb-24 border-b border-border/10 last:border-0"
               >
-                <div className="text-6xl md:text-8xl font-serif font-bold text-primary/5 group-hover:text-primary/20 transition-all duration-700 leading-none">
+                <div className="text-5xl md:text-8xl font-serif font-bold text-primary/5 group-hover:text-primary/20 transition-all duration-700 leading-none">
                   {step.num}
                 </div>
                 <div className="pt-2">
@@ -891,7 +960,7 @@ export const ProjectCatalog = () => {
 
         {/* Cinematic Carousel */}
         <div 
-          className="relative h-[50vh] md:h-[70vh] flex items-center justify-center select-none"
+          className="relative h-[60vh] md:h-[70vh] flex items-center justify-center select-none touch-pan-y"
           onMouseEnter={() => setIsAutoPlay(false)}
           onMouseLeave={() => setIsAutoPlay(true)}
         >
@@ -927,15 +996,16 @@ export const ProjectCatalog = () => {
                       duration: 1.2, 
                       ease: [0.22, 1, 0.36, 1] 
                     }}
-                    drag={isCenter ? "x" : false}
+                    drag="x"
                     dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
                     onDragEnd={(_, info) => {
-                      if (info.offset.x > 100) prev();
-                      else if (info.offset.x < -100) next();
+                      if (info.offset.x > 50) prev();
+                      else if (info.offset.x < -50) next();
                     }}
                     onClick={isCenter ? () => setSelectedProject(project) : (offset < 0 ? prev : next)}
                     className={cn(
-                      "absolute w-[80%] md:w-[60%] h-full rounded-sm overflow-hidden shadow-2xl cursor-pointer",
+                      "absolute w-[85%] sm:w-[80%] md:w-[60%] h-full rounded-sm overflow-hidden shadow-2xl cursor-pointer",
                       !isCenter && "pointer-events-auto"
                     )}
                   >
@@ -945,7 +1015,7 @@ export const ProjectCatalog = () => {
                       className="w-full h-full object-cover"
                     />
                     {isCenter && (
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent z-10 flex flex-col justify-end p-8 md:p-16">
+                      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent z-10 flex flex-col justify-end p-6 sm:p-8 md:p-16">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -955,7 +1025,7 @@ export const ProjectCatalog = () => {
                           <span className="text-primary text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">
                             {project.sqm} · {project.bedrooms} · {project.bathrooms}
                           </span>
-                          <h3 className="text-4xl md:text-7xl font-serif font-bold text-white tracking-tighter mb-6">
+                          <h3 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold text-white tracking-tighter mb-4 md:mb-6">
                             {project.name}
                           </h3>
                           <p className="text-white/60 text-lg md:text-xl font-serif italic mb-10 leading-relaxed">
@@ -975,13 +1045,13 @@ export const ProjectCatalog = () => {
             {/* Navigation Arrows */}
             <button 
               onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 md:left-20 z-30 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110"
+              className="absolute left-2 sm:left-4 md:left-20 z-30 p-2 sm:p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110 hidden sm:block"
             >
               <ChevronLeft size={32} strokeWidth={1} />
             </button>
             <button 
               onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 md:right-20 z-30 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110"
+              className="absolute right-2 sm:right-4 md:right-20 z-30 p-2 sm:p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110 hidden sm:block"
             >
               <ChevronRight size={32} strokeWidth={1} />
             </button>
@@ -1003,8 +1073,8 @@ export const ProjectCatalog = () => {
           </div>
           
           <div className="text-center pt-20 border-t border-border/10 w-full mt-20">
-            <h4 className="text-2xl md:text-4xl font-serif font-bold tracking-tight mb-8">NÃO ENCONTROU O MODELO IDEAL?</h4>
-            <p className="text-muted-foreground font-serif italic mb-12">Não tem problema. O seu projeto pode começar do zero.</p>
+            <h4 className="text-xl sm:text-2xl md:text-4xl font-serif font-bold tracking-tight mb-6 md:mb-8">NÃO ENCONTROU O MODELO IDEAL?</h4>
+            <p className="text-sm sm:text-base text-muted-foreground font-serif italic mb-10 md:mb-12">Não tem problema. O seu projeto pode começar do zero.</p>
             <a 
               href="#orcamento"
               className="inline-flex items-center gap-4 bg-primary text-primary-foreground px-14 py-6 text-[11px] uppercase tracking-[0.4em] font-bold hover:bg-primary/90 hover:-translate-y-2 transition-all rounded-sm"
@@ -1028,7 +1098,7 @@ export const ProjectCatalog = () => {
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="relative w-full max-w-7xl bg-card border border-border/10 min-h-full rounded-sm overflow-hidden flex flex-col lg:flex-row"
+              className="relative w-full max-w-7xl bg-card border border-border/10 min-h-screen md:min-h-full rounded-sm overflow-hidden flex flex-col lg:flex-row"
             >
               <button 
                 onClick={() => setSelectedProject(null)}
@@ -1045,9 +1115,9 @@ export const ProjectCatalog = () => {
                 />
               </div>
 
-              <div className="w-full lg:w-2/5 p-12 md:p-20 overflow-y-auto">
+              <div className="w-full lg:w-2/5 p-8 sm:p-12 md:p-20 overflow-y-auto">
                 <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Ficha Técnica</span>
-                <h2 className="text-5xl font-serif font-bold tracking-tighter mb-8">{selectedProject.name}</h2>
+                <h2 className="text-3xl sm:text-5xl font-serif font-bold tracking-tighter mb-8">{selectedProject.name}</h2>
                 
                 <div className="grid grid-cols-2 gap-8 mb-12 py-8 border-y border-border/10">
                   <div>
@@ -1079,7 +1149,7 @@ export const ProjectCatalog = () => {
                   {selectedProject.description}
                 </p>
 
-                <div className="bg-muted/5 p-10 border border-border/5 rounded-sm mb-16">
+                <div className="bg-muted/5 p-6 sm:p-10 border border-border/5 rounded-sm mb-16">
                   <h4 className="text-xl font-serif font-bold mb-4">Gostou deste modelo?</h4>
                   <p className="text-sm text-muted-foreground mb-8">Podemos adaptar este projeto ou criar algo completamente personalizado para você.</p>
                   <a 
@@ -1114,7 +1184,8 @@ export const Investment = () => {
 
   return (
     <section className="py-32 md:py-56 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
           <div>
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">Viabilidade</span>
@@ -1162,23 +1233,25 @@ export const Investment = () => {
 
 export const Projects = () => {
   return (
-    <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-32 flex flex-col md:row justify-between items-end gap-12">
+    <section id="projetos" className="py-32 md:py-56 bg-background relative overflow-x-hidden">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
+        <div className="mb-20 md:mb-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div className="max-w-3xl">
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Portfólio Editorial</span>
-            <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
+            <h2 className="text-5xl sm:text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
               Obras que <br />
               <span className="italic font-medium text-primary">materializam</span> <br />
               visões.
             </h2>
           </div>
-          <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-sm mb-4">
+          <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-sm mb-4 px-1">
             Uma seleção de nossos projetos mais emblemáticos, onde a arquitetura contemporânea encontra a excelência executiva.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 md:gap-y-32">
           {PROJETOS.map((projeto, idx) => (
             <Link 
               key={projeto.id}
@@ -1194,7 +1267,7 @@ export const Projects = () => {
                 className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-48" : "")}
                 data-cursor="Explorar"
               >
-                <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
+                <div className="relative overflow-hidden mb-8 md:mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
                   <div className={cn("aspect-[4/5]", projeto.id === 1 && "aspect-square")}>
                     <EnhancedImage 
                       src={projeto.image} 
@@ -1204,13 +1277,13 @@ export const Projects = () => {
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
-                  <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3 z-20">
+                  <div className="absolute top-4 left-4 md:top-8 md:left-8 text-white text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-4 py-2 md:px-6 md:py-3 z-20">
                     {projeto.category}
                   </div>
                 </div>
                 
                 <div className="space-y-6 px-4">
-                  <span className="text-primary text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
+                  <span className="text-primary text-[10px] sm:text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
                   <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
                     {projeto.name}
                   </h3>
@@ -1218,7 +1291,7 @@ export const Projects = () => {
                     {projeto.description}
                   </p>
                   
-                  <div className="inline-flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300">
+                  <div className="inline-flex items-center gap-4 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300">
                     <span>Ver Detalhes da Obra</span>
                     <ArrowRight size={14} />
                   </div>
@@ -1269,7 +1342,8 @@ export const SocialProof = () => {
 
   return (
     <section id="diferenciais" className="py-32 md:py-56 bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
         <div className="text-center mb-24">
           <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Depoimentos</span>
           <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter leading-[0.9]">
@@ -1286,7 +1360,7 @@ export const SocialProof = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-background p-12 md:p-32 rounded-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] border border-border/5 text-center relative"
+              className="bg-background p-8 md:p-32 rounded-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] border border-border/5 text-center relative"
             >
               <Quote className="absolute top-12 left-12 text-primary/5" size={120} />
               
@@ -1296,7 +1370,7 @@ export const SocialProof = () => {
                 ))}
               </div>
 
-              <p className="text-2xl md:text-5xl font-serif italic leading-tight mb-16 tracking-tight text-foreground/90">
+              <p className="text-xl sm:text-2xl md:text-5xl font-serif italic leading-tight mb-12 md:mb-16 tracking-tight text-foreground/90">
                 "{REVIEWS[index].content}"
               </p>
 
@@ -1310,16 +1384,17 @@ export const SocialProof = () => {
           <div className="flex justify-center items-center gap-12 mt-16">
             <button 
               onClick={prev}
-              className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+
             >
               <ChevronLeft size={24} />
             </button>
-            <div className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30">
+            <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.5em] font-bold opacity-30">
               0{index + 1} / 0{REVIEWS.length}
             </div>
             <button 
               onClick={next}
-              className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
             >
               <ChevronRight size={24} />
             </button>
@@ -1328,7 +1403,7 @@ export const SocialProof = () => {
 
         <div className="mt-40 pt-24 border-t border-border/10">
           <p className="text-center text-[10px] uppercase tracking-[0.6em] text-muted-foreground/40 mb-16 font-bold">Destaque em Publicações de Prestígio</p>
-          <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32 opacity-20 grayscale hover:opacity-60 transition-all duration-1000">
+          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-16 md:gap-32 opacity-20 grayscale hover:opacity-60 transition-all duration-1000">
             {["VOGUE", "AD", "T+L", "MONOCLE", "ARCHDAILY"].map((brand) => (
               <span key={brand} className="text-2xl md:text-3xl font-serif font-bold tracking-tighter">{brand}</span>
             ))}
@@ -1342,9 +1417,26 @@ export const SocialProof = () => {
 
 export const BookingForm = () => {
   const [step, setStep] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    projectType: "",
+    hasLand: "",
+    landSize: "",
+    landAccess: "",
+    numberOfChalets: "1",
+    objective: "",
+    architectureStyle: "",
+    features: [] as string[],
+    budget: "",
+    state: "",
+    city: "",
+    timeline: "",
+    name: "",
+    whatsapp: "",
+    email: "",
+    message: ""
+  });
 
   React.useEffect(() => {
-    // Check for "modelo" parameter in hash URL
     const hash = window.location.hash;
     if (hash.includes("?modelo=")) {
       const params = new URLSearchParams(hash.split('?')[1]);
@@ -1355,7 +1447,6 @@ export const BookingForm = () => {
           architectureStyle: modelo,
           message: `Tenho interesse específico no modelo: ${modelo}`
         }));
-        // Optional: jump to a relevant step if needed
       }
     }
   }, []);
@@ -1383,24 +1474,6 @@ export const BookingForm = () => {
   const closeModal = () => {
     setModal(prev => ({ ...prev, isOpen: false }));
   };
-  const [formData, setFormData] = React.useState({
-    projectType: "",
-    hasLand: "",
-    landSize: "",
-    landAccess: "",
-    numberOfChalets: "1",
-    objective: "",
-    architectureStyle: "",
-    features: [] as string[],
-    budget: "",
-    state: "",
-    city: "",
-    timeline: "",
-    name: "",
-    whatsapp: "",
-    email: "",
-    message: ""
-  });
 
   const allSteps = [
     { id: 'type', title: "Tipo de Projeto" },
@@ -1429,14 +1502,12 @@ export const BookingForm = () => {
     });
   }, [formData.projectType]);
 
-  // Handle step index adjustment if project type changes
   React.useEffect(() => {
     if (step >= activeSteps.length) {
       setStep(activeSteps.length - 1);
     }
   }, [activeSteps, step]);
 
-  // Clean up data when project type changes
   React.useEffect(() => {
     if (formData.projectType === "Um chalé") {
       setFormData(prev => ({ ...prev, numberOfChalets: "1", objective: "" }));
@@ -1449,7 +1520,16 @@ export const BookingForm = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, activeSteps.length - 1));
+  const nextStep = () => {
+    const isMobile = window.innerWidth < 768;
+    setStep((s) => Math.min(s + 1, activeSteps.length - 1));
+    if (isMobile) {
+      const element = document.getElementById('orcamento');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
 
   const renderStep = () => {
@@ -1467,8 +1547,8 @@ export const BookingForm = () => {
                 key={opt.val}
                 onClick={() => { updateField("projectType", opt.val); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.projectType === opt.val ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.projectType === opt.val ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <Home className="mb-4 text-primary" size={24} />
@@ -1486,8 +1566,8 @@ export const BookingForm = () => {
                 key={opt}
                 onClick={() => { updateField("hasLand", opt); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.hasLand === opt ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.hasLand === opt ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <Compass className="mb-4 text-primary" size={24} />
@@ -1504,8 +1584,8 @@ export const BookingForm = () => {
                 key={num}
                 onClick={() => { updateField("numberOfChalets", num.toString()); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm transition-all hover:border-primary",
-                  formData.numberOfChalets === num.toString() ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm transition-all hover:border-primary",
+                  formData.numberOfChalets === num.toString() ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <span className="text-4xl font-serif font-bold">{num}</span>
@@ -1526,8 +1606,8 @@ export const BookingForm = () => {
                 key={opt.val}
                 onClick={() => { updateField("objective", opt.val); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.objective === opt.val ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.objective === opt.val ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-2 text-primary">{opt.title}</h3>
@@ -1560,7 +1640,7 @@ export const BookingForm = () => {
           }
         ];
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             {styles.map((opt) => (
               <div 
                 key={opt.val}
@@ -1590,7 +1670,7 @@ export const BookingForm = () => {
       case 'environments':
         const differentials = ["Piscina", "Ofurô", "Banheira", "Deck", "Lareira", "Varanda", "Área Gourmet", "Churrasqueira", "Vista Panorâmica"];
         return (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
             {differentials.map((item) => (
               <button 
                 key={item}
@@ -1625,8 +1705,8 @@ export const BookingForm = () => {
                 key={range}
                 onClick={() => { updateField("budget", range); nextStep(); }}
                 className={cn(
-                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.budget === range ? "border-primary bg-primary/5" : "border-border"
+                  "p-5 md:p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.budget === range ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.01]" : "border-border"
                 )}
               >
                 <span className="text-sm font-bold tracking-widest uppercase">{range}</span>
@@ -1674,8 +1754,8 @@ export const BookingForm = () => {
                 key={time}
                 onClick={() => { updateField("timeline", time); nextStep(); }}
                 className={cn(
-                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.timeline === time ? "border-primary bg-primary/5" : "border-border"
+                  "p-5 md:p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.timeline === time ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.01]" : "border-border"
                 )}
               >
                 <span className="text-[10px] font-bold tracking-widest uppercase">{time}</span>
@@ -1691,7 +1771,8 @@ export const BookingForm = () => {
               <input 
                 value={formData.name} 
                 onChange={(e) => updateField("name", e.target.value)}
-                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                className="w-full bg-transparent border-b border-border py-3 md:py-4 outline-none focus:border-primary transition-colors font-serif text-sm md:text-base" 
+
                 placeholder="Como podemos te chamar?"
               />
             </div>
@@ -1700,7 +1781,8 @@ export const BookingForm = () => {
               <input 
                 value={formData.whatsapp} 
                 onChange={(e) => updateField("whatsapp", e.target.value)}
-                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                className="w-full bg-transparent border-b border-border py-3 md:py-4 outline-none focus:border-primary transition-colors font-serif text-sm md:text-base" 
+
                 placeholder="(00) 00000-0000"
               />
             </div>
@@ -1709,7 +1791,8 @@ export const BookingForm = () => {
               <input 
                 value={formData.email} 
                 onChange={(e) => updateField("email", e.target.value)}
-                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                className="w-full bg-transparent border-b border-border py-3 md:py-4 outline-none focus:border-primary transition-colors font-serif text-sm md:text-base" 
+
                 placeholder="seu@email.com"
               />
             </div>
@@ -1722,7 +1805,7 @@ export const BookingForm = () => {
             <textarea 
               value={formData.message}
               onChange={(e) => updateField("message", e.target.value)}
-              className="w-full bg-muted/20 border border-border p-6 rounded-sm outline-none focus:border-primary transition-colors min-h-[200px]"
+              className="w-full bg-muted/20 border border-border p-5 md:p-6 rounded-sm outline-none focus:border-primary transition-colors min-h-[150px] md:min-h-[200px] text-sm md:text-base"
               placeholder="Ex.: Quero construir três chalés para aluguel, com piscina e vista para as montanhas..."
             />
           </div>
@@ -1775,7 +1858,7 @@ export const BookingForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-24 md:py-40 px-6 bg-background">
+    <section id="orcamento" className="py-24 md:py-40 px-4 sm:px-6 bg-background relative overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-16">
           <div className="flex-1">
@@ -1823,8 +1906,8 @@ export const BookingForm = () => {
                 <RefreshCw size={10} /> Recomeçar
               </button>
               
-              <div className="flex gap-8">
-                <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto">
+                <button onClick={prevStep} disabled={step === 0} className="flex items-center justify-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30 w-full sm:w-auto py-4 sm:py-0">
                   <ChevronLeft size={16} /> Voltar
                 </button>
                 {step === activeSteps.length - 1 ? (
@@ -1929,7 +2012,7 @@ export const BookingForm = () => {
                         });
 
                       }}
-                     className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
+                     className="bg-primary text-primary-foreground w-full sm:w-auto px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
                    >
                      Solicitar Meu Orçamento
                    </button>
@@ -1956,7 +2039,7 @@ export const BookingForm = () => {
                       }
                       nextStep();
                     }}
-                    className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all"
+                    className="flex items-center justify-center gap-2 text-[10px] md:text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all w-full sm:w-auto"
                    >
                      Continuar <ChevronRight size={16} />
                    </button>
@@ -2051,7 +2134,7 @@ export const Footer = () => {
           <p className="text-muted-foreground max-w-sm mb-10 leading-relaxed">
             Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <a href="https://www.instagram.com/chales_ia/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
               <svg 
                 viewBox="0 0 24 24" 
