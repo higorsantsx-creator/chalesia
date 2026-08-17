@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X, Zap } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X, Zap, Instagram } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
 import { enhanceImageWithAI } from "@/lib/image-enhancement.functions";
@@ -1687,8 +1687,8 @@ export const Footer = () => {
             Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
-              <span className="text-[10px] uppercase font-bold tracking-tighter">IG</span>
+            <a href="https://instagram.com/chalesia" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
+              <Instagram size={18} />
             </a>
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
               <Phone size={18} />
