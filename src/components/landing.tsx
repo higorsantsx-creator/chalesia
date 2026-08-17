@@ -545,7 +545,7 @@ export const Hero = () => {
             {/* Soft localized shadow behind the label for depth */}
             <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-100 sm:scale-150 opacity-50"></div>
             
-            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-5 sm:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
+            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-4 sm:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
               <span className="text-white/90 text-[8px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.6em] font-sans font-medium block">
                 Escritório de Arquitetura & Construção
               </span>
@@ -1283,7 +1283,7 @@ export const Projects = () => {
                 </div>
                 
                 <div className="space-y-6 px-4">
-                  <span className="text-primary text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
+                  <span className="text-primary text-[10px] sm:text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
                   <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
                     {projeto.name}
                   </h3>
@@ -1291,7 +1291,7 @@ export const Projects = () => {
                     {projeto.description}
                   </p>
                   
-                  <div className="inline-flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300">
+                  <div className="inline-flex items-center gap-4 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300">
                     <span>Ver Detalhes da Obra</span>
                     <ArrowRight size={14} />
                   </div>
@@ -1389,7 +1389,7 @@ export const SocialProof = () => {
             >
               <ChevronLeft size={24} />
             </button>
-            <div className="text-[10px] uppercase tracking-[0.5em] font-bold opacity-30">
+            <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.5em] font-bold opacity-30">
               0{index + 1} / 0{REVIEWS.length}
             </div>
             <button 
