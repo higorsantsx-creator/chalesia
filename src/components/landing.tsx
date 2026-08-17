@@ -1469,75 +1469,85 @@ export const BookingForm = () => {
                        const showObjective = activeSteps.some(s => s.id === 'objective');
                         const generatePersonalizedMessage = () => {
                           const {
-                            name, city, state, projectType, objective, hasLand, 
-                            architectureStyle, numberOfChalets, features, budget, 
-                            timeline, message 
+                            name, city, projectType, objective, hasLand, 
+                            architectureStyle, numberOfChalets, message 
                           } = formData;
 
-                          const firstLine = `Olá! Tudo bem? Meu nome é ${name}${city ? ` e gostaria de conversar sobre um projeto em ${city}` : ""} ${state ? `(${state})` : ""}.`;
-                          
-                          let projectIntro = "";
-                          if (projectType === "Um chalé") {
-                            projectIntro = "Estou planejando a construção de um chalé";
-                          } else if (projectType === "Vários chalés") {
-                            projectIntro = `Estou planejando a construção de um complexo com ${numberOfChalets} chalés`;
+                          // 1. NOME
+                          let msg = `Olá! Tudo bem? 👋\n\nMeu nome é ${name}`;
+
+                          // 2. CIDADE
+                          if (city && city.trim()) {
+                            msg += ` e estou entrando em contato porque tenho interesse em desenvolver um projeto de chalé em ${city}.`;
                           } else {
-                            projectIntro = "Gostaria de desenvolver um projeto personalizado com vocês";
+                            msg += " e estou entrando em contato porque tenho interesse em desenvolver um projeto de chalé.";
                           }
 
-                          let landStatus = "";
-                          if (hasLand === "Sim") {
-                            landStatus = "Já possuo o terreno";
-                          } else if (hasLand === "Ainda não") {
-                            landStatus = "Ainda estou buscando o terreno ideal e gostaria de uma orientação";
-                          } else if (hasLand === "Em negociação") {
-                            landStatus = "O terreno para a obra já está em fase de negociação";
+                          msg += "\n\n";
+
+                          // 3. TIPO DE PROJETO
+                          let typeMsg = "";
+                          if (projectType === "Um chalé") {
+                            typeMsg = "Estou buscando desenvolver um chalé";
+                          } else if (projectType === "Vários chalés") {
+                            typeMsg = "Estou buscando desenvolver um projeto com vários chalés";
+                          } else if (projectType === "Projeto personalizado") {
+                            typeMsg = "Estou buscando desenvolver um projeto personalizado de chalé";
                           }
 
-                          let objectiveText = "";
+                          // 4. OBJETIVO
+                          let objectiveMsg = "";
                           if (objective === "Refúgio") {
-                            objectiveText = "buscando criar um refúgio particular para descanso e momentos com a família em meio à natureza";
+                            objectiveMsg = ", com o objetivo de criar um espaço para descanso, lazer e momentos especiais.";
                           } else if (objective === "Investimento" || objective === "Hospedagem") {
-                            objectiveText = "focado em investimento e aluguel por temporada, buscando um projeto que valorize a experiência dos hóspedes e o potencial do empreendimento";
+                            objectiveMsg = ", com o objetivo de investir em um projeto voltado para aluguel por temporada e hospedagem.";
                           } else if (objective === "Moradia") {
-                            objectiveText = "pensado para ser minha moradia principal, priorizando conforto, funcionalidade e personalidade";
+                            objectiveMsg = ", com o objetivo de criar um espaço confortável e especial para morar.";
                           }
 
-                          let styleText = "";
-                          if (architectureStyle === "A-Frame") {
-                            styleText = "Tenho uma forte preferência pelo conceito A-Frame, buscando aquela estética clássica e aconchegante de montanha";
-                          } else if (architectureStyle === "Contemporâneo") {
-                            styleText = "Busco um estilo contemporâneo, com linhas modernas, sofisticação e uma integração perfeita entre estética e funcionalidade";
+                          msg += typeMsg + objectiveMsg + "\n\n";
+
+                          // 5. TERRENO
+                          let landMsg = "";
+                          if (hasLand === "Sim") {
+                            landMsg = "Já possuo o terreno onde pretendo realizar o projeto.";
+                          } else if (hasLand === "Ainda não") {
+                            landMsg = "Ainda estou em busca do terreno ideal para realizar o projeto.";
+                          } else if (hasLand === "Em negociação") {
+                            landMsg = "O terreno está atualmente em negociação.";
+                          }
+                          msg += landMsg + "\n\n";
+
+                          // 6. ESTILO
+                          let styleMsg = "";
+                          if (architectureStyle === "Contemporâneo") {
+                            styleMsg = "Para o projeto, me identifico com uma arquitetura contemporânea, com linhas modernas, elegância e funcionalidade.";
+                          } else if (architectureStyle === "A-Frame") {
+                            styleMsg = "Para o projeto, me identifico bastante com o estilo A-Frame e sua arquitetura marcante.";
+                          } else if (architectureStyle === "Alpine") {
+                            styleMsg = "Para o projeto, me identifico com o estilo Alpine, buscando uma atmosfera aconchegante e integrada à natureza.";
                           } else if (architectureStyle === "Nordic") {
-                            styleText = "Me identifico muito com o estilo Nordic / Minimalista, valorizando a simplicidade, o conforto e uma estética limpa";
+                            styleMsg = "Para o projeto, me identifico com o estilo minimalista/Nordic, valorizando uma estética limpa, aconchegante e funcional.";
                           } else if (architectureStyle === "Personalizado") {
-                            styleText = "Gostaria de explorar um projeto totalmente personalizado e exclusivo";
+                            styleMsg = "Para o projeto, gostaria de desenvolver uma proposta personalizada, pensada de acordo com minhas necessidades e preferências.";
+                          }
+                          
+                          msg += styleMsg;
+
+                          // 7. QUANTIDADE DE CHALÉS
+                          if (numberOfChalets) {
+                            msg += ` Estou pensando em ${numberOfChalets} ${parseInt(numberOfChalets) === 1 ? 'chalé' : 'chalés'}.`;
+                          }
+                          msg += "\n\n";
+
+                          // 8. OBSERVAÇÕES
+                          if (message && message.trim()) {
+                            msg += `Também gostaria de considerar ${message.charAt(0).toLowerCase() + message.slice(1)} no projeto.\n\n`;
                           }
 
-                          let extras = "";
-                          if (features.length > 0) {
-                            extras = `Para os diferenciais, imagino algo com ${features.join(", ").toLowerCase()}`;
-                          }
+                          msg += "Gostaria de entender melhor as possibilidades para o meu projeto e receber um orçamento. Quero construir algo bonito, funcional e que faça sentido para o que estou buscando.\n\nAguardo o contato de vocês! 🤝";
 
-                          let closing = "";
-                          if (budget && budget !== "Ainda não sei") {
-                            closing = `Meu investimento estimado está na faixa de ${budget.toLowerCase()}`;
-                          }
-                          if (timeline && timeline !== "Ainda estou planejando") {
-                            closing += `${closing ? " e pretendo " : "Pretendo "}iniciar a obra ${timeline.toLowerCase()}`;
-                          }
-
-                          const paragraphs = [
-                            firstLine,
-                            [projectIntro, landStatus, objectiveText].filter(Boolean).join(", ") + ".",
-                            styleText ? styleText + "." : "",
-                            extras ? extras + "." : "",
-                            message ? `Um detalhe importante: ${message}` : "",
-                            closing ? closing + "." : "",
-                            "Gostaria de entender melhor as possibilidades e receber uma proposta para esse projeto. Aguardo o contato de vocês. 🤝"
-                          ].filter(p => p.trim() !== "");
-
-                          return paragraphs.join("%0A%0A");
+                          return encodeURIComponent(msg);
                         };
 
                         const text = generatePersonalizedMessage();
