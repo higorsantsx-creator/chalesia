@@ -1397,7 +1397,7 @@ export const SocialProof = () => {
 
         <div className="mt-40 pt-24 border-t border-border/10">
           <p className="text-center text-[10px] uppercase tracking-[0.6em] text-muted-foreground/40 mb-16 font-bold">Destaque em Publicações de Prestígio</p>
-          <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32 opacity-20 grayscale hover:opacity-60 transition-all duration-1000">
+          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-16 md:gap-32 opacity-20 grayscale hover:opacity-60 transition-all duration-1000">
             {["VOGUE", "AD", "T+L", "MONOCLE", "ARCHDAILY"].map((brand) => (
               <span key={brand} className="text-2xl md:text-3xl font-serif font-bold tracking-tighter">{brand}</span>
             ))}
@@ -1748,8 +1748,8 @@ export const BookingForm = () => {
                 key={time}
                 onClick={() => { updateField("timeline", time); nextStep(); }}
                 className={cn(
-                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.timeline === time ? "border-primary bg-primary/5" : "border-border"
+                  "p-5 md:p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.timeline === time ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.01]" : "border-border"
                 )}
               >
                 <span className="text-[10px] font-bold tracking-widest uppercase">{time}</span>
@@ -1765,7 +1765,8 @@ export const BookingForm = () => {
               <input 
                 value={formData.name} 
                 onChange={(e) => updateField("name", e.target.value)}
-                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                className="w-full bg-transparent border-b border-border py-3 md:py-4 outline-none focus:border-primary transition-colors font-serif text-sm md:text-base" 
+
                 placeholder="Como podemos te chamar?"
               />
             </div>
@@ -1774,7 +1775,8 @@ export const BookingForm = () => {
               <input 
                 value={formData.whatsapp} 
                 onChange={(e) => updateField("whatsapp", e.target.value)}
-                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                className="w-full bg-transparent border-b border-border py-3 md:py-4 outline-none focus:border-primary transition-colors font-serif text-sm md:text-base" 
+
                 placeholder="(00) 00000-0000"
               />
             </div>
@@ -1783,7 +1785,8 @@ export const BookingForm = () => {
               <input 
                 value={formData.email} 
                 onChange={(e) => updateField("email", e.target.value)}
-                className="w-full bg-transparent border-b border-border py-4 outline-none focus:border-primary transition-colors font-serif" 
+                className="w-full bg-transparent border-b border-border py-3 md:py-4 outline-none focus:border-primary transition-colors font-serif text-sm md:text-base" 
+
                 placeholder="seu@email.com"
               />
             </div>
@@ -1796,7 +1799,7 @@ export const BookingForm = () => {
             <textarea 
               value={formData.message}
               onChange={(e) => updateField("message", e.target.value)}
-              className="w-full bg-muted/20 border border-border p-6 rounded-sm outline-none focus:border-primary transition-colors min-h-[200px]"
+              className="w-full bg-muted/20 border border-border p-5 md:p-6 rounded-sm outline-none focus:border-primary transition-colors min-h-[150px] md:min-h-[200px] text-sm md:text-base"
               placeholder="Ex.: Quero construir três chalés para aluguel, com piscina e vista para as montanhas..."
             />
           </div>
