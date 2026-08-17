@@ -844,50 +844,46 @@ export const Projects = () => {
               className="block"
             >
               <motion.div 
-
-              key={projeto.id}
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-48" : "")}
-              data-cursor="Explorar"
-            >
-              <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
-                <div className={cn("aspect-[4/5]", projeto.id === 1 && "aspect-square")}>
-                  <EnhancedImage 
-                    src={projeto.image} 
-                    alt={projeto.name}
-                    containerClassName="w-full h-full"
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                  />
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-48" : "")}
+                data-cursor="Explorar"
+              >
+                <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
+                  <div className={cn("aspect-[4/5]", projeto.id === 1 && "aspect-square")}>
+                    <EnhancedImage 
+                      src={projeto.image} 
+                      alt={projeto.name}
+                      containerClassName="w-full h-full"
+                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
+                  <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3 z-20">
+                    {projeto.category}
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
-                <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3 z-20">
-                  {projeto.category}
-                </div>
-              </div>
-              
-              <div className="space-y-6 px-4">
-                <span className="text-primary text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
-                <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
-                  {projeto.name}
-                </h3>
-                <p className="text-muted-foreground text-lg leading-relaxed max-w-md font-serif italic">
-                  {projeto.description}
-                </p>
                 
-                <Link 
-                  to="/chale/$chaleId" 
-                  params={{ chaleId: projeto.id.toString() }}
-                  className="inline-flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300"
-                >
-                  <span>Ver Detalhes da Obra</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </motion.div>
+                <div className="space-y-6 px-4">
+                  <span className="text-primary text-[11px] uppercase tracking-[0.4em] font-bold block">Obra 0{projeto.id}</span>
+                  <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tighter group-hover:text-primary transition-colors duration-500">
+                    {projeto.name}
+                  </h3>
+                  <p className="text-muted-foreground text-lg leading-relaxed max-w-md font-serif italic">
+                    {projeto.description}
+                  </p>
+                  
+                  <div className="inline-flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-bold pt-6 border-b border-primary/20 hover:border-primary transition-all duration-300">
+                    <span>Ver Detalhes da Obra</span>
+                    <ArrowRight size={14} />
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
           ))}
+
         </div>
       </div>
     </section>
