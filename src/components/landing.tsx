@@ -7,12 +7,18 @@ import { ParallaxImage } from "./ui/parallax-image";
 import { enhanceImageWithAI } from "@/lib/image-enhancement.functions";
 import { useServerFn } from "@tanstack/react-start";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
-// ... imports continued below
+import chale_2 from "@/assets/chale_2.jpeg.asset.json";
+import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
+import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
+import chale_5 from "@/assets/chale_5.jpg.asset.json";
+import chale_6 from "@/assets/chale_6.jpg.asset.json";
+import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
 import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
 import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
 import arquiteturaOrganicaAsset from "@/assets/chale-arquitetura-organica.jpg.asset.json";
+
 
 import gallery1 from "@/assets/gallery-1.png.asset.json";
 import gallery2 from "@/assets/gallery-2.png.asset.json";
@@ -471,7 +477,7 @@ export const Hero = () => {
         style={{ y: y1, scale }}
         className="absolute inset-0 z-0"
       >
-        <img 
+        <EnhancedImage 
           src={heroChaleAsset.url} 
           alt="Chalé de Luxo Arquitetônico"
           className="w-full h-full object-cover brightness-[0.6] contrast-[1.1] saturate-[1.1]"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Check, RefreshCw, AlertCircle, Maximize2, Image as ImageIcon } from 'lucide-react';
+import { Sparkles, Check, RefreshCw, AlertCircle, Maximize2, Image as ImageIcon, ArrowLeft } from 'lucide-react';
 import { enhanceImageWithAI, type EnhancedImageResponse } from '@/lib/image-enhancement.functions';
 import { useServerFn } from '@tanstack/react-start';
 
