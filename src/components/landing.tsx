@@ -1411,9 +1411,26 @@ export const SocialProof = () => {
 
 export const BookingForm = () => {
   const [step, setStep] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    projectType: "",
+    hasLand: "",
+    landSize: "",
+    landAccess: "",
+    numberOfChalets: "1",
+    objective: "",
+    architectureStyle: "",
+    features: [] as string[],
+    budget: "",
+    state: "",
+    city: "",
+    timeline: "",
+    name: "",
+    whatsapp: "",
+    email: "",
+    message: ""
+  });
 
   React.useEffect(() => {
-    // Check for "modelo" parameter in hash URL
     const hash = window.location.hash;
     if (hash.includes("?modelo=")) {
       const params = new URLSearchParams(hash.split('?')[1]);
@@ -1424,7 +1441,6 @@ export const BookingForm = () => {
           architectureStyle: modelo,
           message: `Tenho interesse específico no modelo: ${modelo}`
         }));
-        // Optional: jump to a relevant step if needed
       }
     }
   }, []);
@@ -1452,24 +1468,6 @@ export const BookingForm = () => {
   const closeModal = () => {
     setModal(prev => ({ ...prev, isOpen: false }));
   };
-  const [formData, setFormData] = React.useState({
-    projectType: "",
-    hasLand: "",
-    landSize: "",
-    landAccess: "",
-    numberOfChalets: "1",
-    objective: "",
-    architectureStyle: "",
-    features: [] as string[],
-    budget: "",
-    state: "",
-    city: "",
-    timeline: "",
-    name: "",
-    whatsapp: "",
-    email: "",
-    message: ""
-  });
 
   const allSteps = [
     { id: 'type', title: "Tipo de Projeto" },
@@ -1498,14 +1496,12 @@ export const BookingForm = () => {
     });
   }, [formData.projectType]);
 
-  // Handle step index adjustment if project type changes
   React.useEffect(() => {
     if (step >= activeSteps.length) {
       setStep(activeSteps.length - 1);
     }
   }, [activeSteps, step]);
 
-  // Clean up data when project type changes
   React.useEffect(() => {
     if (formData.projectType === "Um chalé") {
       setFormData(prev => ({ ...prev, numberOfChalets: "1", objective: "" }));
@@ -1518,7 +1514,16 @@ export const BookingForm = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, activeSteps.length - 1));
+  const nextStep = () => {
+    const isMobile = window.innerWidth < 768;
+    setStep((s) => Math.min(s + 1, activeSteps.length - 1));
+    if (isMobile) {
+      const element = document.getElementById('orcamento');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
 
   const renderStep = () => {
