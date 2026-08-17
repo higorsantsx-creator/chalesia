@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AvaliacoesRouteImport } from './routes/avaliacoes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChaleChaleIdRouteImport } from './routes/chale.$chaleId'
+import { Route as AdminImagesRouteImport } from './routes/admin.images'
 
 const AvaliacoesRoute = AvaliacoesRouteImport.update({
   id: '/avaliacoes',
@@ -28,34 +29,43 @@ const ChaleChaleIdRoute = ChaleChaleIdRouteImport.update({
   path: '/chale/$chaleId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminImagesRoute = AdminImagesRouteImport.update({
+  id: '/admin/images',
+  path: '/admin/images',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/avaliacoes': typeof AvaliacoesRoute
+  '/admin/images': typeof AdminImagesRoute
   '/chale/$chaleId': typeof ChaleChaleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/avaliacoes': typeof AvaliacoesRoute
+  '/admin/images': typeof AdminImagesRoute
   '/chale/$chaleId': typeof ChaleChaleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/avaliacoes': typeof AvaliacoesRoute
+  '/admin/images': typeof AdminImagesRoute
   '/chale/$chaleId': typeof ChaleChaleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/avaliacoes' | '/chale/$chaleId'
+  fullPaths: '/' | '/avaliacoes' | '/admin/images' | '/chale/$chaleId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/avaliacoes' | '/chale/$chaleId'
-  id: '__root__' | '/' | '/avaliacoes' | '/chale/$chaleId'
+  to: '/' | '/avaliacoes' | '/admin/images' | '/chale/$chaleId'
+  id: '__root__' | '/' | '/avaliacoes' | '/admin/images' | '/chale/$chaleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AvaliacoesRoute: typeof AvaliacoesRoute
+  AdminImagesRoute: typeof AdminImagesRoute
   ChaleChaleIdRoute: typeof ChaleChaleIdRoute
 }
 
@@ -82,12 +92,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChaleChaleIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/images': {
+      id: '/admin/images'
+      path: '/admin/images'
+      fullPath: '/admin/images'
+      preLoaderRoute: typeof AdminImagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AvaliacoesRoute: AvaliacoesRoute,
+  AdminImagesRoute: AdminImagesRoute,
   ChaleChaleIdRoute: ChaleChaleIdRoute,
 }
 export const routeTree = rootRouteImport
