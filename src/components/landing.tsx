@@ -824,7 +824,292 @@ export const Details = () => {
 };
 
 
+
+const ProjectCatalog = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("Todos");
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [selectedProject, setSelectedProject] = useState<typeof CATALOG_PROJECTS[0] | null>(null);
+  const [dragProgress, setDragProgress] = useState(0);
+
+  const filteredProjects = activeCategory === "Todos" 
+    ? CATALOG_PROJECTS 
+    : CATALOG_PROJECTS.filter(p => p.category === activeCategory);
+
+  const next = () => setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
+
+  useEffect(() => {
+    if (!isAutoPlay) return;
+    const interval = setInterval(next, 6000);
+    return () => clearInterval(interval);
+  }, [isAutoPlay, currentIndex, filteredProjects.length]);
+
+  const currentProject = filteredProjects[currentIndex];
+
+  return (
+    <section id="catalogo" className="py-32 md:py-56 bg-background overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Header Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-24"
+        >
+          <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Explore o Futuro</span>
+          <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
+            Modelos que podem <br />
+            <span className="italic font-medium text-primary">virar realidade.</span>
+          </h2>
+          <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-2xl mx-auto">
+            Explore algumas das possibilidades que podemos criar e encontre a inspiração para o seu próximo chalé.
+          </p>
+        </motion.div>
+
+        {/* Filters */}
+        <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-20">
+          {["Todos", "A-Frame", "Contemporâneos", "Rústicos", "Premium"].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setCurrentIndex(0);
+              }}
+              className={cn(
+                "text-[10px] uppercase tracking-[0.3em] font-bold py-2 px-6 border-b-2 transition-all duration-500",
+                activeCategory === cat ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Cinematic Carousel */}
+        <div 
+          className="relative h-[50vh] md:h-[70vh] flex items-center justify-center select-none"
+          onMouseEnter={() => setIsAutoPlay(false)}
+          onMouseLeave={() => setIsAutoPlay(true)}
+        >
+          <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+            <AnimatePresence initial={false} mode="popLayout">
+              {[-1, 0, 1].map((offset) => {
+                const index = (currentIndex + offset + filteredProjects.length) % filteredProjects.length;
+                const project = filteredProjects[index];
+                const isCenter = offset === 0;
+                
+                return (
+                  <motion.div
+                    key={`${project.id}-${offset}`}
+                    initial={{ 
+                      opacity: 0, 
+                      scale: isCenter ? 0.9 : 0.7,
+                      x: offset * 100 + "%",
+                      zIndex: isCenter ? 10 : 0
+                    }}
+                    animate={{ 
+                      opacity: isCenter ? 1 : 0.3, 
+                      scale: isCenter ? 1 : 0.8,
+                      x: offset * 80 + "%",
+                      zIndex: isCenter ? 10 : 0,
+                      filter: isCenter ? "blur(0px)" : "blur(4px)"
+                    }}
+                    exit={{ 
+                      opacity: 0,
+                      scale: 0.7,
+                      x: offset * 100 + "%"
+                    }}
+                    transition={{ 
+                      duration: 1.2, 
+                      ease: [0.22, 1, 0.36, 1] 
+                    }}
+                    drag={isCenter ? "x" : false}
+                    dragConstraints={{ left: 0, right: 0 }}
+                    onDragEnd={(_, info) => {
+                      if (info.offset.x > 100) prev();
+                      else if (info.offset.x < -100) next();
+                    }}
+                    onClick={isCenter ? () => setSelectedProject(project) : (offset < 0 ? prev : next)}
+                    className={cn(
+                      "absolute w-[80%] md:w-[60%] h-full rounded-sm overflow-hidden shadow-2xl cursor-pointer",
+                      !isCenter && "pointer-events-auto"
+                    )}
+                  >
+                    <EnhancedImage 
+                      src={project.image} 
+                      alt={project.name}
+                      className="w-full h-full object-cover"
+                    />
+                    {isCenter && (
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent z-10 flex flex-col justify-end p-8 md:p-16">
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5 }}
+                          className="max-w-xl"
+                        >
+                          <span className="text-primary text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">
+                            {project.sqm} · {project.bedrooms} · {project.bathrooms}
+                          </span>
+                          <h3 className="text-4xl md:text-7xl font-serif font-bold text-white tracking-tighter mb-6">
+                            {project.name}
+                          </h3>
+                          <p className="text-white/60 text-lg md:text-xl font-serif italic mb-10 leading-relaxed">
+                            {project.description}
+                          </p>
+                          <button className="bg-primary text-primary-foreground px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all">
+                            Ver Projeto
+                          </button>
+                        </motion.div>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="absolute left-4 md:left-20 z-30 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110"
+            >
+              <ChevronLeft size={32} strokeWidth={1} />
+            </button>
+            <button 
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="absolute right-4 md:right-20 z-30 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110"
+            >
+              <ChevronRight size={32} strokeWidth={1} />
+            </button>
+          </div>
+        </div>
+
+        {/* Footer Controls */}
+        <div className="mt-20 flex flex-col items-center gap-8">
+          <div className="flex items-center gap-6">
+            <span className="text-primary text-[11px] font-bold font-sans">0{currentIndex + 1}</span>
+            <div className="w-48 h-[1px] bg-primary/10 relative">
+              <motion.div 
+                initial={false}
+                animate={{ width: `${((currentIndex + 1) / filteredProjects.length) * 100}%` }}
+                className="absolute top-0 left-0 h-full bg-primary"
+              />
+            </div>
+            <span className="text-muted-foreground text-[11px] font-bold font-sans">0{filteredProjects.length}</span>
+          </div>
+          
+          <div className="text-center pt-20 border-t border-border/10 w-full mt-20">
+            <h4 className="text-2xl md:text-4xl font-serif font-bold tracking-tight mb-8">NÃO ENCONTROU O MODELO IDEAL?</h4>
+            <p className="text-muted-foreground font-serif italic mb-12">Não tem problema. O seu projeto pode começar do zero.</p>
+            <a 
+              href="#orcamento"
+              className="inline-flex items-center gap-4 bg-primary text-primary-foreground px-14 py-6 text-[11px] uppercase tracking-[0.4em] font-bold hover:bg-primary/90 hover:-translate-y-2 transition-all rounded-sm"
+            >
+              Criar Meu Chalé
+              <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Detail Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-background flex items-center justify-center p-0 md:p-12 overflow-y-auto"
+          >
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="relative w-full max-w-7xl bg-card border border-border/10 min-h-full rounded-sm overflow-hidden flex flex-col lg:flex-row"
+            >
+              <button 
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-8 right-8 z-50 p-3 bg-black/20 backdrop-blur-md text-white rounded-full hover:bg-black/40 transition-all"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="w-full lg:w-3/5 h-[50vh] lg:h-auto relative">
+                <EnhancedImage 
+                  src={selectedProject.image} 
+                  alt={selectedProject.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="w-full lg:w-2/5 p-12 md:p-20 overflow-y-auto">
+                <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Ficha Técnica</span>
+                <h2 className="text-5xl font-serif font-bold tracking-tighter mb-8">{selectedProject.name}</h2>
+                
+                <div className="grid grid-cols-2 gap-8 mb-12 py-8 border-y border-border/10">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Metragem</span>
+                    <span className="text-lg font-serif font-bold">{selectedProject.sqm}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Dormitórios</span>
+                    <span className="text-lg font-serif font-bold">{selectedProject.bedrooms}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground block mb-2">Sanitários</span>
+                    <span className="text-lg font-serif font-bold">{selectedProject.bathrooms}</span>
+                  </div>
+                </div>
+
+                <div className="mb-12">
+                  <h4 className="text-[10px] uppercase tracking-widest font-bold mb-6">Diferenciais do Modelo</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {selectedProject.features.map(f => (
+                      <span key={f} className="text-[10px] uppercase tracking-widest bg-primary/5 border border-primary/10 px-4 py-2 rounded-full text-primary font-bold">
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-muted-foreground text-lg leading-relaxed font-serif italic mb-16">
+                  {selectedProject.description}
+                </p>
+
+                <div className="bg-muted/5 p-10 border border-border/5 rounded-sm mb-16">
+                  <h4 className="text-xl font-serif font-bold mb-4">Gostou deste modelo?</h4>
+                  <p className="text-sm text-muted-foreground mb-8">Podemos adaptar este projeto ou criar algo completamente personalizado para você.</p>
+                  <a 
+                    href={`#orcamento?modelo=${encodeURIComponent(selectedProject.name)}`}
+                    onClick={() => setSelectedProject(null)}
+                    className="w-full bg-primary text-primary-foreground text-center py-5 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-primary/90 transition-all rounded-sm inline-block"
+                  >
+                    Quero Personalizar Este Modelo
+                  </a>
+                </div>
+
+                <div className="space-y-8">
+                  <h4 className="text-[10px] uppercase tracking-widest font-bold border-b border-border/10 pb-4">Galeria & Planta</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    {selectedProject.gallery.map((img, i) => (
+                      <div key={i} className="aspect-square rounded-sm overflow-hidden border border-border/5">
+                        <img src={img} className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" alt="Galeria" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
+
 export const Investment = () => {
+
   return (
     <section className="py-32 md:py-56 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
