@@ -816,6 +816,7 @@ export const Investment = () => {
 
 
 
+
 export const Projects = () => {
   return (
     <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
@@ -836,7 +837,14 @@ export const Projects = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
           {PROJETOS.map((projeto, idx) => (
-            <motion.div 
+            <Link 
+              key={projeto.id}
+              to="/chale/$chaleId"
+              params={{ chaleId: projeto.id.toString() }}
+              className="block"
+            >
+              <motion.div 
+
               key={projeto.id}
               initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
