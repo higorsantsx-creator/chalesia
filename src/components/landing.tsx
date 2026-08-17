@@ -516,7 +516,7 @@ export const Hero = () => {
   const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
 
   return (
-    <section className="relative h-[110vh] w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-[110vh] w-full flex items-center justify-center overflow-x-hidden">
       <motion.div 
         style={{ y: y1, scale }}
         className="absolute inset-0 z-0"
@@ -800,7 +800,7 @@ export const Process = () => {
 
   return (
     <section id="processo" className="py-32 md:py-56 bg-background relative overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
           <div className="lg:sticky lg:top-40">
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">O Percurso</span>
@@ -1184,7 +1184,8 @@ export const Investment = () => {
 
   return (
     <section className="py-32 md:py-56 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
           <div>
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-10">Viabilidade</span>
@@ -1233,7 +1234,9 @@ export const Investment = () => {
 export const Projects = () => {
   return (
     <section id="projetos" className="py-32 md:py-56 bg-background relative overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
         <div className="mb-20 md:mb-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div className="max-w-3xl">
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Portfólio Editorial</span>
@@ -1339,7 +1342,8 @@ export const SocialProof = () => {
 
   return (
     <section id="diferenciais" className="py-32 md:py-56 bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
         <div className="text-center mb-24">
           <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Depoimentos</span>
           <h2 className="text-5xl md:text-8xl font-serif font-bold tracking-tighter leading-[0.9]">
