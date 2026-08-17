@@ -10,6 +10,7 @@ import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
 import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
 import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
+import chale_obra_4 from "@/assets/chale-obra-4.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
 import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
@@ -665,7 +666,7 @@ const PROJETOS = [
     name: "Chalé Sunset View",
     category: "Design Icônico",
     description: "Interior iluminado e pé-direito duplo, projetado para capturar a luz dourada do entardecer.",
-    image: chale_6.url,
+    image: chale_obra_4.url,
   }
 ];
 
