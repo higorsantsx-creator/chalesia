@@ -421,8 +421,10 @@ export const Navbar = () => {
             <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
             <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
             <a href="/#processo" className="hover:text-primary transition-colors">Processo</a>
+            <a href="/#catalogo" className="hover:text-primary transition-colors">Catálogo</a>
             <a href="/#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
             <a href="/#contato" className="hover:text-primary transition-colors">Contato</a>
+
 
           </div>
         </div>
@@ -2072,8 +2074,10 @@ export const Footer = () => {
           <ul className="space-y-4 text-sm text-muted-foreground uppercase tracking-wider font-sans text-[10px]">
             <li><a href="/" className="hover:text-primary transition-colors">Início</a></li>
             <li><a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a></li>
+            <li><a href="/#catalogo" className="hover:text-primary transition-colors">Catálogo</a></li>
             <li><a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a></li>
             <li><a href="/#processo" className="hover:text-primary transition-colors">Processo</a></li>
+
             <li><a href="/#orcamento" className="hover:text-primary transition-colors">Solicitar Orçamento</a></li>
           </ul>
         </div>
