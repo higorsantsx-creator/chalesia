@@ -70,24 +70,9 @@ export const EnhancedImage = ({ src, alt, className, containerClassName }: { src
       <motion.img
         src={currentSrc}
         alt={alt}
-        className={cn("w-full h-full object-cover transition-all duration-700", isEnhancing && "blur-sm scale-105", className)}
+        className={cn("w-full h-full object-cover transition-all duration-700", className)}
       />
       
-      {isEnhancing && (
-        <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center z-10">
-          <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="mb-3"
-          >
-            <Sparkles className="text-white" size={24} />
-          </motion.div>
-          <span className="text-[8px] uppercase tracking-[0.3em] font-bold text-white bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md">
-            Melhorando com IA...
-          </span>
-        </div>
-      )}
-
       {isEnhanced && !isEnhancing && (
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
