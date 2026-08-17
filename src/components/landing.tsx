@@ -546,7 +546,7 @@ export const Hero = () => {
             <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-150 opacity-50"></div>
             
             <div className="bg-black/30 backdrop-blur-md border border-white/10 px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
-              <span className="text-white/90 text-[10px] md:text-[11px] uppercase tracking-[0.6em] font-sans font-medium block whitespace-nowrap">
+              <span className="text-white/90 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.4em] sm:tracking-[0.6em] font-sans font-medium block">
                 Escritório de Arquitetura & Construção
               </span>
             </div>
@@ -567,19 +567,19 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-6 md:gap-12"
+          className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-4"
         >
           <a 
             href="#orcamento" 
             data-cursor="Iniciar"
-            className="group relative inline-flex items-center justify-center bg-primary text-primary-foreground px-8 md:px-14 py-5 md:py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[10px] md:text-[11px] font-bold rounded-sm shadow-[0_20px_50px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95 order-1 md:order-2"
+            className="group relative inline-flex items-center justify-center bg-primary text-primary-foreground w-full sm:w-auto px-8 md:px-14 py-5 md:py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[10px] md:text-[11px] font-bold rounded-sm shadow-[0_20px_50px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95 order-1 md:order-2"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
           </a>
 
           <a 
             href="#projetos" 
-            className="inline-flex items-center justify-center gap-4 border border-white/20 px-8 md:px-14 py-5 md:py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-bold rounded-sm active:scale-95 order-2 md:order-3"
+            className="inline-flex items-center justify-center gap-4 border border-white/20 w-full sm:w-auto px-8 md:px-14 py-5 md:py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-bold rounded-sm active:scale-95 order-2 md:order-3"
           >
             Explorar Obras
           </a>
@@ -799,7 +799,7 @@ export const Process = () => {
   ];
 
   return (
-    <section id="processo" className="py-32 md:py-56 bg-background relative overflow-hidden">
+    <section id="processo" className="py-32 md:py-56 bg-background relative overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
           <div className="lg:sticky lg:top-40">
@@ -1901,7 +1901,7 @@ export const BookingForm = () => {
                 <RefreshCw size={10} /> Recomeçar
               </button>
               
-              <div className="flex gap-8">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                 <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
                   <ChevronLeft size={16} /> Voltar
                 </button>
@@ -2034,7 +2034,7 @@ export const BookingForm = () => {
                       }
                       nextStep();
                     }}
-                    className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all"
+                    className="flex items-center justify-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all w-full sm:w-auto"
                    >
                      Continuar <ChevronRight size={16} />
                    </button>
