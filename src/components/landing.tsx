@@ -8,7 +8,7 @@ import { enhanceImageWithAI } from "@/lib/image-enhancement.functions";
 import { useServerFn } from "@tanstack/react-start";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
-import chale_3 from "@/assets/chale-obra-3.jpg.asset.json";
+import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
 import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
 import chale_obra_4 from "@/assets/chale-obra-4.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
