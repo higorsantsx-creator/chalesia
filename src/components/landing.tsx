@@ -1474,7 +1474,7 @@ export const BookingForm = () => {
                           } = formData;
 
                           // 1. NOME
-                          let msg = `Olá! Tudo bem? 👋\n\nMeu nome é ${name}`;
+                          let msg = `Olá! Tudo bem?\n\nMeu nome é ${name}`;
 
                           // 2. CIDADE
                           if (city && city.trim()) {
@@ -1545,7 +1545,7 @@ export const BookingForm = () => {
                             msg += `Também gostaria de considerar ${message.charAt(0).toLowerCase() + message.slice(1)} no projeto.\n\n`;
                           }
 
-                          msg += "Gostaria de entender melhor as possibilidades para o meu projeto e receber um orçamento. Quero construir algo bonito, funcional e que faça sentido para o que estou buscando.\n\nAguardo o contato de vocês! 🤝";
+                          msg += "Gostaria de entender melhor as possibilidades para o meu projeto e receber um orçamento. Quero construir algo bonito, funcional e que faça sentido para o que estou buscando.\n\nAguardo o contato de vocês.";
 
                           return encodeURIComponent(msg);
                         };
