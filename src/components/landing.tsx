@@ -1342,6 +1342,24 @@ export const SocialProof = () => {
 
 export const BookingForm = () => {
   const [step, setStep] = React.useState(0);
+
+  React.useEffect(() => {
+    // Check for "modelo" parameter in hash URL
+    const hash = window.location.hash;
+    if (hash.includes("?modelo=")) {
+      const params = new URLSearchParams(hash.split('?')[1]);
+      const modelo = params.get('modelo');
+      if (modelo) {
+        setFormData(prev => ({
+          ...prev,
+          architectureStyle: modelo,
+          message: `Tenho interesse específico no modelo: ${modelo}`
+        }));
+        // Optional: jump to a relevant step if needed
+      }
+    }
+  }, []);
+
   const [modal, setModal] = React.useState<{
     isOpen: boolean;
     type: 'info' | 'warning' | 'success' | 'error' | 'confirm';
