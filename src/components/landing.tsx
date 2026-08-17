@@ -377,10 +377,10 @@ const NotificationModal = ({
 };
 
 export const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [isScrolled, setIsScrolled] = React.useState(false);
-
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -388,56 +388,124 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { href: "/", label: "Início" },
+    { href: "/#projetos", label: "Projetos" },
+    { href: "/#sobre", label: "Sobre" },
+    { href: "/#processo", label: "Processo" },
+    { href: "/#catalogo", label: "Catálogo" },
+    { href: "/#diferenciais", label: "Diferenciais" },
+    { href: "/#contato", label: "Contato" },
+  ];
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 md:px-12",
-        isScrolled ? "bg-background/95 backdrop-blur-2xl py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-border/5" : "bg-white/95 backdrop-blur-md"
-      )}
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 md:px-12",
+          isScrolled ? "bg-background/95 backdrop-blur-2xl py-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-b border-border/5" : "bg-white/95 backdrop-blur-md"
+        )}
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            <a href="/" className="flex items-center gap-3 group">
+              <img 
+                src={logoAssetV2.url} 
+                alt="Chalés IA" 
+                className="h-8 w-8 md:h-10 md:w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
+              />
+              <span className={cn(
+                "text-xl md:text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity",
+                !isScrolled && "text-black"
+              )}>
+                CHALÉS IA
+              </span>
+            </a>
+          </div>
 
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <a href="/" className="flex items-center gap-3 group">
-            <img 
-              src={logoAssetV2.url} 
-              alt="Chalés IA" 
-              className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
-            />
-            <span className={cn(
-              "text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity",
-              !isScrolled && "text-black"
+          <div className="flex items-center gap-4 md:gap-8">
+            <div className={cn(
+              "hidden lg:flex items-center gap-6 text-[10px] uppercase tracking-widest font-sans font-bold",
+              !isScrolled && "text-black/80"
             )}>
-              CHALÉS IA
-            </span>
-          </a>
-          <div className={cn(
-            "hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-sans",
-            !isScrolled && "text-black/80"
-          )}>
-            <a href="/" className="hover:text-primary transition-colors">Início</a>
-            <a href="/#projetos" className="hover:text-primary transition-colors">Projetos</a>
-            <a href="/#sobre" className="hover:text-primary transition-colors">Sobre</a>
-            <a href="/#processo" className="hover:text-primary transition-colors">Processo</a>
-            <a href="/#catalogo" className="hover:text-primary transition-colors">Catálogo</a>
-            <a href="/#diferenciais" className="hover:text-primary transition-colors">Diferenciais</a>
-            <a href="/#contato" className="hover:text-primary transition-colors">Contato</a>
+              {navLinks.map(link => (
+                <a key={link.label} href={link.href} className="hover:text-primary transition-colors">{link.label}</a>
+              ))}
+            </div>
+            
+            <a 
+              href="#orcamento" 
+              className="hidden sm:flex bg-primary text-primary-foreground px-4 md:px-6 py-2 md:py-2.5 text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-300 items-center gap-2 rounded-sm"
+            >
+              Orçamento
+              <ArrowRight size={14} />
+            </a>
 
-
+            <button 
+              onClick={() => setIsMenuOpen(true)}
+              className={cn(
+                "lg:hidden p-2 transition-colors",
+                !isScrolled ? "text-black" : "text-foreground"
+              )}
+            >
+              <div className="w-6 h-5 flex flex-col justify-between items-end">
+                <span className="w-full h-[1px] bg-current" />
+                <span className="w-2/3 h-[1px] bg-current" />
+                <span className="w-full h-[1px] bg-current" />
+              </div>
+            </button>
           </div>
         </div>
-        
-        <a 
-          href="#orcamento" 
-          className="bg-primary text-primary-foreground px-6 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2 rounded-sm"
-        >
-          Solicitar Orçamento
-          <ArrowRight size={14} />
-        </a>
-      </div>
-    </motion.nav>
+      </motion.nav>
+
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-background lg:hidden"
+          >
+            <div className="flex flex-col h-full p-8">
+              <div className="flex items-center justify-between mb-16">
+                <img src={logoAssetV2.url} alt="Chalés IA" className="h-8 w-8 object-contain" />
+                <button onClick={() => setIsMenuOpen(false)} className="p-2">
+                  <X size={32} strokeWidth={1} />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-8">
+                {navLinks.map((link, idx) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-4xl md:text-6xl font-serif font-bold tracking-tighter hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="mt-auto pt-12 border-t border-border/10">
+                <a 
+                  href="#orcamento"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full bg-primary text-primary-foreground py-6 text-center text-[10px] uppercase tracking-[0.4em] font-bold rounded-sm block"
+                >
+                  Solicitar Orçamento
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
