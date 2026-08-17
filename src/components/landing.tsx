@@ -28,8 +28,6 @@ import alpine3 from "@/assets/chale-alpine-3.png.asset.json";
 import nordic1 from "@/assets/chale-nordic-1.png.asset.json";
 import nordic2 from "@/assets/chale-nordic-2.png.asset.json";
 import nordic3 from "@/assets/chale-nordic-3.png.asset.json";
-import logoBobbyAsset from "@/assets/logo-bobby.png.asset.json";
-
 
 
 
@@ -330,7 +328,7 @@ const NotificationModal = ({
   );
 };
 
-export const Navbar = ({ logoOverride }: { logoOverride?: string }) => {
+export const Navbar = () => {
 
   const [isScrolled, setIsScrolled] = React.useState(false);
 
@@ -356,17 +354,15 @@ export const Navbar = ({ logoOverride }: { logoOverride?: string }) => {
         <div className="flex items-center gap-8">
           <a href="/" className="flex items-center gap-3 group">
             <img 
-              src={logoOverride || logoAssetV2.url} 
-              alt={logoOverride ? "Bobby Móveis e Decorações" : "Chalés IA"} 
-
+              src={logoAssetV2.url} 
+              alt="Chalés IA" 
               className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" 
             />
             <span className={cn(
               "text-2xl font-serif tracking-tighter hover:opacity-80 transition-opacity",
               !isScrolled && "text-black"
             )}>
-              {logoOverride ? "BOBBY MÓVEIS" : "CHALÉS IA"}
-
+              CHALÉS IA
             </span>
           </a>
           <div className={cn(
@@ -568,7 +564,7 @@ export const Philosophy = () => {
 };
 
 
-const PROJETOS_CHALES = [
+const PROJETOS = [
   {
     id: 1,
     name: "Chalé A-Frame Classic",
@@ -772,9 +768,7 @@ export const Investment = () => {
 
 
 
-export const Projects = ({ items, title, subtitle }: { items?: any[], title?: string, subtitle?: string }) => {
-  const displayItems = items || PROJETOS_CHALES;
-
+export const Projects = () => {
   return (
     <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -782,19 +776,18 @@ export const Projects = ({ items, title, subtitle }: { items?: any[], title?: st
           <div className="max-w-3xl">
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Portfólio Editorial</span>
             <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
-              {title || "Obras que"} <br />
-              <span className="italic font-medium text-primary">{subtitle || "materializam"}</span> <br />
-              {subtitle ? "" : "visões."}
-
+              Obras que <br />
+              <span className="italic font-medium text-primary">materializam</span> <br />
+              visões.
             </h2>
           </div>
           <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-sm mb-4">
-            {items ? "Uma seleção de nossos móveis mais emblemáticos, unindo funcionalidade e design exclusivo." : "Uma seleção de nossos projetos mais emblemáticos, onde a arquitetura contemporânea encontra a excelência executiva."}
+            Uma seleção de nossos projetos mais emblemáticos, onde a arquitetura contemporânea encontra a excelência executiva.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
-          {displayItems.map((projeto, idx) => (
+          {PROJETOS.map((projeto, idx) => (
             <motion.div 
               key={projeto.id}
               initial={{ opacity: 0, y: 100 }}
@@ -1537,7 +1530,7 @@ export const BookingForm = () => {
 export const WhatsAppButton = () => {
   return (
     <a
-      href="https://wa.me/5582999357645?text=Olá! Conheci a Bobby Móveis e gostaria de conversar sobre móveis planejados."
+      href="https://wa.me/5582999357645?text=Olá! Conheci a Chalés IA e gostaria de conversar sobre a construção de um chalé."
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-[0_15px_40px_rgba(37,211,102,0.3)] hover:scale-110 active:scale-90 transition-all duration-300 flex items-center justify-center group"
@@ -1551,15 +1544,15 @@ export const WhatsAppButton = () => {
   );
 };
 
-export const Footer = ({ logoOverride }: { logoOverride?: string }) => {
+export const Footer = () => {
 
   return (
     <footer id="contato" className="bg-background border-t border-border/10 py-20 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="md:col-span-2">
-          <a href="/" className="text-3xl font-serif tracking-tighter block mb-8">{logoOverride ? "BOBBY MÓVEIS" : "CHALÉS IA"}</a>
+          <a href="/" className="text-3xl font-serif tracking-tighter block mb-8">CHALÉS IA</a>
           <p className="text-muted-foreground max-w-sm mb-10 leading-relaxed">
-            {logoOverride ? "Especialistas em móveis sob medida e decoração de alto padrão para transformar seus ambientes." : "Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza."}
+            Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
           <div className="flex gap-4">
             <a href="#" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
@@ -1598,7 +1591,7 @@ export const Footer = ({ logoOverride }: { logoOverride?: string }) => {
       </div>
       
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-border/10 flex flex-col md:row justify-between items-center gap-4">
-        <p className="text-[10px] text-muted-foreground uppercase tracking-widest">© 2024 {logoOverride ? "Bobby Móveis" : "Chalés IA"}. Todos os direitos reservados.</p>
+        <p className="text-[10px] text-muted-foreground uppercase tracking-widest">© 2024 Chalés IA. Todos os direitos reservados.</p>
         <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Design by Premium Experiences</p>
       </div>
     </footer>
