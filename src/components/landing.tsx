@@ -1474,7 +1474,7 @@ export const BookingForm = () => {
                           } = formData;
 
                           // 1. NOME
-                          let msg = `Olá! Tudo bem? 👋\n\nMeu nome é ${name}`;
+                          let msg = `Olá! Tudo bem?\n\nMeu nome é ${name}`;
 
                           // 2. CIDADE
                           if (city && city.trim()) {
