@@ -543,9 +543,9 @@ export const Hero = () => {
         >
           <div className="relative group">
             {/* Soft localized shadow behind the label for depth */}
-            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-150 opacity-50"></div>
+            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-125 md:scale-150 opacity-50"></div>
             
-            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
+            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-6 md:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
               <span className="text-white/90 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.4em] sm:tracking-[0.6em] font-sans font-medium block">
                 Escritório de Arquitetura & Construção
               </span>
@@ -808,7 +808,8 @@ export const Process = () => {
               Do terreno <br />
               <span className="italic font-medium text-primary">ao chalé.</span>
             </h2>
-            <p className="text-muted-foreground text-xl leading-relaxed max-w-md font-serif italic">
+            <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-md font-serif italic">
+
               Um processo verticalizado que garante a integridade do design da primeira linha do desenho até a última telha da obra.
             </p>
           </div>
@@ -1231,7 +1232,7 @@ export const Investment = () => {
 
 export const Projects = () => {
   return (
-    <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
+    <section id="projetos" className="py-32 md:py-56 bg-background relative overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-20 md:mb-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div className="max-w-3xl">
@@ -1242,7 +1243,7 @@ export const Projects = () => {
               visões.
             </h2>
           </div>
-          <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-sm mb-4">
+          <p className="text-muted-foreground text-lg md:text-xl font-serif italic max-w-sm mb-4 px-1">
             Uma seleção de nossos projetos mais emblemáticos, onde a arquitetura contemporânea encontra a excelência executiva.
           </p>
         </div>
@@ -2129,7 +2130,7 @@ export const Footer = () => {
           <p className="text-muted-foreground max-w-sm mb-10 leading-relaxed">
             Especialistas em projetar e construir chalés de alto padrão que integram arquitetura contemporânea à natureza.
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <a href="https://www.instagram.com/chales_ia/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-border flex items-center justify-center rounded-full hover:bg-primary hover:text-primary-foreground transition-all">
               <svg 
                 viewBox="0 0 24 24" 
