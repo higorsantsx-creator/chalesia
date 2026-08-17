@@ -1858,7 +1858,7 @@ export const BookingForm = () => {
   };
 
   return (
-    <section id="orcamento" className="py-24 md:py-40 px-6 bg-background">
+    <section id="orcamento" className="py-24 md:py-40 px-4 sm:px-6 bg-background relative overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-16">
           <div className="flex-1">
@@ -2039,7 +2039,7 @@ export const BookingForm = () => {
                       }
                       nextStep();
                     }}
-                    className="flex items-center justify-center gap-2 text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all w-full sm:w-auto"
+                    className="flex items-center justify-center gap-2 text-[10px] md:text-xs uppercase font-bold tracking-widest bg-primary/10 text-primary px-8 py-4 hover:bg-primary hover:text-primary-foreground transition-all w-full sm:w-auto"
                    >
                      Continuar <ChevronRight size={16} />
                    </button>
