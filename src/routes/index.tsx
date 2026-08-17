@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Navbar, Hero, Philosophy, Projects, Process, Details, Investment, BookingForm, Footer, SocialProof, WhatsAppButton, Catalog } from "@/components/landing";
+import { Navbar, Hero, Philosophy, Projects, Process, Details, Investment, BookingForm, Footer, SocialProof, WhatsAppButton } from "@/components/landing";
 import { Toaster } from "@/components/ui/sonner";
 import { SmoothScroll, CustomCursor } from "@/components/ui/smooth-scroll";
 
@@ -31,7 +31,6 @@ function Index() {
           <Philosophy />
           <Projects />
           <Process />
-          <Catalog />
           <Details />
           <Investment />
           <SocialProof />
