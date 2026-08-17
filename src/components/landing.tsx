@@ -1173,7 +1173,7 @@ export const Catalog = () => {
           >
             Modelos que podem <br />
             <span className="italic font-medium text-primary">virar realidade.</span>
-          </h2>
+          </motion.h2>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
