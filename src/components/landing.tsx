@@ -1558,7 +1558,7 @@ export const BookingForm = () => {
                           message: 'Já entendemos um pouco melhor o que você está imaginando. Agora vamos transformar essas ideias em possibilidades.',
                           confirmLabel: 'Abrir WhatsApp',
                           onConfirm: () => {
-                            window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
+                            window.open(`https://wa.me/5547996089267?text=${text}`, "_blank");
                             closeModal();
                           }
                         });
@@ -1662,7 +1662,7 @@ export const BookingForm = () => {
 export const WhatsAppButton = () => {
   return (
     <a
-      href="https://wa.me/5582999357645?text=Olá! Conheci a Chalés IA e gostaria de conversar sobre a construção de um chalé."
+      href="https://wa.me/5547996089267?text=Olá! Conheci a Chalés IA e gostaria de conversar sobre a construção de um chalé."
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-[0_15px_40px_rgba(37,211,102,0.3)] hover:scale-110 active:scale-90 transition-all duration-300 flex items-center justify-center group"
