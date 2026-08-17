@@ -557,7 +557,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-7xl md:text-[11rem] font-serif font-bold leading-[0.75] mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white"
+          className="text-5xl sm:text-7xl md:text-[11rem] font-serif font-bold leading-[0.85] md:leading-[0.75] mb-12 md:mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white"
         >
           <span className="text-brand-gold">Arquitetura</span> <br />
           <span className="italic text-primary/90 font-medium">que respira.</span>
@@ -567,30 +567,30 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row items-center justify-center gap-12"
+          className="flex flex-col md:flex-row items-stretch md:items-center justify-center gap-6 md:gap-12"
         >
-          <a 
-            href="#projetos"
-            data-cursor="Explorar"
-            className="group flex items-center gap-6 text-white text-[11px] uppercase tracking-[0.4em] font-bold hover:text-primary transition-all duration-500"
-          >
-            <span>Ver Portfólio</span>
-            <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform duration-500" />
-          </a>
           <a 
             href="#orcamento" 
             data-cursor="Iniciar"
-            className="group relative inline-flex items-center bg-primary text-primary-foreground px-14 py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[11px] font-bold rounded-sm shadow-[0_30px_70px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95"
+            className="group relative inline-flex items-center justify-center bg-primary text-primary-foreground px-8 md:px-14 py-5 md:py-6 transition-all duration-700 uppercase tracking-[0.4em] text-[10px] md:text-[11px] font-bold rounded-sm shadow-[0_20px_50px_rgba(64,128,89,0.3)] hover:-translate-y-2 active:scale-95 order-1 md:order-2"
           >
             <span className="relative z-10">Solicitar Orçamento</span>
           </a>
 
-          
           <a 
             href="#projetos" 
-            className="inline-flex items-center gap-4 border border-white/20 px-14 py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[11px] font-bold rounded-sm active:scale-95"
+            className="inline-flex items-center justify-center gap-4 border border-white/20 px-8 md:px-14 py-5 md:py-6 hover:bg-white hover:text-black backdrop-blur-md transition-all duration-500 uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-bold rounded-sm active:scale-95 order-2 md:order-3"
           >
             Explorar Obras
+          </a>
+
+          <a 
+            href="#projetos"
+            data-cursor="Explorar"
+            className="group hidden md:flex items-center gap-6 text-white text-[11px] uppercase tracking-[0.4em] font-bold hover:text-primary transition-all duration-500 order-3 md:order-1"
+          >
+            <span>Ver Portfólio</span>
+            <ArrowRight size={18} className="group-hover:translate-x-4 transition-transform duration-500" />
           </a>
         </motion.div>
       </motion.div>
@@ -959,7 +959,7 @@ export const ProjectCatalog = () => {
 
         {/* Cinematic Carousel */}
         <div 
-          className="relative h-[50vh] md:h-[70vh] flex items-center justify-center select-none"
+          className="relative h-[60vh] md:h-[70vh] flex items-center justify-center select-none touch-pan-y"
           onMouseEnter={() => setIsAutoPlay(false)}
           onMouseLeave={() => setIsAutoPlay(true)}
         >
@@ -995,15 +995,16 @@ export const ProjectCatalog = () => {
                       duration: 1.2, 
                       ease: [0.22, 1, 0.36, 1] 
                     }}
-                    drag={isCenter ? "x" : false}
+                    drag="x"
                     dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
                     onDragEnd={(_, info) => {
-                      if (info.offset.x > 100) prev();
-                      else if (info.offset.x < -100) next();
+                      if (info.offset.x > 50) prev();
+                      else if (info.offset.x < -50) next();
                     }}
                     onClick={isCenter ? () => setSelectedProject(project) : (offset < 0 ? prev : next)}
                     className={cn(
-                      "absolute w-[80%] md:w-[60%] h-full rounded-sm overflow-hidden shadow-2xl cursor-pointer",
+                      "absolute w-[85%] sm:w-[80%] md:w-[60%] h-full rounded-sm overflow-hidden shadow-2xl cursor-pointer",
                       !isCenter && "pointer-events-auto"
                     )}
                   >
@@ -1013,7 +1014,7 @@ export const ProjectCatalog = () => {
                       className="w-full h-full object-cover"
                     />
                     {isCenter && (
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent z-10 flex flex-col justify-end p-8 md:p-16">
+                      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent z-10 flex flex-col justify-end p-6 sm:p-8 md:p-16">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -1023,7 +1024,7 @@ export const ProjectCatalog = () => {
                           <span className="text-primary text-[10px] uppercase tracking-[0.4em] font-bold block mb-4">
                             {project.sqm} · {project.bedrooms} · {project.bathrooms}
                           </span>
-                          <h3 className="text-4xl md:text-7xl font-serif font-bold text-white tracking-tighter mb-6">
+                          <h3 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold text-white tracking-tighter mb-4 md:mb-6">
                             {project.name}
                           </h3>
                           <p className="text-white/60 text-lg md:text-xl font-serif italic mb-10 leading-relaxed">
@@ -1043,13 +1044,13 @@ export const ProjectCatalog = () => {
             {/* Navigation Arrows */}
             <button 
               onClick={(e) => { e.stopPropagation(); prev(); }}
-              className="absolute left-4 md:left-20 z-30 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110"
+              className="absolute left-2 sm:left-4 md:left-20 z-30 p-2 sm:p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110 hidden sm:block"
             >
               <ChevronLeft size={32} strokeWidth={1} />
             </button>
             <button 
               onClick={(e) => { e.stopPropagation(); next(); }}
-              className="absolute right-4 md:right-20 z-30 p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110"
+              className="absolute right-2 sm:right-4 md:right-20 z-30 p-2 sm:p-4 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-black transition-all hover:scale-110 hidden sm:block"
             >
               <ChevronRight size={32} strokeWidth={1} />
             </button>
@@ -1071,8 +1072,8 @@ export const ProjectCatalog = () => {
           </div>
           
           <div className="text-center pt-20 border-t border-border/10 w-full mt-20">
-            <h4 className="text-2xl md:text-4xl font-serif font-bold tracking-tight mb-8">NÃO ENCONTROU O MODELO IDEAL?</h4>
-            <p className="text-muted-foreground font-serif italic mb-12">Não tem problema. O seu projeto pode começar do zero.</p>
+            <h4 className="text-xl sm:text-2xl md:text-4xl font-serif font-bold tracking-tight mb-6 md:mb-8">NÃO ENCONTROU O MODELO IDEAL?</h4>
+            <p className="text-sm sm:text-base text-muted-foreground font-serif italic mb-10 md:mb-12">Não tem problema. O seu projeto pode começar do zero.</p>
             <a 
               href="#orcamento"
               className="inline-flex items-center gap-4 bg-primary text-primary-foreground px-14 py-6 text-[11px] uppercase tracking-[0.4em] font-bold hover:bg-primary/90 hover:-translate-y-2 transition-all rounded-sm"
@@ -1096,7 +1097,7 @@ export const ProjectCatalog = () => {
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="relative w-full max-w-7xl bg-card border border-border/10 min-h-full rounded-sm overflow-hidden flex flex-col lg:flex-row"
+              className="relative w-full max-w-7xl bg-card border border-border/10 min-h-screen md:min-h-full rounded-sm overflow-hidden flex flex-col lg:flex-row"
             >
               <button 
                 onClick={() => setSelectedProject(null)}
@@ -1113,9 +1114,9 @@ export const ProjectCatalog = () => {
                 />
               </div>
 
-              <div className="w-full lg:w-2/5 p-12 md:p-20 overflow-y-auto">
+              <div className="w-full lg:w-2/5 p-8 sm:p-12 md:p-20 overflow-y-auto">
                 <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-bold block mb-6">Ficha Técnica</span>
-                <h2 className="text-5xl font-serif font-bold tracking-tighter mb-8">{selectedProject.name}</h2>
+                <h2 className="text-3xl sm:text-5xl font-serif font-bold tracking-tighter mb-8">{selectedProject.name}</h2>
                 
                 <div className="grid grid-cols-2 gap-8 mb-12 py-8 border-y border-border/10">
                   <div>
@@ -1147,7 +1148,7 @@ export const ProjectCatalog = () => {
                   {selectedProject.description}
                 </p>
 
-                <div className="bg-muted/5 p-10 border border-border/5 rounded-sm mb-16">
+                <div className="bg-muted/5 p-6 sm:p-10 border border-border/5 rounded-sm mb-16">
                   <h4 className="text-xl font-serif font-bold mb-4">Gostou deste modelo?</h4>
                   <p className="text-sm text-muted-foreground mb-8">Podemos adaptar este projeto ou criar algo completamente personalizado para você.</p>
                   <a 
