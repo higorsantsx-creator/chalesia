@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Hammer, Maximize, Ruler, Compass, HardHat, Layers, ArrowLeft, Quote, Star } from "lucide-react";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
 import chale_2 from "@/assets/chale_2.jpeg.asset.json";
-import chale_3 from "@/assets/chale-obra-3.jpg.asset.json";
+import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
 import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
 import chale_5 from "@/assets/chale_5.jpg.asset.json";
 import chale_6 from "@/assets/chale_6.jpg.asset.json";
