@@ -1541,8 +1541,8 @@ export const BookingForm = () => {
                 key={opt.val}
                 onClick={() => { updateField("projectType", opt.val); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.projectType === opt.val ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.projectType === opt.val ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <Home className="mb-4 text-primary" size={24} />
@@ -1560,8 +1560,8 @@ export const BookingForm = () => {
                 key={opt}
                 onClick={() => { updateField("hasLand", opt); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.hasLand === opt ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.hasLand === opt ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <Compass className="mb-4 text-primary" size={24} />
@@ -1578,8 +1578,8 @@ export const BookingForm = () => {
                 key={num}
                 onClick={() => { updateField("numberOfChalets", num.toString()); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm transition-all hover:border-primary",
-                  formData.numberOfChalets === num.toString() ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm transition-all hover:border-primary",
+                  formData.numberOfChalets === num.toString() ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <span className="text-4xl font-serif font-bold">{num}</span>
@@ -1600,8 +1600,8 @@ export const BookingForm = () => {
                 key={opt.val}
                 onClick={() => { updateField("objective", opt.val); nextStep(); }}
                 className={cn(
-                  "p-8 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.objective === opt.val ? "border-primary bg-primary/5" : "border-border"
+                  "p-6 md:p-8 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.objective === opt.val ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.02]" : "border-border"
                 )}
               >
                 <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-2 text-primary">{opt.title}</h3>
@@ -1634,7 +1634,7 @@ export const BookingForm = () => {
           }
         ];
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             {styles.map((opt) => (
               <div 
                 key={opt.val}
@@ -1664,7 +1664,7 @@ export const BookingForm = () => {
       case 'environments':
         const differentials = ["Piscina", "Ofurô", "Banheira", "Deck", "Lareira", "Varanda", "Área Gourmet", "Churrasqueira", "Vista Panorâmica"];
         return (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
             {differentials.map((item) => (
               <button 
                 key={item}
@@ -1699,8 +1699,8 @@ export const BookingForm = () => {
                 key={range}
                 onClick={() => { updateField("budget", range); nextStep(); }}
                 className={cn(
-                  "p-6 border rounded-sm text-left transition-all hover:border-primary",
-                  formData.budget === range ? "border-primary bg-primary/5" : "border-border"
+                  "p-5 md:p-6 border rounded-sm text-left transition-all hover:border-primary",
+                  formData.budget === range ? "border-primary bg-primary/5 shadow-lg shadow-primary/5 scale-[1.01]" : "border-border"
                 )}
               >
                 <span className="text-sm font-bold tracking-widest uppercase">{range}</span>
