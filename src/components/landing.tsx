@@ -821,9 +821,9 @@ export const Process = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ delay: idx * 0.1, duration: 0.8 }}
-                className="group flex gap-12 items-start pb-24 border-b border-border/10 last:border-0"
+                className="group flex flex-col md:flex-row gap-8 md:gap-12 items-start pb-20 md:pb-24 border-b border-border/10 last:border-0"
               >
-                <div className="text-6xl md:text-8xl font-serif font-bold text-primary/5 group-hover:text-primary/20 transition-all duration-700 leading-none">
+                <div className="text-5xl md:text-8xl font-serif font-bold text-primary/5 group-hover:text-primary/20 transition-all duration-700 leading-none">
                   {step.num}
                 </div>
                 <div className="pt-2">
@@ -1355,7 +1355,7 @@ export const SocialProof = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.05 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-background p-12 md:p-32 rounded-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] border border-border/5 text-center relative"
+              className="bg-background p-8 md:p-32 rounded-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] border border-border/5 text-center relative"
             >
               <Quote className="absolute top-12 left-12 text-primary/5" size={120} />
               
@@ -1365,7 +1365,7 @@ export const SocialProof = () => {
                 ))}
               </div>
 
-              <p className="text-2xl md:text-5xl font-serif italic leading-tight mb-16 tracking-tight text-foreground/90">
+              <p className="text-xl sm:text-2xl md:text-5xl font-serif italic leading-tight mb-12 md:mb-16 tracking-tight text-foreground/90">
                 "{REVIEWS[index].content}"
               </p>
 
@@ -1379,7 +1379,8 @@ export const SocialProof = () => {
           <div className="flex justify-center items-center gap-12 mt-16">
             <button 
               onClick={prev}
-              className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+
             >
               <ChevronLeft size={24} />
             </button>
@@ -1388,7 +1389,7 @@ export const SocialProof = () => {
             </div>
             <button 
               onClick={next}
-              className="w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
+              className="w-12 h-12 md:w-16 md:h-16 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-500 active:scale-90"
             >
               <ChevronRight size={24} />
             </button>
