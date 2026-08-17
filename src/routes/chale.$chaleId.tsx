@@ -89,7 +89,7 @@ function ChaleDetailsPage() {
                   <span>Voltar ao Portfólio</span>
                 </Link>
                 <span className="text-primary text-[10px] uppercase tracking-[0.6em] font-sans font-bold block mb-6">{chale.category}</span>
-                <h1 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
+                <h1 className="text-4xl sm:text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
                   {chale.name.split(' ')[0]} <br />
                   <span className="italic font-medium text-primary">{chale.name.split(' ').slice(1).join(' ')}</span>
                 </h1>
@@ -110,12 +110,12 @@ function ChaleDetailsPage() {
                   <p className="text-3xl md:text-5xl leading-[1.2] text-foreground font-serif italic mb-12 tracking-tight">
                     "{chale.description}"
                   </p>
-                  <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl font-serif">
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl font-serif">
                     Uma resposta arquitetônica que desafia a convenção, unindo a precisão da engenharia moderna com a alma orgânica dos materiais naturais. Cada linha foi traçada para honrar o terreno e elevar a experiência de habitar.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-y-16 gap-x-12 py-24 border-y border-foreground/5">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 md:gap-y-16 gap-x-8 md:gap-x-12 py-16 md:py-24 border-y border-foreground/5">
                   <div className="space-y-4">
                     <div className="flex items-center gap-6 text-primary">
                       <Maximize size={24} strokeWidth={1.5} />
@@ -151,8 +151,8 @@ function ChaleDetailsPage() {
                 </div>
 
                 <div className="space-y-16">
-                  <h3 className="text-4xl md:text-6xl font-serif font-bold tracking-tight">Materialidade & <br /> <span className="text-primary italic font-medium">Componentes.</span></h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <h3 className="text-3xl md:text-6xl font-serif font-bold tracking-tight">Materialidade & <br /> <span className="text-primary italic font-medium">Componentes.</span></h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
                     {chale.features.map((feature: string, idx: number) => (
                       <motion.div 
                         key={feature} 
@@ -172,7 +172,7 @@ function ChaleDetailsPage() {
 
               {/* Right Column: Investment Card */}
               <div className="lg:col-span-5 lg:pl-12">
-                <div className="lg:sticky lg:top-40 bg-foreground text-background p-12 md:p-20 rounded-sm shadow-[0_60px_100px_-20px_rgba(0,0,0,0.3)] relative overflow-hidden">
+                <div className="lg:sticky lg:top-40 bg-foreground text-background p-8 sm:p-12 md:p-20 rounded-sm shadow-[0_60px_100px_-20px_rgba(0,0,0,0.3)] relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[60px]"></div>
                   
                   <div className="relative z-10">
