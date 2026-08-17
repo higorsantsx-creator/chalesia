@@ -546,7 +546,7 @@ export const Hero = () => {
             <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-100 sm:scale-150 opacity-50"></div>
             
             <div className="bg-black/30 backdrop-blur-md border border-white/10 px-4 sm:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
-              <span className="text-white/90 text-[8px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.6em] font-sans font-medium block">
+              <span className="text-white/90 text-[8px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.6em] font-sans font-medium block whitespace-normal">
                 Escritório de Arquitetura & Construção
               </span>
             </div>
@@ -557,7 +557,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl sm:text-7xl md:text-[11rem] font-serif font-bold leading-[0.85] md:leading-[0.75] mb-12 md:mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white"
+          className="text-5xl sm:text-7xl md:text-[11rem] font-serif font-bold leading-[0.85] md:leading-[0.75] mb-12 md:mb-16 tracking-tighter drop-shadow-[0_2px_15px_rgba(0,0,0,0.4)] md:drop-shadow-[0_4px_30px_rgba(0,0,0,0.3)] text-white w-full overflow-hidden"
         >
           <span className="text-brand-gold">Arquitetura</span> <br />
           <span className="italic text-primary/90 font-medium">que respira.</span>
@@ -567,7 +567,7 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-4"
+          className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 px-4 w-full"
         >
           <a 
             href="#orcamento" 
