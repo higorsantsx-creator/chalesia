@@ -539,14 +539,14 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block mb-12"
+          className="inline-block mb-12 max-w-full px-4"
         >
           <div className="relative group">
             {/* Soft localized shadow behind the label for depth */}
-            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-125 md:scale-150 opacity-50"></div>
+            <div className="absolute inset-0 bg-black/40 blur-2xl rounded-full -z-10 scale-100 sm:scale-150 opacity-50"></div>
             
-            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-6 md:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
-              <span className="text-white/90 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.4em] sm:tracking-[0.6em] font-sans font-medium block">
+            <div className="bg-black/30 backdrop-blur-md border border-white/10 px-5 sm:px-8 py-3 rounded-full shadow-2xl transition-all duration-700 hover:bg-black/40 hover:border-white/20">
+              <span className="text-white/90 text-[8px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.6em] font-sans font-medium block">
                 Escritório de Arquitetura & Construção
               </span>
             </div>
@@ -1906,8 +1906,8 @@ export const BookingForm = () => {
                 <RefreshCw size={10} /> Recomeçar
               </button>
               
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
-                <button onClick={prevStep} disabled={step === 0} className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto">
+                <button onClick={prevStep} disabled={step === 0} className="flex items-center justify-center gap-2 text-xs uppercase font-bold tracking-widest disabled:opacity-30 w-full sm:w-auto py-4 sm:py-0">
                   <ChevronLeft size={16} /> Voltar
                 </button>
                 {step === activeSteps.length - 1 ? (
@@ -2012,7 +2012,7 @@ export const BookingForm = () => {
                         });
 
                       }}
-                     className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
+                     className="bg-primary text-primary-foreground w-full sm:w-auto px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
                    >
                      Solicitar Meu Orçamento
                    </button>
