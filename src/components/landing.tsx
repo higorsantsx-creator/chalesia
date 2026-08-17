@@ -73,18 +73,6 @@ export const EnhancedImage = ({ src, alt, className, containerClassName }: { src
         className={cn("w-full h-full object-cover transition-all duration-700", className)}
       />
       
-      {isEnhanced && !isEnhancing && (
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-4 right-4 z-20"
-        >
-          <div className="flex items-center gap-2 bg-primary/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg">
-            <Zap size={10} className="text-white" />
-            <span className="text-[7px] uppercase tracking-widest font-bold text-white">IA Aprimorada</span>
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 };
