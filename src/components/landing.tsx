@@ -827,7 +827,7 @@ export const Details = () => {
 
 
 
-const ProjectCatalog = () => {
+export const ProjectCatalog = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [isAutoPlay, setIsAutoPlay] = useState(true);
