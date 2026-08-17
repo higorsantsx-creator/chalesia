@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
-import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X } from "lucide-react";
+import { ArrowRight, Phone, Mail, MapPin, Star, Quote, Hammer, PenTool, CheckCircle, TrendingUp, Sparkles, Ruler, Compass, HardHat, ChevronLeft, ChevronRight, Home, LayoutGrid, Pencil, Check, RefreshCw, AlertCircle, Info, X, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ParallaxImage } from "./ui/parallax-image";
+import { enhanceImageWithAI } from "@/lib/image-enhancement.functions";
+import { useServerFn } from "@tanstack/react-start";
 import chale_1 from "@/assets/chale_1.jpeg.asset.json";
-import chale_2 from "@/assets/chale_2.jpeg.asset.json";
-import chale_3 from "@/assets/chale_3_new.jpg.asset.json";
-import chale_4 from "@/assets/chale_4_new.jpg.asset.json";
-import chale_5 from "@/assets/chale_5.jpg.asset.json";
-import chale_6 from "@/assets/chale_6.jpg.asset.json";
-import heroChaleAsset from "@/assets/hero-chale-new.png.asset.json";
+// ... imports continued below
 import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
@@ -29,6 +26,76 @@ import alpine3 from "@/assets/chale-alpine-3.png.asset.json";
 import nordic1 from "@/assets/chale-nordic-1.png.asset.json";
 import nordic2 from "@/assets/chale-nordic-2.png.asset.json";
 import nordic3 from "@/assets/chale-nordic-3.png.asset.json";
+
+/**
+ * Intelligent image component that enhances lower quality images using AI.
+ */
+export const EnhancedImage = ({ src, alt, className, containerClassName }: { src: string; alt: string; className?: string; containerClassName?: string }) => {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [isEnhancing, setIsEnhancing] = useState(false);
+  const [isEnhanced, setIsEnhanced] = useState(false);
+  const enhanceFn = useServerFn(enhanceImageWithAI);
+
+  useEffect(() => {
+    const shouldEnhance = src.includes('.png') || src.includes('low-res'); // Heuristic
+    if (shouldEnhance && !isEnhanced && !isEnhancing) {
+      handleEnhance();
+    }
+  }, [src]);
+
+  const handleEnhance = async () => {
+    try {
+      setIsEnhancing(true);
+      const result = await enhanceFn({ data: { imageUrl: src } });
+      if (result.success && result.enhancedUrl) {
+        setCurrentSrc(result.enhancedUrl);
+        setIsEnhanced(true);
+      }
+    } catch (e) {
+      console.error("Auto-enhancement failed", e);
+    } finally {
+      setIsEnhancing(false);
+    }
+  };
+
+  return (
+    <div className={cn("relative overflow-hidden group", containerClassName)}>
+      <motion.img
+        src={currentSrc}
+        alt={alt}
+        className={cn("w-full h-full object-cover transition-all duration-700", isEnhancing && "blur-sm scale-105", className)}
+      />
+      
+      {isEnhancing && (
+        <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center z-10">
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="mb-3"
+          >
+            <Sparkles className="text-white" size={24} />
+          </motion.div>
+          <span className="text-[8px] uppercase tracking-[0.3em] font-bold text-white bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md">
+            Melhorando com IA...
+          </span>
+        </div>
+      )}
+
+      {isEnhanced && !isEnhancing && (
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="absolute top-4 right-4 z-20"
+        >
+          <div className="flex items-center gap-2 bg-primary/80 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg">
+            <Zap size={10} className="text-white" />
+            <span className="text-[7px] uppercase tracking-widest font-bold text-white">IA Aprimorada</span>
+          </div>
+        </motion.div>
+      )}
+    </div>
+  );
+};
 
 
 
@@ -800,7 +867,7 @@ export const Projects = () => {
             >
               <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
                 <div className={cn("aspect-[4/5]", projeto.id === 1 && "aspect-square")}>
-                  <ParallaxImage 
+                  <EnhancedImage 
                     src={projeto.image} 
                     alt={projeto.name}
                     containerClassName="w-full h-full"
