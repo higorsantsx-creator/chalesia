@@ -1494,18 +1494,92 @@ export const BookingForm = () => {
                      onClick={() => {
                        const showQuantity = activeSteps.some(s => s.id === 'quantity');
                        const showObjective = activeSteps.some(s => s.id === 'objective');
-                        const text = `Olá! Gostaria de solicitar um orçamento para um projeto com a Chalés IA.%0A%0A━━━━━━━━━━━━━━━━━━%0ADADOS DO PROJETO%0A━━━━━━━━━━━━━━━━━━%0A%0A*Tipo de projeto:*%0A${formData.projectType || "Não informado"}%0A%0A*Possui terreno:*%0A${formData.hasLand || "Não informado"}%0A${showQuantity ? `%0A*Quantidade:*%0A${formData.numberOfChalets} chalé(s)%0A` : ""}${showObjective ? `%0A*Objetivo:*%0A${formData.objective || "Não informado"}%0A` : ""}%0A*Estilo:*%0A${formData.architectureStyle || "Não informado"}%0A%0A*Diferenciais:*%0A${formData.features.join(", ") || "Nenhum"}%0A%0A*Faixa de investimento:*%0A${formData.budget || "Não informado"}%0A%0A*Localização:*%0A${formData.city} — ${formData.state}%0A%0A*Prazo:*%0A${formData.timeline || "Não informado"}%0A%0A━━━━━━━━━━━━━━━━━━%0ACLIENTE%0A━━━━━━━━━━━━━━━━━━%0A%0A*Nome:*%0A${formData.name}%0A%0A*WhatsApp:*%0A${formData.whatsapp}%0A%0A*E-mail:*%0A${formData.email}%0A%0A*Observações:*%0A${formData.message || "Nenhuma"}%0A%0A━━━━━━━━━━━━━━━━━━%0A%0AEnviado através do site Chalés IA.`;
+                        const generatePersonalizedMessage = () => {
+                          const {
+                            name, city, state, projectType, objective, hasLand, 
+                            architectureStyle, numberOfChalets, features, budget, 
+                            timeline, message 
+                          } = formData;
+
+                          const firstLine = `Olá! Tudo bem? Meu nome é ${name}${city ? ` e gostaria de conversar sobre um projeto em ${city}` : ""} ${state ? `(${state})` : ""}.`;
+                          
+                          let projectIntro = "";
+                          if (projectType === "Um chalé") {
+                            projectIntro = "Estou planejando a construção de um chalé";
+                          } else if (projectType === "Vários chalés") {
+                            projectIntro = `Estou planejando a construção de um complexo com ${numberOfChalets} chalés`;
+                          } else {
+                            projectIntro = "Gostaria de desenvolver um projeto personalizado com vocês";
+                          }
+
+                          let landStatus = "";
+                          if (hasLand === "Sim") {
+                            landStatus = "Já possuo o terreno";
+                          } else if (hasLand === "Ainda não") {
+                            landStatus = "Ainda estou buscando o terreno ideal e gostaria de uma orientação";
+                          } else if (hasLand === "Em negociação") {
+                            landStatus = "O terreno para a obra já está em fase de negociação";
+                          }
+
+                          let objectiveText = "";
+                          if (objective === "Refúgio") {
+                            objectiveText = "buscando criar um refúgio particular para descanso e momentos com a família em meio à natureza";
+                          } else if (objective === "Investimento" || objective === "Hospedagem") {
+                            objectiveText = "focado em investimento e aluguel por temporada, buscando um projeto que valorize a experiência dos hóspedes e o potencial do empreendimento";
+                          } else if (objective === "Moradia") {
+                            objectiveText = "pensado para ser minha moradia principal, priorizando conforto, funcionalidade e personalidade";
+                          }
+
+                          let styleText = "";
+                          if (architectureStyle === "A-Frame") {
+                            styleText = "Tenho uma forte preferência pelo conceito A-Frame, buscando aquela estética clássica e aconchegante de montanha";
+                          } else if (architectureStyle === "Contemporâneo") {
+                            styleText = "Busco um estilo contemporâneo, com linhas modernas, sofisticação e uma integração perfeita entre estética e funcionalidade";
+                          } else if (architectureStyle === "Nordic") {
+                            styleText = "Me identifico muito com o estilo Nordic / Minimalista, valorizando a simplicidade, o conforto e uma estética limpa";
+                          } else if (architectureStyle === "Personalizado") {
+                            styleText = "Gostaria de explorar um projeto totalmente personalizado e exclusivo";
+                          }
+
+                          let extras = "";
+                          if (features.length > 0) {
+                            extras = `Para os diferenciais, imagino algo com ${features.join(", ").toLowerCase()}`;
+                          }
+
+                          let closing = "";
+                          if (budget && budget !== "Ainda não sei") {
+                            closing = `Meu investimento estimado está na faixa de ${budget.toLowerCase()}`;
+                          }
+                          if (timeline && timeline !== "Ainda estou planejando") {
+                            closing += `${closing ? " e pretendo " : "Pretendo "}iniciar a obra ${timeline.toLowerCase()}`;
+                          }
+
+                          const paragraphs = [
+                            firstLine,
+                            [projectIntro, landStatus, objectiveText].filter(Boolean).join(", ") + ".",
+                            styleText ? styleText + "." : "",
+                            extras ? extras + "." : "",
+                            message ? `Um detalhe importante: ${message}` : "",
+                            closing ? closing + "." : "",
+                            "Gostaria de entender melhor as possibilidades e receber uma proposta para esse projeto. Aguardo o contato de vocês. 🤝"
+                          ].filter(p => p.trim() !== "");
+
+                          return paragraphs.join("%0A%0A");
+                        };
+
+                        const text = generatePersonalizedMessage();
                         
                         showModal({
                           type: 'success',
-                          title: 'Tudo pronto!',
-                          message: 'Seu projeto foi preparado com sucesso. Estamos abrindo o WhatsApp para continuar o atendimento personalizado.',
+                          title: 'Perfeito.',
+                          message: 'Já entendemos um pouco melhor o que você está imaginando. Agora vamos transformar essas ideias em possibilidades.',
                           confirmLabel: 'Abrir WhatsApp',
                           onConfirm: () => {
                             window.open(`https://wa.me/5582999357645?text=${text}`, "_blank");
                             closeModal();
                           }
                         });
+
                       }}
                      className="bg-primary text-primary-foreground px-12 py-5 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all shadow-[0_20px_40px_rgba(64,128,89,0.2)]"
                    >
