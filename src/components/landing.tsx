@@ -1233,10 +1233,10 @@ export const Projects = () => {
   return (
     <section id="projetos" className="py-32 md:py-56 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-32 flex flex-col md:row justify-between items-end gap-12">
+        <div className="mb-20 md:mb-32 flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
           <div className="max-w-3xl">
             <span className="text-primary text-[10px] uppercase tracking-[0.5em] font-sans font-bold block mb-6">Portfólio Editorial</span>
-            <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
+            <h2 className="text-5xl sm:text-6xl md:text-9xl font-serif font-bold tracking-tighter leading-[0.8] mb-8">
               Obras que <br />
               <span className="italic font-medium text-primary">materializam</span> <br />
               visões.
@@ -1247,7 +1247,7 @@ export const Projects = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 md:gap-y-32">
           {PROJETOS.map((projeto, idx) => (
             <Link 
               key={projeto.id}
@@ -1263,7 +1263,7 @@ export const Projects = () => {
                 className={cn("group cursor-pointer", idx % 2 === 1 ? "md:mt-48" : "")}
                 data-cursor="Explorar"
               >
-                <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
+                <div className="relative overflow-hidden mb-8 md:mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
                   <div className={cn("aspect-[4/5]", projeto.id === 1 && "aspect-square")}>
                     <EnhancedImage 
                       src={projeto.image} 
@@ -1273,7 +1273,7 @@ export const Projects = () => {
                     />
                   </div>
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
-                  <div className="absolute top-8 left-8 text-white text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-6 py-3 z-20">
+                  <div className="absolute top-4 left-4 md:top-8 md:left-8 text-white text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold bg-primary/90 backdrop-blur-md px-4 py-2 md:px-6 md:py-3 z-20">
                     {projeto.category}
                   </div>
                 </div>
