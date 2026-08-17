@@ -15,6 +15,7 @@ import logoAssetV2 from "@/assets/logo-chales-ia-v2.png.asset.json";
 import chaleNordicReferencia from "@/assets/chale_nordic_referencia.png.asset.json";
 import chaleAlpinePool from "@/assets/chale_alpine_pool.png.asset.json";
 import interiorChaleAsset from "@/assets/interior-chale.png.asset.json";
+import arquiteturaOrganicaAsset from "@/assets/chale-arquitetura-organica.jpg.asset.json";
 
 import gallery1 from "@/assets/gallery-1.png.asset.json";
 import gallery2 from "@/assets/gallery-2.png.asset.json";
@@ -570,7 +571,7 @@ const PROJETOS = [
     name: "Chalé A-Frame Classic",
     category: "Arquitetura Orgânica",
     description: "Estrutura triangular clássica em madeira, integrada perfeitamente a ambientes de mata nativa.",
-    image: chale_5.url,
+    image: arquiteturaOrganicaAsset.url,
   },
   {
     id: 2,
@@ -798,7 +799,7 @@ export const Projects = () => {
               data-cursor="Explorar"
             >
               <div className="relative overflow-hidden mb-12 rounded-sm shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5)] transition-all duration-700">
-                <div className="aspect-[4/5]">
+                <div className={cn("aspect-[4/5]", projeto.id === 1 && "aspect-square")}>
                   <ParallaxImage 
                     src={projeto.image} 
                     alt={projeto.name}
